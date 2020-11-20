@@ -24,6 +24,7 @@ public class TestCode extends BaseClass{
             String c = "Text" som ska matas in i textfält
 
         Skapad av Linus Finsbäck 2020-11-20
+        Ändrad av ....
      */
     public void findElementsByxPath(String a, String b, String c) {
 
@@ -49,6 +50,7 @@ public class TestCode extends BaseClass{
             String c = "Text" som ska matas in i textfält
 
         Skapad av Linus Finsbäck 2020-11-20
+        Ändrad av ....
      */
     public void findElementsById(String a, String b, String c) {
 
@@ -74,6 +76,7 @@ public class TestCode extends BaseClass{
             String c = "Text" som ska matas in i textfält
 
         Skapad av Linus Finsbäck 2020-11-20
+        Ändrad av ....
      */
     public void findElementsByCss(String a, String b, String c) {
 
@@ -93,11 +96,26 @@ public class TestCode extends BaseClass{
     /*
         Funktion för att hämta nuvarande url
         Funktionen returnerer nuvarande url
+
         Skapad av Linus Finsbäck 2020-11-20
+        Ändrad av ....
     */
     public String getCurrentUrl() {
         String url;
         url = driver.getCurrentUrl();
         return url;
+    }
+
+    /*
+        Funktion för att hämta title
+        Funktionen returnerar nuvarande title
+
+        Skapad av Linus Finsbäck 2020-11-20
+        Ändrad av ....
+     */
+    public String getTitle() {
+        String title;
+        title = driver.getTitle();
+        return title;
     }
 }
