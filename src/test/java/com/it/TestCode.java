@@ -27,14 +27,16 @@ public class TestCode extends BaseClass{
      */
     public void findElementsByxPath(String a, String b, String c) {
 
-        if(b.equals("click")) {
-            driver.findElement(By.xpath(a)).click();
-        }
-        else if(b.equals("sendKeys")) {
-            driver.findElement(By.xpath(a)).sendKeys(c);
-        }
-        else {
-            driver.findElement(By.xpath(a));
+        switch (b) {
+            case "click":
+                driver.findElement(By.xpath(a)).click();
+                break;
+            case "sendKeys":
+                driver.findElement(By.xpath(a)).sendKeys(c);
+                break;
+            case "":
+                driver.findElement(By.xpath(a));
+                break;
         }
     }
     /*
@@ -50,14 +52,16 @@ public class TestCode extends BaseClass{
      */
     public void findElementsById(String a, String b, String c) {
 
-        if(b.equals("click")) {
-            driver.findElement(By.id(a)).click();
-        }
-        else if(b.equals("sendKeys")) {
-            driver.findElement(By.id(a)).sendKeys(c);
-        }
-        else {
-            driver.findElement(By.id(a));
+        switch (b) {
+            case "click":
+                driver.findElement(By.id(a)).click();
+                break;
+            case "sendKeys":
+                driver.findElement(By.id(a)).sendKeys(c);
+                break;
+            case "":
+                driver.findElement(By.id(a));
+                break;
         }
     }
     /*
@@ -72,16 +76,16 @@ public class TestCode extends BaseClass{
         Skapad av Linus Finsbäck 2020-11-20
      */
     public void findElementsByCss(String a, String b, String c) {
-
-        if(b.equals("click")) {
-            driver.findElement(By.cssSelector(a)).click();
-        }
-        else if(b.equals("sendKeys")) {
-            driver.findElement(By.cssSelector(a)).sendKeys(c);
-        }
-        else {
-            driver.findElement(By.cssSelector(a));
+        switch (b) {
+            case "click":
+                driver.findElement(By.cssSelector(a)).click();
+                break;
+            case "sendKeys":
+                driver.findElement(By.cssSelector(a)).sendKeys(c);
+                break;
+            case "":
+                driver.findElement(By.cssSelector(a));
+                break;
         }
     }
-
 }
