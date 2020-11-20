@@ -1,5 +1,7 @@
 /*
     Testclass för att visa flödet hur funktioner anropas från andra klassen "TestCode"
+    Skapad av Linus Finsbäck 2020-11-20
+    Ändrad av ...
  */
 
 package com.it;

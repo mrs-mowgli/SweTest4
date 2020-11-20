@@ -1,5 +1,5 @@
 /*
-    Java class för kod/funktioner som är gemensamma för flera tester
+    Javaclass för kod/funktioner som är gemensamma för flera tester
     Skapad av Linus Finsbäck 2020-11-20
  */
 
