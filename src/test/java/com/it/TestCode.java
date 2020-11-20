@@ -76,6 +76,7 @@ public class TestCode extends BaseClass{
         Skapad av Linus Finsbäck 2020-11-20
      */
     public void findElementsByCss(String a, String b, String c) {
+
         switch (b) {
             case "click":
                 driver.findElement(By.cssSelector(a)).click();
@@ -87,5 +88,16 @@ public class TestCode extends BaseClass{
                 driver.findElement(By.cssSelector(a));
                 break;
         }
+    }
+
+    /*
+        Funktion för att hämta nuvarande url
+        Funktionen returnerer nuvarande url
+        Skapad av Linus Finsbäck 2020-11-20
+    */
+    public String getCurrentUrl() {
+        String url;
+        url = driver.getCurrentUrl();
+        return url;
     }
 }
