@@ -1,3 +1,11 @@
+/*
+
+Testklass för att skapa en ny användare.
+Skapad av Mio Lundqvist 2020-11-19
+Ändrad av Mio Lundqvist 2020-11-20
+
+ */
+
 package com.it;
 
 import io.cucumber.java.en.Given;
@@ -6,7 +14,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import static org.junit.Assert.assertTrue;
 
-public class TestCreateNewUser extends BaseClass {
+public class TestCreateNewUser extends TestCode {
 
         public static String socialTitle = "#customer-form > section > div:nth-child(1) > div.col-md-6.form-control-valign > label:nth-child(1) > span";
         public static String firstname = "#customer-form > section > div:nth-child(2) > div.col-md-6 > input";
@@ -27,8 +35,8 @@ public class TestCreateNewUser extends BaseClass {
         }
 
         @When("I choose a Social title")
-        public void i_choose_a_social_title() {
-            driver.findElement(By.cssSelector(socialTitle)).click();
+        public void i_choose_a_social_title(String socialTitle) {
+
         }
 
         @When("I fill in First name")

@@ -1,4 +1,10 @@
-Feature: Sign in to website
+# I denna featurefil finns alla scenarion för att skapa användare och logga in.
+# Skapad av Mio Lundqvist 2020-11-19
+
+Feature: Sign in to the website
+  In order to access my account
+  As a user
+  I want to be able to sign in to the website
 
   Scenario: Create new user
     Given I am on the create an account page
@@ -24,3 +30,5 @@ Feature: Sign in to website
     And I click on save
     Then an error message should appear
     And an account was not created
+
+  Scenario:
