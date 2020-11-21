@@ -35,7 +35,21 @@ public class TestLogin extends TestCode {
         //Clicks login button
         findElementsById("submit-login","click","");
     }
+    @When("^I click (.*) button$")
+    public void i_click_show_password_button(String showButton) {
+        String XpathToShowPasswordButton = "//*[@id=\"login-form\"]/section/div[2]/div[1]/div/span/button";
 
+        //If value is hidden the show password button is clicked twice.
+        //First click the password is readable
+        //Second click the password is hidden
+        if(showButton.equals("hidden"))
+        {
+            findElementsByxPath(XpathToShowPasswordButton,"click","");
+        }
+        findElementsByxPath(XpathToShowPasswordButton,"click","");
+
+
+    }
     @Then("^I am signed in$")
     public void i_am_signed_in() {
         String expectedHeader = "Your account";
@@ -54,6 +68,32 @@ public class TestLogin extends TestCode {
         String actualWarning = driver.findElement(By.xpath("//*[@id=\"content\"]/section/div/ul/li")).getText();
 
         Assertions.assertEquals(expectedWarning,actualWarning);
+        driver.quit();
+    }
+    @Then("the password is (.*) in password field$")
+    public void password_is_displayed_in_password_field(String shown)
+    {
+        String actualResult;
+        //Checks text in hide/show button to verify that password text is shown.
+        //I tried to get the text from password field, with no success.
+        //Future improvement would be to check password field.
+        //When the show button is clicked the value is hidden, therefore I need to switch the values
+        //So when password is shown the value in button is hidden and vice versa.
+
+        if(shown.equals("show"))
+        {
+            actualResult ="hide";
+        }
+        else
+        {
+            actualResult = "show";
+        }
+        String hideButtonText = driver.findElement(By.xpath("//*[@id=\"login-form\"]/section/div[2]/div[1]/div/span/button")).getText();
+
+        //Compares hidden sho
+        Assertions.assertEquals(actualResult,hideButtonText.toLowerCase());
+
+
         driver.quit();
     }
 }

@@ -26,14 +26,16 @@ Feature: Sign In user should be able to sign in to the webpage
 
 
   @testing
-  #Scenario: The user should be able to choose if the password should be shown or hidden
-  #  Given I am at the login page
-   # When I fill in <username> in username field
-  #  And I fill in <password> in password field
-  # And I click show password
-   # Then password is shown
+  Scenario Outline: The user should be able to choose if the password should be shown or hidden
+   Given I am at the login page
+    When I fill in <username> in username field
+    And I fill in <password> in password field
+    And I click <show> button
+    Then the password is <show> in password field
+  Examples:
+      |password | username | show   |
+      | Test123 | TestUser | show   |
+      | Test123 | TestUser | hidden |
 
-  @testing
-  Scenario: User should be able to restore password
 
 
