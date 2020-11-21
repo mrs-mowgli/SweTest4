@@ -37,5 +37,13 @@ Feature: Sign In user should be able to sign in to the webpage
       | Test123 | TestUser | show   |
       | Test123 | TestUser | hidden |
 
+    @testing
+    Scenario: User logs into account and decides to logout
+      Given I am at the login page
+      When I fill in andreas.jensen@iths.se in username field
+      And I fill in test123 in password field
+      And I click sign in
+      And I click sign out
+      Then I am logged out from account
 
 

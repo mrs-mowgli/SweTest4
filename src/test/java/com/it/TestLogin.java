@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 
 public class TestLogin extends TestCode {
+
+    private String xpathToSignInButton = "//*[@id=\"_desktop_user_info\"]/div/a/span";
+
     @Given("^I am at the login page$")
     public void i_am_at_the_login_page() {
         setUp();
@@ -50,12 +53,19 @@ public class TestLogin extends TestCode {
 
 
     }
+    @When("^I click sign out$")
+    public void i_click_sign_out()
+    {
+        findElementsByxPath(xpathToSignInButton,"click","");
+    }
     @Then("^I am signed in$")
     public void i_am_signed_in() {
         String expectedHeader = "Your account";
         //Checks header on page that should be equal to Your account.
         String actualHeader = driver.findElement(By.xpath("//*[@id=\"main\"]/header/h1")).getText();
+        String SignInButtonText = driver.findElement(By.xpath("//*[@id=\"_desktop_user_info\"]/div/a[1]")).getText();
 
+        Assertions.assertEquals("Sign out",SignInButtonText);
         Assertions.assertEquals(expectedHeader,actualHeader);
         driver.quit();
     }
@@ -95,5 +105,13 @@ public class TestLogin extends TestCode {
 
 
         driver.quit();
+    }
+    @Then("^I am logged out from account$")
+    public void i_am_logged_out_from_account()
+    {
+       String signInButtonText = driver.findElement(By.xpath(xpathToSignInButton)).getText();
+       String expectedResult = "Sign in";
+       Assertions.assertNotEquals(expectedResult,signInButtonText);
+       teardown();
     }
 }
