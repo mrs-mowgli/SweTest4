@@ -1,12 +1,12 @@
 # I denna featurefil finns alla scenarion för att skapa användare och logga in.
 # Skapad av Mio Lundqvist 2020-11-19
 
-Feature: Sign in to the website
+Feature: Create account
   In order to access my account
   As a user
-  I want to be able to sign in to the website
+  I want to be able to create an account
 
-  Scenario: Create new user
+  Scenario: Create new account
     Given I am on the create an account page
     When I choose a Social title
     And I fill in First name
@@ -18,7 +18,7 @@ Feature: Sign in to the website
     And I click on save
     Then an account is created with the provided information
 
-  Scenario: Create user with already existing email
+  Scenario: Create account with already existing email
     Given I am on the create an account page
     When I choose a Social title
     And I fill in First name
