@@ -29,4 +29,14 @@ public class BaseClass {
     public static void teardown(){
         driver.quit();
     }
+
+    //Method for locating timing issues during test construction, in test wait method should be used.
+    //Can also be used to slow test down for visual inspection.
+    public void sleeper(int milliS){
+        try {
+            Thread.sleep(milliS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
