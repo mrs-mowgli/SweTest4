@@ -4,11 +4,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
 
 public class TestLogin extends Login {
-
-    private String xpathToSignInButton = "//*[@id=\"_desktop_user_info\"]/div/a/span";
 
     @Given("^I am at the login page$")
     public void i_am_at_the_login_page() {
@@ -56,12 +53,22 @@ public class TestLogin extends Login {
     {
         SignOutButtonClick();
     }
+    @When("^I change ([^\"]*) to ([^\"]*)$")
+    public void i_change_old_password_to_new_password(String oldPassword, String newPassword)
+    {
+        MyPage_ChangePassword(oldPassword,newPassword);
+    }
+    @When("^I close browser$")
+    public void i_close_browser()
+    {
+        driver.quit();
+    }
     @Then("^I am signed in$")
     public void i_am_signed_in() {
         String expectedHeader = "Your account";
         //Checks header on page that should be equal to Your account.
+
         String actualHeader = GetHeaderOnMyAccountPage();
-        String SignInButtonText = GetSignInButtonText();
         Boolean isSignedIn = false;
 
         if(GetSignInButtonText().contains("Sign out")){
@@ -83,7 +90,7 @@ public class TestLogin extends Login {
         Assertions.assertEquals(expectedWarning,actualWarning);
         teardown();
     }
-    @Then("the password is (.*) in password field$")
+    @Then("the password is ([^\"]*) in password field$")
     public void password_is_displayed_in_password_field(String shown)
     {
         String expectedResult;
@@ -121,4 +128,15 @@ public class TestLogin extends Login {
        Assertions.assertTrue(isSignedOut);
        teardown();
     }
+    @Then("^Restore (.*) with (.*)$")
+    public void restore_old_password(String newPassword, String oldPassword)
+    {
+        i_am_at_the_login_page();
+        i_fill_in_username_at_login_page("test_password@hotmail.com");
+        i_fill_in_password_at_login_page(newPassword);
+        i_click_sign_in();
+        i_change_old_password_to_new_password(newPassword,oldPassword);
+        teardown();
+    }
+
 }

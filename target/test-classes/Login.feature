@@ -46,4 +46,21 @@ Feature: Sign In user should be able to sign in to the webpage
       And I click sign out
       Then I am logged out from account
 
-
+    @testing
+    Scenario Outline: User logs in and changes password
+      Given I am at the login page
+      When I fill in test_password@hotmail.com in username field
+      And I fill in <old password> in password field
+      And I click sign in
+      And I change <old password> to <new password>
+      And I click sign out
+      And I close browser
+      And I am at the login page
+      And I fill in test_password@hotmail.com in username field
+      And I fill in <new password> in password field
+      And I click sign in
+      And I am signed in
+      Then Restore <new password> with <old password>
+    Examples:
+      |old password|new password|
+      |test123     |test1234    |

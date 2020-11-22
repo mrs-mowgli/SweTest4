@@ -5,9 +5,19 @@ import org.openqa.selenium.By;
 public class Login extends TestCode {
     String xpathToEmailField = "//*[@id=\"login-form\"]/section/div[1]/div[1]/input";
     String xpathToPasswordField = "//*[@id=\"login-form\"]/section/div[2]/div[1]/div/input";
+
     protected void GoToLoginPage()
     {
         driver.get("http://40.76.27.113:8085/en/login?back=my-account");
+    }
+
+    public void MyPage_ChangePassword(String oldPassword, String newPassword)
+    {
+        MyPage_InformationButton_Click();
+        MyPage_FillInOldPassword(oldPassword);
+        MyPage_FillInNewPassword(newPassword);
+        MyPage_IAgreeToTermsOfUse_Click();
+        MyPage_SaveButton_Click();
     }
 
     protected void EmailFieldClick()
@@ -71,4 +81,30 @@ public class Login extends TestCode {
 
        return hideButtonText;
     }
+
+    private void MyPage_InformationButton_Click()
+    {
+        findElementsByxPath("//*[@id=\"identity-link\"]/span","click",empty);
+    }
+
+    private void MyPage_FillInOldPassword(String oldPassword)
+    {
+        findElementsByxPath("//*[@id=\"customer-form\"]/section/div[5]/div[1]/div/input","sendKeys",oldPassword);
+    }
+    private void MyPage_FillInNewPassword(String newPassword)
+    {
+        findElementsByxPath("//*[@id=\"customer-form\"]/section/div[6]/div[1]/div/input","sendKeys",newPassword);
+    }
+
+    private void MyPage_IAgreeToTermsOfUse_Click()
+    {
+        findElementsByxPath("//*[@id=\"customer-form\"]/section/div[10]/div[1]/span/label/input","click",empty);
+    }
+
+    private void MyPage_SaveButton_Click()
+    {
+        findElementsByxPath("//*[@id=\"customer-form\"]/footer/button","click",empty);
+    }
+
+
 }
