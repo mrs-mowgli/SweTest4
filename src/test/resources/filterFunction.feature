@@ -12,8 +12,9 @@ Feature: Filter items
     When I click on the <filter> filter
     Then only items of the category <filter> should be displayed
     Examples:
-      | filter     |
-      | Stationary |
+      | filter           |
+      | Stationary       |
+      | Home Accessories |
 
 
   #Scenario: Filter clothes
