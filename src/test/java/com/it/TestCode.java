@@ -119,9 +119,15 @@ public class TestCode extends BaseClass{
         return title;
     }
 
-    public String getAttributeByCss(String a) {
+    public String getAttributeByCssValue(String a) {
         String text;
         text = driver.findElement(By.cssSelector(a)).getAttribute("value");
+        return text;
+    }
+
+    public String getAttributeByCssTitle(String a) {
+        String text;
+        text = driver.findElement(By.cssSelector(a)).getAttribute("title");
         return text;
     }
 

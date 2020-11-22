@@ -2,7 +2,8 @@
 
 Testklass för att skapa en ny användare.
 Skapad av Mio Lundqvist 2020-11-19
-Ändrad av Mio Lundqvist 2020-11-20
+Ändrad av Mio Lundqvist 2020-11-22
+
 
  */
 
@@ -27,7 +28,7 @@ public class TestCreateAccount extends TestCode {
         public static String savebutton = "#customer-form > footer > button";
         public static String myaccount = "#_desktop_user_info > div > a.account > span";
         public static String accountinfo = "#identity-link > span > i";
-
+        public static String usedEmailErrorMessage = "#customer-form > section > div.form-group.row.has-error > div.col-md-6 > div > ul > li";
 
         @Given("I am on the create an account page")
         public void i_am_on_the_create_an_account_page() {
@@ -36,73 +37,119 @@ public class TestCreateAccount extends TestCode {
         }
 
         @When("I choose a Social title")
+        // Clicks on social title radio button
         public void i_choose_a_social_title() {
             findElementsByCss(socialTitle, click, empty);
         }
 
         @When("I fill in First name")
         public void i_fill_in_first_name() {
+            // Clicks and fills in firstname in firstname field
             findElementsByCss(firstname, sendKeys, "Tolván");
         }
 
         @When("I fill in Last name")
         public void i_fill_in_last_name() {
+            // Clicks and fills in lastname in first lastname field
             findElementsByCss(lastname, sendKeys, "Tölvansson");
         }
 
         @When("I fill in Email")
         public void i_fill_in_email() {
-            findElementsByCss(email, sendKeys, "testemail2@gmail.com");
+            // Clicks and fills in email in email field
+            findElementsByCss(email, sendKeys, "tolvantolvansson@gmail.com");
         }
 
         @When("I fill in Password")
         public void i_fill_in_password() {
+            // Clicks and fills in password in password field
             findElementsByCss(password, sendKeys, "TolvansLösenord*0123");
         }
 
         @When("I fill in Birth date")
         public void i_fill_in_birth_date() {
+            // Clicks and fills in birth date in birth date field
             findElementsByCss(birthdate, sendKeys, "12/12/1912");
         }
 
         @When("I choose to agree to the terms")
         public void i_choose_to_agree_to_the_terms() {
+            // Clicks on agree to terms checkbox
             findElementsByCss(terms, click, empty);
         }
 
         @When("I click on save")
         public void i_click_on_save() {
+            // Clicks on save button
             findElementsByCss(savebutton, click, empty);
         }
 
         @Then("an account is created with the provided information")
         public void an_account_is_created() {
+            // Navigated to "my account" page and "account info" page
             findElementsByCss(myaccount, click, empty);
             findElementsByCss(accountinfo, click, empty);
 
-
-            //driver.findElement(By.cssSelector(firstname)).getText();
-            //assertTrue("firstname does not equal Tolván", firstname.contains("Tolván"));
-            String firstName = getAttributeByCss(firstname);
+            String firstName = getAttributeByCssValue(firstname);
+            // Asserts that firstname is Tolván
             assertEquals("Tolván", firstName);
-            // Bekräftar att firstname är Tolván
 
-            driver.findElement(By.cssSelector(lastname)).getText();
-            assertTrue("lastname does not equal Tölvansson", lastname.contains("Tölvansson"));
-            // Bekräftar att lastname är Tölvansson
+            String lastName = getAttributeByCssValue(lastname);
+            // Asserts that lastname is Tölvansson
+            assertEquals("Tölvansson", lastName);
 
-            driver.findElement(By.cssSelector(email)).getText();
-            assertTrue("email does not equal tolvan.tolvansson_191212@domän.com", email.contains("tolvan.tolvansson_191212@domän.com"));
-            // Bekräftar att email är tolvan.tolvansson_191212@domän.com
+            String eMail = getAttributeByCssValue(email);
+            // Asserts that email is tolvan.tolvansson_191212@domän.com
+            assertEquals("tolvan.tolvansson_191212@domän.com", eMail);
 
-            driver.findElement(By.cssSelector(birthdate)).getText();
-            assertTrue("birthdate does not equal 12/12/1912", birthdate.contains("12/12/1912"));
-            // Bekräftar att birthdate är 12/12/1912
+            String birthDate = getAttributeByCssValue(birthdate);
+            // Asserts that birth date is 12/12/1912
+            assertEquals("12/12/1912", birthDate);
+        }
+
+        @When("I fill in an already existing email")
+        public void i_fill_in_an_already_existing_email() {
+            // Fills in an already existing email in email field
+            findElementsByCss(email, sendKeys, "tolvantolvansson@gmail.com");
+        }
+
+        @Then("an error message should appear saying the email is already used")
+        public void an_error_message_should_appear_saying_the_email_is_already_used() {
+            // Checking if email error message is displayed, or not
+
+            if (driver.findElement(By.cssSelector(usedEmailErrorMessage)).isDisplayed()){
+                System.out.println("Used email error message is displayed");
+            }else {
+                System.out.println("Used email error message is not displayed");
+            }
+        }
+
+        @Then("an account was not created")
+        public void an_account_was_not_created() {
+            // Asserts that an account was not created by checking that we're still on the Create account page
+            assertEquals("http://40.76.27.113:8085/en/login?create_account=1", getCurrentUrl());
+        }
+
+        @When("I fill in a password in a wrong format")
+        public void i_fill_in_a_password_in_a_wrong_format() {
+            // Fills in a password in a wrong format
+            findElementsByCss(password, sendKeys, "abcd");
+        }
+
+        @Then("an error message should appear saying the password has a wrong format")
+        public void an_error_message_should_appear_saying_the_password_has_a_wrong_format() {
+
+
+            String passwordErrorMessage = getAttributeByCssTitle(password);
+            assertEquals("At least 5 characters long", passwordErrorMessage);
+
+
         }
 
         public void tearDown(){
             teardown();
         }
+
 
 
 }
