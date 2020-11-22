@@ -28,7 +28,14 @@ Feature: Create account
     And I fill in Birth date
     And I choose to agree to the terms
     And I click on save
-    Then an error message should appear
+    Then an error message should appear saying the email is already used
     And an account was not created
 
-  Scenario:
+  Scenario: Password in wrong format
+    Given I am on the create an account page
+    When I fill in First name
+    And I fill in Last name
+    And I fill in Email
+    And I fill in a password in a wrong format
+    And I click on save
+    Then an error message should appear saying the password has a wrong format
