@@ -17,12 +17,13 @@ public class TestFilterFunction extends TestCode {
     public void iAmOnTheAccessoriesPage() {
     }
 
-    @When("I click on the {string} filter")
-    public void iClickOnTheFilter(String arg0) {
+    @When("I click on the (.*) filter")
+    public void iClickOnTheFilterFilter(String filter) {
 
     }
 
-    @Then("only items of the category {string} should be displayed")
-    public void onlyItemsOfTheCategoryShouldBeDisplayed(String arg0) {
+    @Then("only items of the category (.*) should be displayed")
+    public void onlyItemsOfTheCategoryFilterShouldBeDisplayed(String filter) {
     }
+
 }

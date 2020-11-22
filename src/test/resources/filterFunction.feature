@@ -7,10 +7,14 @@ Feature: Filter items
   I want to be able to filter products
   In order to find the products I want to buy
 
-  Scenario: Filter accessories by categories
+  Scenario Outline: Filter accessories by categories
     Given I am on the accessories page
-    When I click on the "Stationary" filter
-    Then only items of the category "Stationary" should be displayed
+    When I click on the <filter> filter
+    Then only items of the category <filter> should be displayed
+    Examples:
+      | filter     |
+      | Stationary |
+
 
   #Scenario: Filter clothes
   #  Given a user is on the clothes page
