@@ -7,6 +7,8 @@
 package com.it;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 
 public class TestCode extends BaseClass{
 
@@ -36,7 +38,7 @@ public class TestCode extends BaseClass{
                 driver.findElement(By.xpath(a)).sendKeys(c);
                 break;
             case "":
-                driver.findElement(By.xpath(a));
+                     driver.findElement(By.xpath(a));
                 break;
         }
     }
@@ -129,6 +131,35 @@ public class TestCode extends BaseClass{
         String text;
         text = driver.findElement(By.cssSelector(a)).getAttribute("title");
         return text;
+    }
+
+    /**
+     * Tangentbordskommandon
+     * skapad av Lotta Berg 2020-11-22
+     */
+    public static void SendKeyEnter()
+    {
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.ENTER);
+    }
+    public static void SendKeyTab()
+    {
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.TAB);
+    }
+    /**
+     * Laft till delay
+     * @param milliseconds
+     * Skapad av Lotta Berg 2020-11-22
+     */
+    public void delay(int milliseconds)
+    {
+        try
+        {
+            Thread.sleep(milliseconds);
+        } catch (Exception e)
+        {System.out.println("something went wrong");
+        }
     }
 
 }
