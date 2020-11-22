@@ -2,7 +2,7 @@
 
 Testklass för att skapa en ny användare.
 Skapad av Mio Lundqvist 2020-11-19
-Ändrad av Mio Lundqvist 2020-11-22
+Ändrad av Mio Lundqvist 2020-11-22A
 
 
  */
@@ -12,8 +12,8 @@ package com.it;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.AfterAll;
 import org.openqa.selenium.By;
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestCreateAccount extends TestCode {
@@ -24,16 +24,17 @@ public class TestCreateAccount extends TestCode {
         public static String email = "#customer-form > section > div:nth-child(4) > div.col-md-6 > input";
         public static String password = "#customer-form > section > div:nth-child(5) > div.col-md-6 > div > input";
         public static String birthdate = "#customer-form > section > div:nth-child(6) > div.col-md-6 > input";
+        public static String birthdatexpath = "//*[@id=\"customer-form\"]/section/div[6]/div[1]/input";
         public static String terms = "#customer-form > section > div:nth-child(9) > div.col-md-6 > span > label > input[type=checkbox]";
         public static String savebutton = "#customer-form > footer > button";
         public static String myaccount = "#_desktop_user_info > div > a.account > span";
         public static String accountinfo = "#identity-link > span > i";
         public static String usedEmailErrorMessage = "#customer-form > section > div.form-group.row.has-error > div.col-md-6 > div > ul > li";
+        public static String wrongBirthdayFormat = "#customer-form > section > div.form-group.row.has-error > div.col-md-6 > div > ul > li";
 
         @Given("I am on the create an account page")
         public void i_am_on_the_create_an_account_page() {
             setUp();
-            driver.get("http://40.76.27.113:8085/en/login?create_account=1");
         }
 
         @When("I choose a Social title")
@@ -132,25 +133,33 @@ public class TestCreateAccount extends TestCode {
 
         @When("I fill in a password in a wrong format")
         public void i_fill_in_a_password_in_a_wrong_format() {
-            // Fills in a password in a wrong format
+            // Fills in a password in a wrong format in the password field
             findElementsByCss(password, sendKeys, "abcd");
         }
 
         @Then("an error message should appear saying the password has a wrong format")
         public void an_error_message_should_appear_saying_the_password_has_a_wrong_format() {
-
-
+            // Checks that the element title equals the error message
             String passwordErrorMessage = getAttributeByCssTitle(password);
             assertEquals("At least 5 characters long", passwordErrorMessage);
-
-
         }
 
-        public void tearDown(){
-            teardown();
+        @When("^I fill in a ([^\"]*) in a wrong format$")
+        public void i_fill_in_a_birth_date_in_a_wrong_format(String birthdate) {
+            // Clicks and fills in birth date in birth date field
+            //findElementsByCss(birthdate, sendKeys, birthdate);
+            driver.findElement(By.xpath(birthdatexpath)).sendKeys(birthdate);
         }
 
+        @Then("an error message should appear saying the birth date has a wrong format")
+        public void an_error_message_should_appear_saying_the_birth_date_has_a_wrong_format() {
+            //
+            if (driver.findElement(By.cssSelector(wrongBirthdayFormat)).isDisplayed()){
+                System.out.println("Wrong birth date format error message is displayed");
+            }else {
+                System.out.println("Wrong birth date format error message is not displayed");
+            }
 
-
+        }
 }
 

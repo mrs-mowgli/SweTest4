@@ -8,7 +8,7 @@ package com.it;
 
 import org.openqa.selenium.By;
 
-public class TestCode extends BaseClass{
+public class TestCode extends BaseClass {
 
     //Variabler för att utföra actions i funktioner "findElementsBy..."
     public String click = "click";
@@ -119,16 +119,32 @@ public class TestCode extends BaseClass{
         return title;
     }
 
+       /*
+        Funktion för att hämta css-attributet "value" med getAttribute
+        Funktionen returnerar värdet.
+
+        Skapad av Mio Lundqvist 2020-11-22
+        Ändrad av ....
+     */
+
     public String getAttributeByCssValue(String a) {
-        String text;
-        text = driver.findElement(By.cssSelector(a)).getAttribute("value");
-        return text;
+        String cssValue;
+        cssValue = driver.findElement(By.cssSelector(a)).getAttribute("value");
+        return cssValue;
     }
 
+     /*
+        Funktion för att hämta css-attributet "title" med getAttribute
+        Funktionen returnerar värdet.
+
+        Skapad av Mio Lundqvist 2020-11-22
+        Ändrad av ....
+     */
+
     public String getAttributeByCssTitle(String a) {
-        String text;
-        text = driver.findElement(By.cssSelector(a)).getAttribute("title");
-        return text;
+        String cssTitle;
+        cssTitle = driver.findElement(By.cssSelector(a)).getAttribute("title");
+        return cssTitle;
     }
 
 }
