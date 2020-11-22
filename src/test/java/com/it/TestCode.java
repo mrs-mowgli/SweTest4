@@ -7,8 +7,10 @@
 package com.it;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 
-public class TestCode extends BaseClass{
+public class TestCode extends BaseClass {
 
     //Variabler för att utföra actions i funktioner "findElementsBy..."
     public String click = "click";
@@ -36,7 +38,7 @@ public class TestCode extends BaseClass{
                 driver.findElement(By.xpath(a)).sendKeys(c);
                 break;
             case "":
-                driver.findElement(By.xpath(a));
+                     driver.findElement(By.xpath(a));
                 break;
         }
     }
@@ -119,16 +121,61 @@ public class TestCode extends BaseClass{
         return title;
     }
 
+       /*
+        Funktion för att hämta css-attributet "value" med getAttribute
+        Funktionen returnerar värdet.
+
+        Skapad av Mio Lundqvist 2020-11-22
+        Ändrad av ....
+     */
+
     public String getAttributeByCssValue(String a) {
-        String text;
-        text = driver.findElement(By.cssSelector(a)).getAttribute("value");
-        return text;
+        String cssValue;
+        cssValue = driver.findElement(By.cssSelector(a)).getAttribute("value");
+        return cssValue;
     }
 
+     /*
+        Funktion för att hämta css-attributet "title" med getAttribute
+        Funktionen returnerar värdet.
+
+        Skapad av Mio Lundqvist 2020-11-22
+        Ändrad av ....
+     */
+
     public String getAttributeByCssTitle(String a) {
-        String text;
-        text = driver.findElement(By.cssSelector(a)).getAttribute("title");
-        return text;
+        String cssTitle;
+        cssTitle = driver.findElement(By.cssSelector(a)).getAttribute("title");
+        return cssTitle;
+    }
+
+    /**
+     * Tangentbordskommandon
+     * skapad av Lotta Berg 2020-11-22
+     */
+    public static void SendKeyEnter()
+    {
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.ENTER);
+    }
+    public static void SendKeyTab()
+    {
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.TAB);
+    }
+    /**
+     * Laft till delay
+     * @param milliseconds
+     * Skapad av Lotta Berg 2020-11-22
+     */
+    public void delay(int milliseconds)
+    {
+        try
+        {
+            Thread.sleep(milliseconds);
+        } catch (Exception e)
+        {System.out.println("something went wrong");
+        }
     }
 
 }
