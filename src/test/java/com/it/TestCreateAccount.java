@@ -13,8 +13,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestCreateNewUser extends TestCode {
+public class TestCreateAccount extends TestCode {
 
         public static String socialTitle = "#customer-form > section > div:nth-child(1) > div.col-md-6.form-control-valign > label:nth-child(1) > span";
         public static String firstname = "#customer-form > section > div:nth-child(2) > div.col-md-6 > input";
@@ -51,7 +52,7 @@ public class TestCreateNewUser extends TestCode {
 
         @When("I fill in Email")
         public void i_fill_in_email() {
-            findElementsByCss(email, sendKeys, "miominmio@gmail.com");
+            findElementsByCss(email, sendKeys, "testemail2@gmail.com");
         }
 
         @When("I fill in Password")
@@ -80,8 +81,10 @@ public class TestCreateNewUser extends TestCode {
             findElementsByCss(accountinfo, click, empty);
 
 
-            driver.findElement(By.cssSelector(firstname)).getText();
-            assertTrue("firstname does not equal Tolván", firstname.contains("Tolván"));
+            //driver.findElement(By.cssSelector(firstname)).getText();
+            //assertTrue("firstname does not equal Tolván", firstname.contains("Tolván"));
+            String firstName = getAttributeByCss(firstname);
+            assertEquals("Tolván", firstName);
             // Bekräftar att firstname är Tolván
 
             driver.findElement(By.cssSelector(lastname)).getText();
