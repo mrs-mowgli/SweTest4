@@ -28,9 +28,9 @@ public class TestLogin extends Login {
     @When("^I fill in (.*) in password field")
     public void i_fill_in_password_at_login_page(String password) {
         //Clicks email field
-        EmailFieldClick();
+        PasswordFieldClick();
         //Send keys to email field
-        EmailFieldSendKeys(password);
+        PasswordFieldSendKeys(password);
     }
 
     @When("^I click sign in$")
