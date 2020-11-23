@@ -1,7 +1,7 @@
 package com.it;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import io.cucumber.java.Before;
+import io.cucumber.java.After;
 import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
