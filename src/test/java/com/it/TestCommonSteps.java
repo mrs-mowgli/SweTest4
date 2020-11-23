@@ -15,16 +15,12 @@ public class TestCommonSteps extends TestCode{
         Skapad av Linus Finsbäck 2020-11-20
         Ändrad av ....
      */
-    @Given("^testGiven$")
-    public void testGiven() {
-
+    @Given("^I am on start page$")
+    public void IAmOnStartPage() {
+    driver.getUrl();
     }
-
-    /*
-        Template för gemensamt Whenstep
-        Skapad av Linus Finsbäck 2020-11-20
-        Ändrad av ....
-     */
+    
+ 
     @When("^testWhen$")
     public void testWhen() {
 
