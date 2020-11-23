@@ -17,12 +17,17 @@ public class TestCommonSteps extends TestCode{
      */
     @Given("^I am on start page$")
     public void IAmOnStartPage() {
-    driver.getUrl();
+    driver.get("http://40.76.27.113:8085/en/");
     }
     
  
     @When("^testWhen$")
     public void testWhen() {
 
+    }
+
+    @Given("Test User is at webshop start page")
+    public void testUserIsAtWebshopStartPage() {
+        setUp();
     }
 }
