@@ -13,7 +13,7 @@ public class BaseClass {
     public static WebDriver driver;
     public static JavascriptExecutor js ;
 
-    @BeforeAll
+   @Before
     @DisplayName("Setup")
     public static void setUp() {
         driver = new ChromeDriver();
@@ -24,7 +24,7 @@ public class BaseClass {
 
     }
 
-    @AfterAll
+    @After
     @DisplayName("Teardown")
     public static void teardown(){
         driver.quit();
