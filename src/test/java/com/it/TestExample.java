@@ -19,7 +19,7 @@ public class TestExample extends TestCode{
         setUp(); //Kallar på funktionen "setUp" i klassen "BaseClass"
     }
 
-    @When("^Test User click at link$")
+    @When("^Test User click at contact$")
     public void clickTest() {
         //klicka på länk
         findElementsById("contact-link", click, empty); //Kallar på funktionen "findElementsByxPath" tre argument skickas med. Variabel link får sitt värde från cucumberfilen step When ("contact-link"). click och empty är deklarerade i klassen "TestCode" och används här för att funktionen ska utföra action.
