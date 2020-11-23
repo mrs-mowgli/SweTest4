@@ -7,6 +7,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class BaseClass {
 
 
@@ -20,6 +22,7 @@ public class BaseClass {
         js = (JavascriptExecutor) driver;
         driver.get("http://40.76.27.113:8085/en/");
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
     }
 

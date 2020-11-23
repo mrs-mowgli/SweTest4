@@ -1,7 +1,7 @@
 Feature: Checkingout Products When Logged In
 
   Scenario: Checkout And Pay By Check
-    Given I'am Logged In
+    Given I am Logged In
     And   Have Products In Cart
     When  I Checkout
     Then  Choose Shipping
