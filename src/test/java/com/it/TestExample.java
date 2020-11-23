@@ -22,7 +22,7 @@ public class TestExample extends TestCode{
     @When("^Test User click at contact$")
     public void clickTest() {
         //klicka på länk
-        findElementsById("contact-link", click, empty); //Kallar på funktionen "findElementsByxPath" tre argument skickas med. Variabel link får sitt värde från cucumberfilen step When ("contact-link"). click och empty är deklarerade i klassen "TestCode" och används här för att funktionen ska utföra action.
+        findElementsById("contact-link", click, empty); //Kallar på funktionen "findElementsById" tre argument skickas med. "contact-link" = Id av elementet. click och empty är deklarerade i klassen "TestCode" och används här för att funktionen ska utföra action.
     }
 
     @Then("^Test User should see page contact us url \"([^\"]*)\"$")
