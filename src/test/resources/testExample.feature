@@ -9,5 +9,4 @@ Feature: Test
     Then Test User should see page contact us url "http://40.76.27.113:8085/en/contact-us"
 
 ###########################################
-  # "conact-link" skickas med som argument när funktionen för step When anropas
   # "...url..." skickas med som argument när funktionen för step Then anropas
