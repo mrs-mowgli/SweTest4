@@ -19,8 +19,8 @@ public class TestCommonSteps extends TestCode{
     public void IAmOnStartPage() {
     driver.getUrl();
     }
-
-  
+    
+ 
     @When("^testWhen$")
     public void testWhen() {
 
