@@ -31,7 +31,6 @@ Feature: Create an account
     Then an error message should appear saying the email is already used
     And an account was not created
 
-  @Test
   Scenario Outline: Birth date in wrong format
     Given I am on the create an account page
     When I fill in First name
@@ -49,6 +48,17 @@ Feature: Create an account
   | 12121912   |
   | 1912/12/12 |
   | 12-12-1912 |
+
+  Scenario: I do not check the terms and conditions box
+    Given I am on the create an account page
+    When I fill in First name
+    And I fill in Last name
+    And I fill in Email
+    And I fill in Password
+    And I do not check the terms and conditions box
+    And I click on save
+    Then an error message should appear saying terms and conditions needs to be checked
+
 
   Scenario: Password in wrong format
     Given I am on the create an account page
