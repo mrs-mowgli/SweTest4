@@ -13,6 +13,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -35,6 +37,7 @@ public class TestCreateAccount extends TestCode {
         @Given("I am on the create an account page")
         public void i_am_on_the_create_an_account_page() {
             setUp();
+            driver.get("http://40.76.27.113:8085/en/login?create_account=1");
         }
 
         @When("I choose a Social title")
@@ -129,6 +132,7 @@ public class TestCreateAccount extends TestCode {
         public void an_account_was_not_created() {
             // Asserts that an account was not created by checking that we're still on the Create account page
             assertEquals("http://40.76.27.113:8085/en/login?create_account=1", getCurrentUrl());
+            teardown();
         }
 
         @When("I fill in a password in a wrong format")
@@ -142,6 +146,7 @@ public class TestCreateAccount extends TestCode {
             // Checks that the element title equals the error message
             String passwordErrorMessage = getAttributeByCssTitle(password);
             assertEquals("At least 5 characters long", passwordErrorMessage);
+            teardown();
         }
 
         @When("^I fill in a ([^\"]*) in a wrong format$")
@@ -159,6 +164,16 @@ public class TestCreateAccount extends TestCode {
             }else {
                 System.out.println("Wrong birth date format error message is not displayed");
             }
+            teardown();
+        }
+
+        @When("I do not check the terms and conditions box")
+        public void i_do_not_check_the_terms_and_conditions_box() {
+
+        }
+
+        @Then("an error message should appear saying terms and conditions needs to be checked")
+        public void an_error_message_should_appear_saying_terms_and_conditions_needs_to_be_checked() {
 
         }
 }
