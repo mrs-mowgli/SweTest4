@@ -22,8 +22,6 @@ public class BaseClass {
         js = (JavascriptExecutor) driver;
         driver.get("http://40.76.27.113:8085/en/");
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
     }
 
     @DisplayName("Teardown")
@@ -31,7 +29,12 @@ public class BaseClass {
         driver.quit();
     }
 
-    //Method for locating timing issues during test construction, in test wait method should be used.
+    public static void waiting(){
+        //implicit wait method added for handeling of timing issues in tests
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    }
+
+    //Method for locating timing issues during test construction, in test waiter method above (or other wait method) should be used.
     //Can also be used to slow test down for visual inspection.
     public void sleeper(int milliS){
         try {

@@ -8,6 +8,7 @@ public class CheckoutMethods extends TestCode {
     String passwordSese = "testtest";
 
     public void loginWithExistingUser(){
+        waiting();
         clickXpath("//*[@id=\"_desktop_user_info\"]/div/a/span");
         sendKeysXpath("//*[@id=\"login-form\"]/section/div[1]/div[1]/input", emailSese);
         sendKeysXpath("//*[@id=\"login-form\"]/section/div[2]/div[1]/div/input", passwordSese);
@@ -20,12 +21,9 @@ public class CheckoutMethods extends TestCode {
         clickXpath("//*[@id=\"js-product-list\"]/div[1]/article[1]/div/a/img");
         clickXpath("//*[@id=\"add-to-cart-or-refresh\"]/div[2]/div/div[2]/button");
 
-        //clickXpath("//*[@id=\"blockcart-modal\"]/div/div/div[1]/button/span/i");
-        //sleeper(2000);
     }
 
     public void procedToCheckout(){
-        //sleeper(2000);//*[@id="main"]/div/div[2]/div[1]/div[2]/div/a
         clickXpath("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[2]/div/div/a");
         clickXpath("//*[@id=\"main\"]/div/div[2]/div[1]/div[2]/div/a");
         clickXpath("//*[@id=\"checkout-addresses-step\"]/div/div/form/div[2]/button");
