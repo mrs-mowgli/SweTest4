@@ -19,7 +19,11 @@ Feature: Test
 
   Scenario Outline:
     Given Test User is at checkout "<checkoutURL>"
-   #When
+    #When I fill in "<social_title>","<firstname>", "<lastname>", "<email>"
+    #And I fill in "<personal_information>"
+    #And I fill in "<adress>"
+    #And I fill in "<shipping_method>"
+    #And I fill in "<payment>"
 
 
     Examples:
