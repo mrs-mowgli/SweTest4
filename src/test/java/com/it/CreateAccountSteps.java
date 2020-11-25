@@ -33,7 +33,7 @@ public class CreateAccountSteps extends CreateAccountMethods {
 
         @When("I fill in First name")
         public void i_fill_in_first_name() {
-            fillInLastName();
+            fillInFirstName();
         }
 
         @When("I fill in Last name")

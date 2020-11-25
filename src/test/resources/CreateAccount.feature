@@ -1,4 +1,4 @@
-# I denna featurefil finns alla scenarion för att skapa användare och logga in.
+# I denna featurefil finns alla scenarion för att skapa användare.
 # Skapad av Mio Lundqvist 2020-11-19
 
 Feature: Create an account
