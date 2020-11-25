@@ -24,7 +24,8 @@ public class CreateAccountMethods extends TestCode {
     String accountinfo = "#identity-link > span > i";
     String usedEmailErrorMessage = "#customer-form > section > div.form-group.row.has-error > div.col-md-6 > div > ul > li";
     String wrongBirthdayFormat = "#customer-form > section > div.form-group.row.has-error > div.col-md-6 > div > ul > li";
-    String termsUnchecked;
+    String termsAndConditionsCheckbox = "#customer-form > section > div:nth-child(9) > div.col-md-6 > span > label > input[type=checkbox]";
+    String termsAndConditionsErrorMessage = "";
 
     public void createUserPage() {
         // Goes to the create user page
@@ -141,14 +142,17 @@ public class CreateAccountMethods extends TestCode {
         teardown();
     }
 
-    public void errorTermsAndConditionsUnchecked() {
-        // Checks that the error message for saving with the terms and conditions box unchecked is displayed
-        if (driver.findElement(By.cssSelector(termsUnchecked)).isDisplayed()){
-            System.out.println("Wrong birth date format error message is displayed");
+    public void termsBoxIsUnchecked() {
+        /*
+        Checks if the checkbox is checked or not. Point is to somewhat verify that it is unchecked which it is by default.
+        If checked, the test will fail at the "an error message should appear saying terms and conditions needs to be checked" step.
+         */
+        if (driver.findElement(By.cssSelector(termsAndConditionsCheckbox)).isSelected()){
+            System.out.println("Terms and conditions checkbox is checked");
         }else {
-            System.out.println("Wrong birth date format error message is not displayed");
+            System.out.println("Terms and conditions checkbox is unchecked");
         }
-    }
 
+    }
 
 }

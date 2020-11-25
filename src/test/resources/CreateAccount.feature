@@ -67,4 +67,4 @@ Feature: Create an account
     And I fill in Email
     And I fill in a password in a wrong format
     And I click on save
-    Then an error message should appear saying the password has a wrong format
+    Then an account was not created
