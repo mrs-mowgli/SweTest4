@@ -1,10 +1,7 @@
 /*
-
-Testklass för att skapa en ny användare.
+Step definitions för att skapa en ny användare.
 Skapad av Mio Lundqvist 2020-11-19
 Senast ändrad av Mio Lundqvist 2020-11-25
-
-
  */
 
 package com.it;
@@ -12,13 +9,10 @@ package com.it;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.By;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CreateAccountSteps extends CreateAccountMethods {
+public class createAccountSteps extends createAccountMethods {
 
         @Given("I am on the create an account page")
         public void i_am_on_the_create_an_account_page() {

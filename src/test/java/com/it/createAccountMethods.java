@@ -10,12 +10,12 @@ import org.openqa.selenium.By;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CreateAccountMethods extends TestCode {
+public class createAccountMethods extends TestCode {
 
     String socialTitle = "#customer-form > section > div:nth-child(1) > div.col-md-6.form-control-valign > label:nth-child(1) > span";
     String firstname = "#customer-form > section > div:nth-child(2) > div.col-md-6 > input";
     String lastname = "#customer-form > section > div:nth-child(3) > div.col-md-6 > input";
-    String email = "#customer-form > section > div:nth-child(4) > div.col-md-6 > input";
+    String createAccountEmail = "#customer-form > section > div:nth-child(4) > div.col-md-6 > input";
     String password = "#customer-form > section > div:nth-child(5) > div.col-md-6 > div > input";
     String birthdate = "#customer-form > section > div:nth-child(6) > div.col-md-6 > input";
     String birthdatexpath = "//*[@id=\"customer-form\"]/section/div[6]/div[1]/input";
@@ -50,7 +50,7 @@ public class CreateAccountMethods extends TestCode {
 
     public void fillInEmail() {
         // Clicks and fills in email in email field
-        findElementsByCss(email, sendKeys, "tolvantolvansson@gmail.com");
+        findElementsByCss(createAccountEmail, sendKeys, "tolvantolvansson@gmail.com");
     }
 
     public void fillInPassword() {
@@ -86,7 +86,7 @@ public class CreateAccountMethods extends TestCode {
         // Asserts that lastname is Tölvansson
         assertEquals("Tölvansson", lastName);
 
-        String eMail = getAttributeByCssValue(email);
+        String eMail = getAttributeByCssValue(createAccountEmail);
         // Asserts that email is tolvan.tolvansson_191212@domän.com
         assertEquals("tolvan.tolvansson_191212@domän.com", eMail);
 
@@ -97,7 +97,7 @@ public class CreateAccountMethods extends TestCode {
 
     public void fillInExistingEmail() {
         // Fills in an already existing email in email field
-        findElementsByCss(email, sendKeys, "tolvantolvansson@gmail.com");
+        findElementsByCss(createAccountEmail, sendKeys, "tolvantolvansson@gmail.com");
     }
 
     public void errorEmailUsed() {
