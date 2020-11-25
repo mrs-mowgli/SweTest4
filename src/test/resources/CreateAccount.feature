@@ -1,5 +1,5 @@
 # I denna featurefil finns alla scenarion för att skapa användare.
-# Skapad av Mio Lundqvist 2020-11-19
+# Skapad av Mio Lundqvist 2020-11-19. Senast ändrad 2020-11-25.
 
 Feature: Create an account
   In order to access my account
@@ -58,7 +58,6 @@ Feature: Create an account
     And I do not check the terms and conditions box
     And I click on save
     Then an error message should appear saying terms and conditions needs to be checked
-
 
   Scenario: Password in wrong format
     Given I am on the create an account page

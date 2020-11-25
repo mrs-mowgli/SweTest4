@@ -2,7 +2,7 @@
 
 Testklass för att skapa en ny användare.
 Skapad av Mio Lundqvist 2020-11-19
-Ändrad av Mio Lundqvist 2020-11-23
+Senast ändrad av Mio Lundqvist 2020-11-25
 
 
  */
