@@ -23,13 +23,12 @@ public class CheckoutSteps extends CheckoutMethods {
     public void have_products_in_cart() {
         // Write code here that turns the phrase above into concrete actions
         addProductsToCart();
-        waiting();
-        assertEquals("Mug The adventure begins", driver.findElement(By.className("h6 product-name")).getText());
     }
 
     @When("I Checkout")
     public void i_checkout() {
         // Write code here that turns the phrase above into concrete actions
+        //waiting();
         procedToCheckout();
     }
 
@@ -55,12 +54,13 @@ public class CheckoutSteps extends CheckoutMethods {
     public void order_is_placed() {
         // Write code here that turns the phrase above into concrete actions
         makeOrder();
+        assertEquals("Free", driver.findElement(By.xpath("//*[@id=\"order-items\"]/div[2]/table/tbody/tr[2]/td[2]")).getText());
+        assertEquals(price, driver.findElement(By.xpath("//*[@id=\"order-items\"]/div[2]/table/tbody/tr[3]/td[2]")).getText());
     }
 
     @Then("I Get Conformation Email")
     public void i_get_conformation_email() {
         // Write code here that turns the phrase above into concrete actions
-        //delay(2000);
         logOut();
         teardown();
     }

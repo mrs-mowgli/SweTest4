@@ -2,10 +2,13 @@ package com.it;
 
 import org.openqa.selenium.By;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class CheckoutMethods extends TestCode {
 
     String emailSese = "test@test.net";
     String passwordSese = "testtest";
+    String price;
 
     public void loginWithExistingUser(){
         waiting();
@@ -19,11 +22,13 @@ public class CheckoutMethods extends TestCode {
         //go to accessories and add mug
         clickXpath("//*[@id=\"category-6\"]/a");
         clickXpath("//*[@id=\"js-product-list\"]/div[1]/article[1]/div/a/img");
+        price = driver.findElement(By.xpath("//*[@id=\"main\"]/div[1]/div[2]/div[1]/div[1]/div/span")).getText();
         clickXpath("//*[@id=\"add-to-cart-or-refresh\"]/div[2]/div/div[2]/button");
     }
 
     public void procedToCheckout(){
         clickXpath("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[2]/div/div/a");
+        assertEquals("Mug The adventure begins", driver.findElement(By.xpath("//*[@id=\"main\"]/div/div[1]/div/div[2]/ul/li/div/div[2]/div[1]/a")).getText());
         clickXpath("//*[@id=\"main\"]/div/div[2]/div[1]/div[2]/div/a");
         clickXpath("//*[@id=\"checkout-addresses-step\"]/div/div/form/div[2]/button");
     }
