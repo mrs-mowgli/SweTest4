@@ -29,18 +29,4 @@ public class BaseClass {
         driver.quit();
     }
 
-    public static void waiting(){
-        //implicit wait method added for handeling of timing issues in tests
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    }
-
-    //Method for locating timing issues during test construction, in test waiter method above (or other wait method) should be used.
-    //Can also be used to slow test down for visual inspection.
-    public void sleeper(int milliS){
-        try {
-            Thread.sleep(milliS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 }

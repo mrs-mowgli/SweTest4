@@ -10,6 +10,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 
+import java.util.concurrent.TimeUnit;
+
 public class TestCode extends BaseClass {
 
     //Variabler för att utföra actions i funktioner "findElementsBy..."
@@ -176,6 +178,17 @@ public class TestCode extends BaseClass {
         } catch (Exception e)
         {System.out.println("something went wrong");
         }
+    }
+
+    /**
+     * Implicit wait metod för att hantera waits dynamiskt.
+     * Dvs den kör så fort som möjligt, men försöker i 30 sekunder
+     * innan den kastar ett fel. När det är möjligt så är det fördel
+     * att använda den istället för delay.
+     * Skapad av Sese Castlind 2020-11-23
+     */
+    public static void waiting(){
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
 }

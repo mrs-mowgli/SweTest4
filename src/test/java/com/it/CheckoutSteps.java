@@ -8,18 +8,23 @@ import org.junit.jupiter.api.AfterAll;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class CheckoutSteps extends CheckoutMethods {
 
     @Given("I am Logged In")
     public void i_am_logged_in() {
         setUp();
         loginWithExistingUser();
+        assertEquals( "Test Testingson", driver.findElement(By.xpath("//*[@id=\"_desktop_user_info\"]/div/a[2]/span")).getText());
     }
 
     @Given("Have Products In Cart")
     public void have_products_in_cart() {
         // Write code here that turns the phrase above into concrete actions
         addProductsToCart();
+        waiting();
+        assertEquals("Mug The adventure begins", driver.findElement(By.className("h6 product-name")).getText());
     }
 
     @When("I Checkout")
@@ -55,7 +60,7 @@ public class CheckoutSteps extends CheckoutMethods {
     @Then("I Get Conformation Email")
     public void i_get_conformation_email() {
         // Write code here that turns the phrase above into concrete actions
-        sleeper(2000);
+        //delay(2000);
         logOut();
         teardown();
     }

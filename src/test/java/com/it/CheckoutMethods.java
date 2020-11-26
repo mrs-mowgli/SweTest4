@@ -20,7 +20,6 @@ public class CheckoutMethods extends TestCode {
         clickXpath("//*[@id=\"category-6\"]/a");
         clickXpath("//*[@id=\"js-product-list\"]/div[1]/article[1]/div/a/img");
         clickXpath("//*[@id=\"add-to-cart-or-refresh\"]/div[2]/div/div[2]/button");
-
     }
 
     public void procedToCheckout(){
