@@ -7,6 +7,7 @@
 package com.it;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -49,7 +50,7 @@ public class createAccountMethods extends TestCode {
     }
 
     public void fillInEmail() {
-        // Clicks and fills in email in email field
+        // Clicks and fills in email in email field. Since we cant reset the database, the email will have to be changed before the test is executed.
         findElementsByCss(createAccountEmail, sendKeys, "tolvantolvansson@gmail.com");
     }
 
@@ -102,12 +103,16 @@ public class createAccountMethods extends TestCode {
 
     public void errorEmailUsed() {
         // Checking if email error message is displayed, or not
-
-        if (driver.findElement(By.cssSelector(usedEmailErrorMessage)).isDisplayed()){
-            System.out.println("Used email error message is displayed");
-        }else {
-            System.out.println("Used email error message is not displayed");
+        try {
+            if (driver.findElement(By.cssSelector(usedEmailErrorMessage)).isDisplayed()) {
+                System.out.println("Used email error message is displayed");
+            } else {
+                System.out.println("Used email error message is not displayed");
+            }
+        }catch (NoSuchElementException e) {
+            System.out.println("Exception in finding the element:" + e.getMessage());
         }
+
     }
 
     public void accountNotCreated() {
@@ -135,12 +140,16 @@ public class createAccountMethods extends TestCode {
 
     public void errorBirthDateWrongFormat() {
         // Checks that the error message for the wrong birth date format is displayed. Closes browser
-        if (driver.findElement(By.cssSelector(wrongBirthdayFormat)).isDisplayed()){
-            System.out.println("Wrong birth date format error message is displayed");
-        }else {
-            System.out.println("Wrong birth date format error message is not displayed");
+
+        try {
+            if (driver.findElement(By.cssSelector(wrongBirthdayFormat)).isDisplayed()) {
+                System.out.println("Wrong birth date format error message is displayed");
+            } else {
+                System.out.println("Wrong birth date format error message is not displayed");
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println("Exception in finding the element:" + e.getMessage());
         }
-        teardown();
     }
 
     public void termsBoxIsUnchecked() {
