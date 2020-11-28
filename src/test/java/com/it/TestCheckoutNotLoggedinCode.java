@@ -62,17 +62,17 @@ public class TestCheckoutNotLoggedinCode extends TestCode{
         findElementsByxPath(socialtitle_mrs, click, empty);
         findElementsByxPath(inCart_firstname, sendKeys, "firstname");
         findElementsByxPath(inCart_lastname, sendKeys, "Lastname");
-        findElementsByxPath(inCart_email, sendKeys, "hej@ohå.se");
+        findElementsByxPath(inCart_email, sendKeys, "testperson@testemail.com");
         findElementsByxPath(inCart_termsAndCondition, click, empty);
         findElementsByxPath(inCart_personalInformation_continue, click, empty);
 
     }
 
     public void inCart_Address() {
-        findElementsByxPath(inCart_address, sendKeys, "hej");
-        findElementsByxPath(inCart_postalCode, sendKeys, "345 66");
-        findElementsByxPath(inCart_city, sendKeys, "götlabörg");
-        findElementsByxPath(inCart_phone, sendKeys, "31234567");
+        findElementsByxPath(inCart_address, sendKeys, "Ebbe Lieberathsgatan 18C");
+        findElementsByxPath(inCart_postalCode, sendKeys, "412 65");
+        findElementsByxPath(inCart_city, sendKeys, "Göteborg");
+        findElementsByxPath(inCart_phone, sendKeys, "031-790 42 55");
         findElementsByxPath(inCart_address_continue, click, empty);
 
     }
