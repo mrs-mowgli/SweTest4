@@ -7,14 +7,24 @@ Feature: Filter items
   I want to be able to filter products
   In order to find the products I want to buy
 
-  Scenario Outline: Filter accessories by categories
-    Given I am on the accessories page
-    When I click on the <filter> filter
-    Then only items of the category <filter> should be displayed
-    Examples:
-      | filter           |
-      | Stationary       |
-      | Home Accessories |
+  @testing
+  Scenario: Filter accessories by categories
+    Given I am on main page
+    When I click on accessories page
+    When I click on the stationery filter
+    Then only items of the category stationery should be displayed
+
+
+  #@testing
+  #Scenario Outline: Filter accessories by categories
+  #  Given I am on main page
+  #  When I click on accessories page
+  #  When I click on the <filter> filter
+  #  Then only items of the category <filter> should be displayed
+  #  Examples:
+  #    | filter           |
+  #    | stationery       |
+  #    | homeAccessories  |
 
 
   #Scenario: Filter clothes

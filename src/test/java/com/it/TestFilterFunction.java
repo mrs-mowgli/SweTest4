@@ -10,22 +10,30 @@ package com.it;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
-public class TestFilterFunction extends TestCode {
+public class TestFilterFunction extends TestFilterFunctionCode {
 
-    @Given("I am on the accessories page")
-    public void iAmOnTheAccessoriesPage() {
-        System.out.println("Ska vara på accessories page");
+    @Given("^I am on main page$")
+    public void iAmOnMainPage() {
+        setUp();
     }
 
-    @When("I click on the (.*) filter")
-    public void iClickOnTheFilterFilter(String filter) {
-        System.out.println("Ska välja någon filter");
+    @When("^I click on accessories page$")
+    public void iClickOnAccessoriesPage() {
+        findElementsByxPath(accessories, "click", "");
     }
 
-    @Then("only items of the category (.*) should be displayed")
+    @When("^I click on the stationery filter$")
+    public void iClickOnTheStationeryFilter() {
+        findElementsByxPath(stationery, click, empty);
+    }
+
+    @Then("^only items of the category (.*) should be displayed$")
     public void onlyItemsOfTheCategoryFilterShouldBeDisplayed(String filter) {
-        System.out.println("Ska bara visa produkter som tillhör filtern");
+        String expectedResult = "There are 3 products.";
+        Assert.assertEquals(expectedResult, GetResult());
+        teardown();
     }
 
 }
