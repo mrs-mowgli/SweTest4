@@ -1,16 +1,17 @@
 
 package com.it;
 
-import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 /**
  * Cucumbertest search and sort items
@@ -50,23 +51,32 @@ public class TestSearchAndSort extends TestCode {
                 break;
         }
     }
+
     @Then("user can find article {string}")
-    public boolean userCanFindArticle(String arg0){
+    public void userCanFindArticle(String arg0){
+
         delay(2000);
         WebElement sortOrder = driver.findElement(By.xpath("//button[@class='btn-unstyle select-title']"));
         String currentSortOrder = sortOrder.getText();
+        if (currentSortOrder.contains(arg0)) {
+          System.out.println("Correct sort order displayed");
+            Assertions.assertTrue(Boolean.parseBoolean(String.valueOf(currentSortOrder.contains(arg0))));
+        }
+          else if (!currentSortOrder.contains(arg0))
+          {
+              Assertions.assertFalse(Boolean.parseBoolean(String.valueOf(currentSortOrder.contains(arg0))));
+              System.out.println("Wrong sort order displayed");
+          }
         System.out.println("Sort order choosen: " + currentSortOrder);
-      if (currentSortOrder.contains(arg0)) {
-      return true;
-      }
-       Assertions.assertTrue(Boolean.parseBoolean(currentSortOrder)); // assertar inte om det false
-       return false;
-        //    Assert.assertEquals(arg0, currentSortOrder); // should be the correct one but junk char with line break
+        teardown();
     }
 
-
-
 }
+
+
+
+
+
 
 
 

@@ -7,12 +7,16 @@ Feature: As a User I want to search and specific article
     And user sort "<Sort order>"
     Then user can find article "<Sorted by>"
 
+
     Examples:
       | Item          | Sort order                  | Sorted by            |
       | Mug           |  Price, low to high         | Price, low to high   |
       | Cushion       |  Price, high to low         | Price, high to low   |
       | Hummingbird   |  A to Z                     | A to Z               |
-      | Sweater       |  Relevance                  | Relevance          |
+      | Sweater       |  Relevance                  | Relevance            |
+      | Accessories   |  Z to A                     | Relevance               |
+
+
 
 
 
