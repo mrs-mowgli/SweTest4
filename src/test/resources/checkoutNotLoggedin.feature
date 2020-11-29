@@ -8,7 +8,7 @@ Feature: Test
     And Have Products In Cart
     And Proceed to checkout
 
-  Scenario:
+  Scenario: Checkout from cart as an uninlogged costumer
     Given I am in cart
     When I fill in personal information
     And I fill in Addresses
