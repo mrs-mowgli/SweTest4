@@ -1,7 +1,8 @@
+//TestCommonSteps.java
 /*
-    Testclass för teststeps som är lika för flera feature files
-    Skapad av Linus Finsbäck 2020-11-20
-    Ändrad av Linus Finsbäck 2020-11-29
+ * Testclass för teststeps som är lika för flera feature files
+ * Skapad av Linus Finsbäck 2020-11-20
+ * Ändrad av Linus Finsbäck 2020-11-29
 */
 
 package com.it;
@@ -13,12 +14,6 @@ import io.cucumber.java.After;
 import org.junit.jupiter.api.BeforeEach;
 
 public class TestCommonSteps extends TestCode{
-
-     /*
-        Template för gemensamt Givenstep
-        Skapad av Linus Finsbäck 2020-11-20
-        Ändrad av ....
-     */
 
     @Before
     public void start() {

@@ -1,7 +1,8 @@
+//TestCode.java
 /*
-    Javaclass för kod/funktioner som är gemensamma för flera tester
-    Skapad av Linus Finsbäck 2020-11-20
- */
+ * Javaclass för kod/funktioner som är gemensamma för flera tester
+ * Skapad av Linus Finsbäck 2020-11-20
+*/
 
 
 package com.it;
@@ -18,18 +19,18 @@ public class TestCode extends BaseClass {
     public String click = "click";
     public String sendKeys = "sendKeys";
     public String empty = "";
-    /*
-        Funktion för att hitta element med hjälp av xPath
-        När funktionen anropas ska tre argument skickas med
-            String a = xPath
-            String b , "click" = skickas för att clicka i elementet
-                       "sendKeys" = Skickas för att fylla i text i textfält
-                       "empty" = skickas om ingen åtgärd ska utföras
-            String c = "Text" som ska matas in i textfält
-
-        Skapad av Linus Finsbäck 2020-11-20
-        Ändrad av ....
-     */
+    /**
+     * Funktion för att hitta element med hjälp av xPath
+     * När funktionen anropas ska tre argument skickas med
+     *      String a = xPath
+     *      String b , "click" = skickas för att clicka i elementet
+     *                  "sendKeys" = Skickas för att fylla i text i textfält
+     *                  "empty" = skickas om ingen åtgärd ska utföras
+     *      String c = "Text" som ska matas in i textfält
+     *
+     * Skapad av Linus Finsbäck 2020-11-20
+     * Ändrad av ....
+    */
     public void findElementsByxPath(String a, String b, String c) {
 
         switch (b) {
@@ -44,18 +45,18 @@ public class TestCode extends BaseClass {
                 break;
         }
     }
-    /*
-        Funktion för att hitta element med hjälp av ID
-        När funktionen anropas ska tre argument skickas med
-            String a = xPath
-            String b , "click" = skickas för att clicka i elementet
-                       "sendKeys" = Skickas för att fylla i text i textfält
-                       "empty" = skickas om ingen åtgärd ska utföras
-            String c = "Text" som ska matas in i textfält
-
-        Skapad av Linus Finsbäck 2020-11-20
-        Ändrad av ....
-     */
+    /**
+     * Funktion för att hitta element med hjälp av ID
+     * När funktionen anropas ska tre argument skickas med
+     *      String a = xPath
+     *      String b , "click" = skickas för att clicka i elementet
+     *                  "sendKeys" = Skickas för att fylla i text i textfält
+     *                   "empty" = skickas om ingen åtgärd ska utföras
+     *      String c = "Text" som ska matas in i textfält
+     *
+     * Skapad av Linus Finsbäck 2020-11-20
+     * Ändrad av ....
+    */
     public void findElementsById(String a, String b, String c) {
 
         switch (b) {
@@ -70,18 +71,18 @@ public class TestCode extends BaseClass {
                 break;
         }
     }
-    /*
-        Funktion för att hitta element med hjälp av CSSselector
-        När funktionen anropas ska tre argument skickas med
-            String a = xPath
-            String b , "click" = skickas för att clicka i elementet
-                       "sendKeys" = Skickas för att fylla i text i textfält
-                       "empty" = skickas om ingen åtgärd ska utföras
-            String c = "Text" som ska matas in i textfält
-
-        Skapad av Linus Finsbäck 2020-11-20
-        Ändrad av ....
-     */
+    /**
+     * Funktion för att hitta element med hjälp av CSSselector
+     * När funktionen anropas ska tre argument skickas med
+     *      String a = xPath
+     *      String b , "click" = skickas för att clicka i elementet
+     *                  "sendKeys" = Skickas för att fylla i text i textfält
+     *                  "empty" = skickas om ingen åtgärd ska utföras
+     *      String c = "Text" som ska matas in i textfält
+     *
+     * Skapad av Linus Finsbäck 2020-11-20
+     * Ändrad av ....
+    */
     public void findElementsByCss(String a, String b, String c) {
 
         switch (b) {
@@ -97,12 +98,12 @@ public class TestCode extends BaseClass {
         }
     }
 
-    /*
-        Funktion för att hämta nuvarande url
-        Funktionen returnerer nuvarande url
-
-        Skapad av Linus Finsbäck 2020-11-20
-        Ändrad av ....
+    /**
+     * Funktion för att hämta nuvarande url
+     * Funktionen returnerer nuvarande url
+     *
+     * Skapad av Linus Finsbäck 2020-11-20
+     * Ändrad av ....
     */
     public String getCurrentUrl() {
         String url;
@@ -110,26 +111,26 @@ public class TestCode extends BaseClass {
         return url;
     }
 
-    /*
-        Funktion för att hämta title
-        Funktionen returnerar nuvarande title
-
-        Skapad av Linus Finsbäck 2020-11-20
-        Ändrad av ....
-     */
+    /**
+     * Funktion för att hämta title
+     * Funktionen returnerar nuvarande title
+     *
+     * Skapad av Linus Finsbäck 2020-11-20
+     * Ändrad av ....
+    */
     public String getTitle() {
         String title;
         title = driver.getTitle();
         return title;
     }
 
-    /*
-        Method to get Attribute (innerHTML) by ID
-        Method returns text string
-
-        Created by Linus Finsbäck 2020-11-29
-        Changed by ...
- */
+    /**
+     * Method to get Attribute (innerHTML) by ID
+     * Method returns text string
+     *
+     * Created by Linus Finsbäck 2020-11-29
+     * Changed by ...
+    */
     public String getAttributeByIdInnerHTML(String a) {
         String text;
         try {
@@ -142,12 +143,12 @@ public class TestCode extends BaseClass {
     }
 
 
-       /*
-        Funktion för att hämta css-attributet "value" med getAttribute
-        Funktionen returnerar värdet.
-
-        Skapad av Mio Lundqvist 2020-11-22
-        Ändrad av ....
+    /**
+     * Funktion för att hämta css-attributet "value" med getAttribute
+     * Funktionen returnerar värdet.
+     *
+     * Skapad av Mio Lundqvist 2020-11-22
+     * Ändrad av ....
      */
 
     public String getAttributeByCssValue(String a) {
@@ -156,12 +157,12 @@ public class TestCode extends BaseClass {
         return cssValue;
     }
 
-     /*
-        Funktion för att hämta css-attributet "title" med getAttribute
-        Funktionen returnerar värdet.
-
-        Skapad av Mio Lundqvist 2020-11-22
-        Ändrad av ....
+     /**
+      * Funktion för att hämta css-attributet "title" med getAttribute
+      * Funktionen returnerar värdet.
+      *
+      * Skapad av Mio Lundqvist 2020-11-22
+      * Ändrad av ....
      */
 
     public String getAttributeByCssTitle(String a) {
