@@ -73,5 +73,12 @@ public class TestCheckoutNotLoggedin extends TestCheckoutNotLoggedinCode {
         order_is_confirmed();
     }
 
+    @Then("close Browser")
+    public void close_browser(){
+        // Call method from Baseclass.
+        // Close browser.
+        teardown();
+    }
+
 }
 
