@@ -123,6 +123,25 @@ public class TestCode extends BaseClass {
         return title;
     }
 
+    /*
+        Method to get Attribute (innerHTML) by ID
+        Method returns text string
+
+        Created by Linus Finsbäck 2020-11-29
+        Changed by ...
+ */
+    public String getAttributeByIdInnerHTML(String a) {
+        String text;
+        try {
+            text = driver.findElement(By.id(a)).getAttribute("innerHTML");
+            return text;
+        }
+        catch(Exception NoSuchElementException) {
+            return "NoSuchElement";
+        }
+    }
+
+
        /*
         Funktion för att hämta css-attributet "value" med getAttribute
         Funktionen returnerar värdet.
