@@ -15,6 +15,7 @@ Feature: Test
     And I Fill in shipping method
     And I choose payment
     #Then I see Order confirmation
+    Then close Browser
 
 
 
