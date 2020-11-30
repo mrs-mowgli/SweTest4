@@ -21,6 +21,7 @@ public class TestPlaceProductsInShoppingCart extends TestCode{
 
     @Given("^I have selected a product$")
     public void selectedProduct() {
+        // click at ad to cart
         findElementsByxPath("/html/body/main/section/div/div/section/section/section/div/article[1]/div/a/img", click, empty);
         currentUrl = getCurrentUrl();
     }
@@ -37,7 +38,9 @@ public class TestPlaceProductsInShoppingCart extends TestCode{
 
     @When("^I continue to shop from pop up")
     public void continueToShop() {
+        //Wait for modal to load
         delay(2000);
+        //Click at continue shopping
         findElementsByxPath("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[2]/div/div/button", click, empty);
     }
 
