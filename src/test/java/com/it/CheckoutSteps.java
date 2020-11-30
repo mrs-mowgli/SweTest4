@@ -14,7 +14,6 @@ public class CheckoutSteps extends CheckoutMethods {
 
     @Given("I am Logged In")
     public void i_am_logged_in() {
-        setUp();
         loginWithExistingUser();
         assertEquals( "Test Testingson", driver.findElement(By.xpath("//*[@id=\"_desktop_user_info\"]/div/a[2]/span")).getText());
     }
@@ -54,6 +53,7 @@ public class CheckoutSteps extends CheckoutMethods {
     public void order_is_placed() {
         // Write code here that turns the phrase above into concrete actions
         makeOrder();
+        //Assert shipment method and price in order
         assertEquals("Free", driver.findElement(By.xpath("//*[@id=\"order-items\"]/div[2]/table/tbody/tr[2]/td[2]")).getText());
         assertEquals(price, driver.findElement(By.xpath("//*[@id=\"order-items\"]/div[2]/table/tbody/tr[3]/td[2]")).getText());
     }
@@ -62,7 +62,6 @@ public class CheckoutSteps extends CheckoutMethods {
     public void i_get_conformation_email() {
         // Write code here that turns the phrase above into concrete actions
         logOut();
-        teardown();
     }
 
     public void superDuper(){

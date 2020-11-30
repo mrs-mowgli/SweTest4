@@ -1,6 +1,6 @@
 Feature: Checkingout Products When Logged In
 
-  Scenario: Checkout And Pay By Check
+  Scenario: Checkout And Pay With Check
     Given I am Logged In
     And   Have Products In Cart
     When  I Checkout
