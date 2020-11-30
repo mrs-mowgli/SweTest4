@@ -55,7 +55,7 @@ public class contactUsMethods extends TestCode {
     }
 
     public void contactUsMessageSent() {
-        // Confirms that the "Message sent" message is displayed and throws exception if it's not. Closes browser.
+        // Confirms that the "Message sent" message is displayed and throws exception if it's not.
         try {
             if (driver.findElement(By.cssSelector(messageSent)).isDisplayed()) {
                 System.out.println("Message sent message is displayed");
@@ -66,8 +66,6 @@ public class contactUsMethods extends TestCode {
             System.out.println("Exception in finding the element:" + e.getMessage());
         }
 
-        teardown();
-
     }
 
     public void chooseASubject() {
@@ -76,7 +74,7 @@ public class contactUsMethods extends TestCode {
     }
 
     public void contactUsMessageNotSent() {
-        // Confirms that the message for invalid email is displayed. Closes browser.
+        // Confirms that the message for invalid email is displayed.
 
         try {
             if (driver.findElement(By.cssSelector(invalidEmail)).isDisplayed()) {
@@ -87,7 +85,5 @@ public class contactUsMethods extends TestCode {
         }catch (NoSuchElementException e) {
             System.out.println("Exception in finding the element:" + e.getMessage());
         }
-
-        teardown();
     }
 }

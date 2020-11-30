@@ -16,7 +16,6 @@ public class createAccountSteps extends createAccountMethods {
 
         @Given("I am on the create an account page")
         public void i_am_on_the_create_an_account_page() {
-            setUp();
             createUserPage();
         }
 
@@ -63,8 +62,7 @@ public class createAccountSteps extends createAccountMethods {
         @Then("an account is created with the provided information")
         public void an_account_is_created() {
             accountIsCreated();
-            teardown();
-        }
+                    }
 
         @When("I fill in an already existing email")
         public void i_fill_in_an_already_existing_email() {

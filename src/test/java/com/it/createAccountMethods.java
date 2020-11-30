@@ -51,7 +51,7 @@ public class createAccountMethods extends TestCode {
 
     public void fillInEmail() {
         // Clicks and fills in email in email field. Since we cant reset the database, the email will have to be changed before the test is executed.
-        findElementsByCss(createAccountEmail, sendKeys, "tolvantolvansson@gmail.com");
+        findElementsByCss(createAccountEmail, sendKeys, "tolvantolvansson12@gmail.com");
     }
 
     public void fillInPassword() {
@@ -118,7 +118,6 @@ public class createAccountMethods extends TestCode {
     public void accountNotCreated() {
         // Asserts that an account was not created by checking that we're still on the Create account page
         assertEquals("http://40.76.27.113:8085/en/login?create_account=1", getCurrentUrl());
-        teardown();
     }
 
     public void fillInPasswordWrongFormat() {
@@ -127,7 +126,7 @@ public class createAccountMethods extends TestCode {
     }
 
     public void passwordWrongFormat() {
-        // Checks that the element title equals the error message. Closes browser.
+        // Checks that the element title equals the error message.
         String passwordErrorMessage = getAttributeByCssTitle(password);
         assertEquals("At least 5 characters long", passwordErrorMessage);
         teardown();
@@ -139,7 +138,7 @@ public class createAccountMethods extends TestCode {
     }
 
     public void errorBirthDateWrongFormat() {
-        // Checks that the error message for the wrong birth date format is displayed. Closes browser
+        // Checks that the error message for the wrong birth date format is displayed.
 
         try {
             if (driver.findElement(By.cssSelector(wrongBirthdayFormat)).isDisplayed()) {
