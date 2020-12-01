@@ -9,6 +9,7 @@ package com.it;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.concurrent.TimeUnit;
@@ -211,4 +212,20 @@ public class TestCode extends BaseClass {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
+    /**
+     * Method to hover with mouse over webElements By ID
+     * Can be used for hadnling of dropdown menus (categories)
+     * 2 Arguments should be included when calling for the method
+     *      String a = Id of first element to hover
+     *      String b = Id of second element to hover
+     *
+     * Skapad av Linus Finsbäck 2020-12-01
+     */
+    public void mouseHoverElementById(String a, String b) {
+        Actions action = new Actions(driver);
+        WebElement element1 = driver.findElement(By.id(a));
+        action.moveToElement(element1).perform();
+        WebElement element2 = driver.findElement(By.id(b));
+        action.moveToElement(element2).perform();
+    }
 }
