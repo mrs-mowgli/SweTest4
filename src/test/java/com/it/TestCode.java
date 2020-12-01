@@ -143,6 +143,24 @@ public class TestCode extends BaseClass {
         }
     }
 
+    /**
+     * Method to get Attribute (innerHTML) by xPath
+     * Method returns text string
+     *
+     * Created by Linus Finsbäck 2020-12-01
+     * Changed by ...
+     */
+    public String getAttributeByxPathInnerHTML(String a) {
+        String text;
+        try {
+            text = driver.findElement(By.xpath(a)).getAttribute("innerHTML");
+            return text;
+        }
+        catch(Exception NoSuchElementException) {
+            return "NoSuchElement";
+        }
+    }
+
 
     /**
      * Funktion för att hämta css-attributet "value" med getAttribute
