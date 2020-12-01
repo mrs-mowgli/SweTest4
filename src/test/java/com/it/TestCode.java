@@ -217,7 +217,7 @@ public class TestCode extends BaseClass {
      * Can be used for hadnling of dropdown menus (categories)
      * 2 Arguments should be included when calling for the method
      *      String a = Id of first element to hover
-     *      String b = Id of second element to hover
+     *      String b = Id of second element to hover "empty" if not to be used
      *
      * Skapad av Linus Finsbäck 2020-12-01
      */
@@ -225,7 +225,9 @@ public class TestCode extends BaseClass {
         Actions action = new Actions(driver);
         WebElement element1 = driver.findElement(By.id(a));
         action.moveToElement(element1).perform();
-        WebElement element2 = driver.findElement(By.id(b));
-        action.moveToElement(element2).perform();
+        if(!b.equals("empty")) {
+            WebElement element2 = driver.findElement(By.id(b));
+            action.moveToElement(element2).perform();
+        }
     }
 }
