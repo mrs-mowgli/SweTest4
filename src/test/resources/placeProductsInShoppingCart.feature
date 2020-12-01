@@ -18,11 +18,11 @@ Feature: Place products in shopping cart
     And I continue to shop from pop up
     Then I will stay at product page
 
-#  @Testing
-#  Scenario: Place product in shopping cart and check content
-#    Given I am on start page
-#    And I have selected category clothes men
-#    And I have selected a product
-#    When I place product in shopping cart
-#    And I continue to shopping cart from pop up
-#    Then I will see content of my shopping cart
+  @Testing
+  Scenario: Place product in shopping cart and check content
+    Given I am on start page
+    And I have selected category clothes men
+    And I have selected a product
+    When I place product in shopping cart
+    And I continue to shopping cart from pop up
+    Then I will see content of my shopping cart
