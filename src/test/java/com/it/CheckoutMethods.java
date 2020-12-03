@@ -9,6 +9,7 @@ public class CheckoutMethods extends TestCode {
     String emailSese = "test@test.net";
     String passwordSese = "testtest";
     String price;
+    //test
 
     public void loginWithExistingUser(){
         waiting();
