@@ -17,6 +17,7 @@ public class BaseClass {
 
     @DisplayName("Setup")
     public static void setUp() {
+        System.setProperty("webdriver.chrome.driver", "C:\\Tools\\WebDriver\\bin\\chromedriver.exe");
         driver = new ChromeDriver();
         //driver = new FirefoxDriver();
         js = (JavascriptExecutor) driver;
