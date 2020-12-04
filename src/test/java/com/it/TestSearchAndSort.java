@@ -68,7 +68,7 @@ public class TestSearchAndSort extends TestCode {
               System.out.println("Wrong sort order displayed");
           }
         System.out.println("Sort order choosen: " + currentSortOrder);
-        teardown();
+
     }
 
 }

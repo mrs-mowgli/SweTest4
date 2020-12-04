@@ -4,6 +4,7 @@ package com.it;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 
 
@@ -13,12 +14,15 @@ import org.openqa.selenium.interactions.Actions;
  */
 public class SearchAndSortSel {
 
-    public static WebDriver driver;
+     public static WebDriver driver;
 
 
     public SearchAndSortSel()
     {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
+        driver = new ChromeDriver(options);
+
         driver.manage().window().maximize();
     }
 

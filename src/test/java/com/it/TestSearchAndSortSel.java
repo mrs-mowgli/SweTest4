@@ -9,23 +9,24 @@ import org.junit.jupiter.api.Test;
  */
 public class TestSearchAndSortSel {
 
+    SearchAndSortSel searchAndSortSel = new SearchAndSortSel();
 
         @BeforeEach
     public void testSetup()
     {
-        SearchAndSortSel.goToStartPage("http://40.76.27.113:8085/en/");
+        searchAndSortSel.goToStartPage("http://40.76.27.113:8085/en/");
     }
 
     @Test
     public void testLanguageTranslation(){
-        SearchAndSortSel.delay(2000);
-        SearchAndSortSel.userChooseLanguage("sv");
-        SearchAndSortSel.delay(2000);
-      SearchAndSortSel.menuBarShouldChange();
+        searchAndSortSel.delay(2000);
+        searchAndSortSel.userChooseLanguage("sv");
+        searchAndSortSel.delay(2000);
+        searchAndSortSel.menuBarShouldChange();
     }
 
     @AfterEach
     public void cleanUp()
-    { SearchAndSortSel.tearDown();}
+    { searchAndSortSel.tearDown();}
 
 }
