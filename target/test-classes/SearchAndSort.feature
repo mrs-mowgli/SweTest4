@@ -1,5 +1,6 @@
 Feature: As a User I want to search and specific article
 
+
   @testing
   Scenario Outline: Search a article from specific trademark and sort
     Given I am on start page

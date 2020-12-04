@@ -20,6 +20,7 @@ public class BaseClass {
         //System.setProperty("webdriver.chrome.driver", "C:\\Tools\\WebDriver\\bin\\chromedriver.exe");
         driver = new ChromeDriver();
         //driver = new FirefoxDriver();
+        //driver.get("http://40.76.27.113:8085/en/");
         js = (JavascriptExecutor) driver;
         driver.manage().window().maximize();
     }
