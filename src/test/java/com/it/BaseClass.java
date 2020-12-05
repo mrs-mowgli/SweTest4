@@ -6,6 +6,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,11 +18,36 @@ public class BaseClass {
 
     public static WebDriver driver;
     public static JavascriptExecutor js ;
+    public static ChromeOptions options = new ChromeOptions();
 
-    @DisplayName("Setup")
+public static void setUpChromeBrowser()
+{
+    options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
+    driver = new ChromeDriver(options);
+    driver.manage().window().maximize();
+    js = (JavascriptExecutor) driver;
+
+
+}
+public static void setUpFirefoxBrowser()
+    {
+        System.setProperty("webdriver.gecko.driver", "/Users/lobe/drivers/geckodriver");
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+  //      firefoxOptions.setHeadless(true); // not working properly
+        firefoxOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
+          driver = new FirefoxDriver(firefoxOptions);
+        driver.manage().window().maximize();
+        js = (JavascriptExecutor) driver;
+    }
+
+ @DisplayName("Setup")
     public static void setUp() {
-        //System.setProperty("webdriver.chrome.driver", "C:\\Tools\\WebDriver\\bin\\chromedriver.exe");
+     //   System.setProperty("webdriver.chrome.driver", "C:\\Tools\\WebDriver\\bin\\chromedriver.exe");
+     //   driver = new ChromeDriver();
+
+   //     options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
         driver = new ChromeDriver();
+
         //driver = new FirefoxDriver();
         //driver.get("http://40.76.27.113:8085/en/");
         js = (JavascriptExecutor) driver;

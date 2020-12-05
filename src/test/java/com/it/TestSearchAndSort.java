@@ -9,10 +9,8 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+
 /**
  * Cucumbertest search and sort items
  * Created by Lotta Berg, 201123
@@ -20,17 +18,21 @@ import org.openqa.selenium.WebElement;
 
 public class TestSearchAndSort extends TestCode {
 
-
-   @When("user search {string}") // OK men byggt på gammalt vis
-    public void userSearch(String arg0) {
+    @When("I search {string}")
+    public void iSearch(String arg0) {
         WebElement search = driver.findElement(By.xpath("//input[contains(@class,'ui-autocomplete-input')]"));
         search.click();
         search.sendKeys(arg0);
         search.sendKeys(Keys.ENTER);
+
+
+
     }
 
-    @And("user sort {string}")
-    public void userSort(String arg0) {
+    @And("I sort {string}")
+    public void iSort(String arg0) {
+        // added some delay for geckp-tests
+        delay(1000);
         WebElement sort = driver.findElement(By.xpath("//button[contains(@class,'btn-unstyle select-title')]"));
         sort.click();
         switch (arg0) {
@@ -52,24 +54,50 @@ public class TestSearchAndSort extends TestCode {
         }
     }
 
-    @Then("user can find article {string}")
-    public void userCanFindArticle(String arg0){
 
+    @Then("I can find article {string}")
+    public void iCanFindArticle(String arg0) {
         delay(2000);
         WebElement sortOrder = driver.findElement(By.xpath("//button[@class='btn-unstyle select-title']"));
         String currentSortOrder = sortOrder.getText();
         if (currentSortOrder.contains(arg0)) {
-          System.out.println("Correct sort order displayed");
+            System.out.println("Correct sort order displayed");
             Assertions.assertTrue(Boolean.parseBoolean(String.valueOf(currentSortOrder.contains(arg0))));
         }
-          else if (!currentSortOrder.contains(arg0))
-          {
-              Assertions.assertFalse(Boolean.parseBoolean(String.valueOf(currentSortOrder.contains(arg0))));
-              System.out.println("Wrong sort order displayed");
-          }
+        else if (!currentSortOrder.contains(arg0))
+        {
+            Assertions.assertFalse(Boolean.parseBoolean(String.valueOf(currentSortOrder.contains(arg0))));
+            System.out.println("Wrong sort order displayed");
+        }
         System.out.println("Sort order choosen: " + currentSortOrder);
-
     }
+
+    @When("I write {string}")
+    public void iWrite(String arg0) {
+    delay(1000);
+    WebElement subscribeField = driver.findElement(By.xpath("//input[contains(@placeholder, 'Your email address')]"));
+        js.executeScript("arguments[0].scrollIntoView();", subscribeField);
+        js.executeScript("arguments[0].click()", subscribeField);
+        delay(2000);
+    subscribeField.sendKeys(arg0);
+    WebElement submitEmail = driver.findElement(By.xpath("//input[@class='btn btn-primary float-xs-right hidden-xs-down']"));
+    submitEmail.click();
+    delay(4000);
+    }
+
+    @Then("I expect an error message")
+    public void iExpectAnErrorMessage() {
+            try{
+                Alert alert = driver.switchTo().alert();
+                System.out.println(alert.getText()+" Alert is Displayed");
+            }
+            catch(NoAlertPresentException ex){
+                System.out.println("Alert is NOT Displayed");
+            }
+        }
+
+
+
 
 }
 

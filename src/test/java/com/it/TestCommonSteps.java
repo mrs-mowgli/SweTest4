@@ -12,16 +12,19 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.Before;
 import io.cucumber.java.After;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.WebDriver;
 
 public class TestCommonSteps extends TestCode{
 
+
     @Before
-    public void start() {
-        setUp();
+   public void start() {
+        // setUp();
     }
 
     @After
     public void stop() {
+
         teardown();
     }
 
@@ -38,5 +41,21 @@ public class TestCommonSteps extends TestCode{
     @Given("Test User is at webshop start page")
     public void testUserIsAtWebshopStartPage() {
         setUp();
+    }
+
+
+    @Given("I am on start page using {string}")
+    public void iAmOnStartPageUsing(String browser) {
+        if (browser.equals("chrome")){
+            setUpChromeBrowser();
+        }
+        else if (browser.equals("firefox")){
+            setUpFirefoxBrowser();
+        }
+        else {
+           driver = null;
+        }
+        assert driver != null;
+        driver.get("http://40.76.27.113:8085/en/");
     }
 }
