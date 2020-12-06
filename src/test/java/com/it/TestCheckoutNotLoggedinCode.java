@@ -27,6 +27,7 @@ public class TestCheckoutNotLoggedinCode extends TestCode{
     String inCart_email = "//*[@id=\"customer-form\"]/section/div[4]/div[1]/input";
     String inCart_termsAndCondition = "//*[@id=\"customer-form\"]/section/div[9]/div[1]/span/label/input";
     String inCart_personalInformation_continue = "//*[@id=\"customer-form\"]/footer/button";
+    //String firstname = "" ;
 
     //addresses()
     String inCart_address = "//*[@id=\"delivery-address\"]/div/section/div[5]/div[1]/input";
@@ -77,6 +78,7 @@ public class TestCheckoutNotLoggedinCode extends TestCode{
         findElementsByxPath(inCart_termsAndCondition, click, empty);
         // Click on continue
         findElementsByxPath(inCart_personalInformation_continue, click, empty);
+        System.out.println("Personal info writen");
 
     }
 
@@ -91,6 +93,7 @@ public class TestCheckoutNotLoggedinCode extends TestCode{
         findElementsByxPath(inCart_phone, sendKeys, "031-790 42 55");
         // Click on continue
         findElementsByxPath(inCart_address_continue, click, empty);
+        System.out.println("address writen");
 
     }
     public void inCart_shippingMethod(){
@@ -98,6 +101,7 @@ public class TestCheckoutNotLoggedinCode extends TestCode{
         findElementsByxPath(inCart_shipping_Mycarrier, click, empty);
         // Click on continue
         findElementsByxPath(incart_shipping_continue, click, empty);
+        System.out.println("shipping method selected ");
     }
 
     public void inCart_payment() {
@@ -107,6 +111,7 @@ public class TestCheckoutNotLoggedinCode extends TestCode{
         findElementsByxPath(inCart_payment_termsAndCondition, click, empty);
         // Send order
         findElementsByxPath(inCart_payment_orderWithAnObligationToPay, click, empty);
+        System.out.println("Payment selected");
     }
 
     public void order_is_confirmed() {
