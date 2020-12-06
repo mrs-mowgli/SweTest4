@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
 
 /**
- * Cucumbertest search and sort items
+ * StepDefinitions for search and sort items
  * Created by Lotta Berg, 201123
  */
 

@@ -6,10 +6,11 @@ import org.junit.jupiter.api.Test;
 /**
  * Test class for search and sort items with Selenium
  * Created by Lotta Berg, 201123
+ *
  */
 public class TestSearchAndSort {
 
- 
+
 
         @BeforeEach
     public void testSetup()
