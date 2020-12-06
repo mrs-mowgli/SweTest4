@@ -1,5 +1,5 @@
 package com.it;
-/*
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
  * Test class for search and sort items with Selenium
  * Created by Lotta Berg, 201123
  */
-/*
+
 public class TestSearchAndSortSel {
 
     SearchAndSortSel searchAndSortSel = new SearchAndSortSel();
@@ -31,4 +31,3 @@ public class TestSearchAndSortSel {
     { searchAndSortSel.tearDown();}
 
 }
-*/
