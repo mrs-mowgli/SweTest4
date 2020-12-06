@@ -12,12 +12,12 @@ import org.openqa.selenium.interactions.Actions;
  * Method class Selenium for search and sort
  * Created by Lotta Berg, 201123
  */
-public class SearchAndSortSel {
+public class SearchAndSort {
 
      public static WebDriver driver;
 
 
-    public SearchAndSortSel()
+    public SearchAndSort()
     {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
