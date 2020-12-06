@@ -71,7 +71,7 @@ public class SearchAndSort {
              * Add delay
              * @param milliseconds
              * Created by Lotta Berg 2020-11-22
-             * replace this later 2020-12-10
+             * replace this later 2020-12-10 - lite ntill ändring
              */
             public void delay(int milliseconds)
             {
