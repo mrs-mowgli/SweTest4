@@ -9,7 +9,7 @@ Feature: Filter items
 
   @testing
   Scenario: Filter accessories by categories
-    Given I am on main page
+    Given I am on start page
     When I click on accessories page
     When I click on the stationery filter
     Then only items of the category stationery should be displayed
