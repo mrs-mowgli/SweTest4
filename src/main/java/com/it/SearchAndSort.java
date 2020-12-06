@@ -26,11 +26,11 @@ public class SearchAndSort {
         driver.manage().window().maximize();
     }
 
-    public static void goToStartPage(String url) {
+    public void goToStartPage(String url) {
         driver.get(url);
     }
 
-        public static void userChooseLanguage(String lang) {
+        public void userChooseLanguage(String lang) {
             WebElement languageChooser = driver.findElement(By.xpath("//button[@class='hidden-sm-down btn-unstyle']"));
             languageChooser.click();
             delay(500);
@@ -40,7 +40,7 @@ public class SearchAndSort {
         }
 
 
-        public static  void menuBarShouldChange()  // rearranged from a test for each
+        public void menuBarShouldChange()  // rearranged from a test for each
         {
                 String firstMenubarItem = driver.findElement(By.id("category-3")).getText();
                 String secondMenubarItem = driver.findElement(By.id("category-6")).getText();
@@ -61,7 +61,7 @@ public class SearchAndSort {
              * Keyboard commands
              * created by Berg 2020-11-22
              */
-            public static void SendKeyEnter()
+            public void SendKeyEnter()
             {
                 Actions actions = new Actions(driver);
                 actions.sendKeys(Keys.ENTER);
@@ -71,8 +71,9 @@ public class SearchAndSort {
              * Add delay
              * @param milliseconds
              * Created by Lotta Berg 2020-11-22
+             * replace this later 2020-12-10 - lite ntill ändring
              */
-            public static void delay(int milliseconds)
+            public void delay(int milliseconds)
             {
                 try
                 {

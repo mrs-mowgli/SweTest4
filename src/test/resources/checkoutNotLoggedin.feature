@@ -11,16 +11,18 @@ Feature: Test
     When I am in cart
     And I fill in personal information
     And I fill in Addresses
-    And I Fill in shipping method
-    And I choose payment
+    And I Fill in shipping method "<shipping_method>"
+    And I choose payment "<payment>"
     #Then I see Order confirmation
 
-    #Lägg till så att de körs flera gånger o tester olika shipping och payment.
     #Varför funkar inte firefox..?
 
     Examples:
-    |browser|
-    |chrome |
+   |shipping_method|payment|
+   #NOK
+   #|PrestShop      |check  |
+   #OK
+   |My Carrier     |wire   |
     #|firefox|
 
     Scenario Outline: Add item to cart and checkout. Negative test, personal information.
@@ -39,7 +41,7 @@ Feature: Test
       Examples:
       |browser  |firstname |lastname|email|
       |chrome   |0123456789|2345678 |test@iths.se|
-
+      |chrome   |sfghjhd!  |sgmjifg?|test@iths.se|
 
   Scenario Outline: Add item to cart and checkout. Negative test, addresses.
       #Given I am on start page using "<browser>"
@@ -56,5 +58,6 @@ Feature: Test
 
   Examples:
     |browser|address|postalcode|city|
-    |chrome |hejoh  |3444434   |4567|
+    |chrome |hejhej |3444434   |4567|
+    |chrome |fika   |23 23     |Göteborg|
 

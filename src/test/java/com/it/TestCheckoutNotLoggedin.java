@@ -24,6 +24,20 @@ public class TestCheckoutNotLoggedin extends TestCheckoutNotLoggedinCode {
     String invalid_lastname = "//*[@id=\"customer-form\"]/section/div[3]/div[1]/div/ul/li";
     String invalid_postalcode = "//*[@id=\"delivery-address\"]/div/section/div[7]/div[1]/div/ul/li";
 
+    //String inCart_shipping_prestshop = "//*[@id=\"delivery_option_1\"]";
+    String inCart_shipping_prestshop = "//*[@id=\"js-delivery\"]/button";
+    String inCart_shipping_Mycarrier = "//*[@id=\"delivery_option_2\"]";
+    String incart_shipping_continue = "//*[@id=\"js-delivery\"]/button";
+
+
+    //String inCart_payment_check = "//*[@id=\"payment-option-1\"]";
+    String inCart_payment_check = "//*[@id=\"payment-option-1\"]";
+    String inCart_payment_bankwire = "//*[@id=\"payment-option-2\"]";
+    String inCart_payment_termsAndCondition = "//*[@id=\"conditions_to_approve[terms-and-conditions]\"]";
+    String inCart_payment_orderWithAnObligationToPay = "//*[@id=\"payment-confirmation\"]/div[1]/button";
+
+
+
     //Högst tillfällig!
     @Given("^start$")
     public void start() {
@@ -63,18 +77,65 @@ public class TestCheckoutNotLoggedin extends TestCheckoutNotLoggedinCode {
         inCart_Address();
     }
 
-    @And("I Fill in shipping method")
-    public void shipping_method() {
+    @And("^I Fill in shipping method \"(.*)\"$")
+    public void shipping_method(String shipping_method) throws InterruptedException {
         //Calls method from TestCheckoutNotLoggedinCode class.
         //Select shipping method
-        inCart_shippingMethod();
+        //inCart_shippingMethod();
+        waiting();
+        System.out.println("shipping method to be selected ");
+
+        if(shipping_method.equals("PrestShop")){
+            Thread.sleep(1000);
+            findElementsByxPath(inCart_shipping_prestshop, click, empty);
+            Thread.sleep(1000);
+            findElementsByxPath(incart_shipping_continue, click, empty);
+            System.out.println("Prestshop");
+        }
+        if(shipping_method.equals("My Carrier")){
+            findElementsByxPath(inCart_shipping_Mycarrier, click, empty);
+            Thread.sleep(1000);
+            System.out.println("my carrier");
+
+        }
+        findElementsByxPath(incart_shipping_continue, click, empty);
+        System.out.println("shipping method selected ");
+
     }
 
-    @And("I choose payment")
-    public void payment_method() {
+    @And("^I choose payment \"(.*)\"$")
+    public void payment_method(String payment) {
         //Calls method from TestCheckoutNotLoggedinCode class.
         //Select how i would like to pay.
-        inCart_payment();
+        //inCart_payment();
+
+        // Select payment
+        waiting();
+        System.out.println("Selecting Payment ");
+        if(payment.equals("check")){
+
+            findElementsByxPath(inCart_payment_check, click, empty);
+            findElementsByxPath(inCart_payment_termsAndCondition, click, empty);
+
+        }
+        if(payment.equals("wire")){
+            findElementsByxPath(inCart_payment_bankwire, click, empty);
+            findElementsByxPath(inCart_payment_termsAndCondition, click, empty);
+            findElementsByxPath(inCart_payment_orderWithAnObligationToPay, click, empty);
+
+        }
+        System.out.println("Payment selected");
+
+        /*
+        findElementsByxPath(inCart_payment_bankwire, click, empty);
+        // Accept trams and condition
+        findElementsByxPath(inCart_payment_termsAndCondition, click, empty);
+        // Send order
+        findElementsByxPath(inCart_payment_orderWithAnObligationToPay, click, empty);
+        System.out.println("Payment selected");
+
+         */
+
     }
     @And("I see Order confirmation")
     public void order_confirmation() {
