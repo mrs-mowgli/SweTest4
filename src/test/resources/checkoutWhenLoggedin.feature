@@ -2,7 +2,7 @@ Feature: Checkingout Products When Logged In
 
   Scenario: Checkout And Pay With Check
     Given I am on start page using "firefox"
-   And   I am Logged In
+    And   I am Logged In
     And   Have Products In Cart
     When  I Checkout
     Then  Choose Shipping "My carrier"
