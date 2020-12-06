@@ -11,7 +11,7 @@ Feature: Checkingout Products When Logged In
     And   Order Is Placed
     And   I Get Conformation Email
 
-  """Scenario Outline: Checkout And Pay With Check
+  Scenario Outline: Checkout And Pay With Check
     Given I am on start page using "<Browser>"
     And   I am Logged In
     And   Have Products In Cart
@@ -29,7 +29,7 @@ Feature: Checkingout Products When Logged In
     |My carrier |Check  |chrome|
     |My carrier |Wire   |chrome|
 
-"""
+
 
 #negative
  #  change all obligatory fields for personal info and address

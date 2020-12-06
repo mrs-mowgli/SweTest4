@@ -38,11 +38,13 @@ public class TestCheckoutNotLoggedinCode extends TestCode{
     String inCart_address_continue = "//*[@id=\"delivery-address\"]/div/footer/button";
 
     //shipping_method()
-    String inCart_shipping_Mycarrier = "//*[@id=\"checkout\"]";
+    String inCart_shipping_prestshop = "//*[@id=\"delivery_option_1\"]";
+    String inCart_shipping_Mycarrier = "//*[@id=\"delivery_option_2\"]";
     String incart_shipping_continue = "//*[@id=\"js-delivery\"]/button";
 
     //payment_method()
     String inCart_payment_bankwire = "//*[@id=\"payment-option-2\"]";
+    String inCart_payment_check = "//*[@id=\"payment-option-1\"]";
     String inCart_payment_termsAndCondition = "//*[@id=\"conditions_to_approve[terms-and-conditions]\"]";
     String inCart_payment_orderWithAnObligationToPay = "//*[@id=\"payment-confirmation\"]/div[1]/button";
 
@@ -96,23 +98,60 @@ public class TestCheckoutNotLoggedinCode extends TestCode{
         System.out.println("address writen");
 
     }
-    public void inCart_shippingMethod(){
-        // Select My Carrier as shipping mathod
+    /*
+    public void inCart_shipping_method(String shipping_method){
+        // Select shipping method
+        if(shipping_method.equals("PrestShop")){
+            //clickXpath("//*[@id=\"js-delivery\"]/button");
+            findElementsByxPath(inCart_shipping_prestshop, click, empty);
+        }
+        if(shipping_method.equals("My Carrier")){
+            findElementsByxPath(inCart_shipping_Mycarrier, click, empty);
+            //clickXpath("//*[@id=\"delivery_option_2\"]");
+            //clickXpath("//*[@id=\"js-delivery\"]/button");
+        }
+        findElementsByxPath(incart_shipping_continue, click, empty);
+        System.out.println("shipping method selected ");
+
+        /*
         findElementsByxPath(inCart_shipping_Mycarrier, click, empty);
         // Click on continue
         findElementsByxPath(incart_shipping_continue, click, empty);
         System.out.println("shipping method selected ");
+
+
     }
 
-    public void inCart_payment() {
-        // Select to pay with bankwire
+    public void inCart_payment(String payment) {
+        // Select payment
+        if(payment.equals("check")){
+           // clickXpath("//*[@id=\"js-delivery\"]/button");
+            findElementsByxPath(inCart_payment_check, click, empty);
+            findElementsByxPath(inCart_payment_termsAndCondition, click, empty);
+
+        }
+        if(payment.equals("wire")){
+            findElementsByxPath(inCart_payment_bankwire, click, empty);
+            findElementsByxPath(inCart_payment_termsAndCondition, click, empty);
+            findElementsByxPath(inCart_payment_orderWithAnObligationToPay, click, empty);
+            //clickXpath("//*[@id=\"delivery_option_2\"]");
+            //clickXpath("//*[@id=\"js-delivery\"]/button");
+        }
+        System.out.println("Payment selected");
+        /*
         findElementsByxPath(inCart_payment_bankwire, click, empty);
         // Accept trams and condition
         findElementsByxPath(inCart_payment_termsAndCondition, click, empty);
         // Send order
         findElementsByxPath(inCart_payment_orderWithAnObligationToPay, click, empty);
         System.out.println("Payment selected");
+
+
     }
+
+     */
+
+
 
     public void order_is_confirmed() {
         // Saves the header in a variable calls text.
