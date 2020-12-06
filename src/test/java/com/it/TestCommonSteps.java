@@ -30,6 +30,7 @@ public class TestCommonSteps extends TestCode{
 
     @Given("^I am on start page$")
     public void IAmOnStartPage() {
+        setUp();
         driver.get("http://40.76.27.113:8085/en/");
     }
 

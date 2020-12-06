@@ -11,7 +11,6 @@ public class CheckoutMethods extends TestCode {
     String productPrice;
     String shippingCost;
     Double totalPrice;
-    Double totalPriceInt;
     Double finalPrice;
 
     public void loginWithExistingUser(){
@@ -38,7 +37,7 @@ public class CheckoutMethods extends TestCode {
     }
 
     public void chooseShippingMethod(String shippingMethod){
-        //default option, should be made dynamic
+        //choice of shipping method
         waiting();
         if(shippingMethod.equals("PrestShop")){
             clickXpath("//*[@id=\"js-delivery\"]/button");
@@ -47,12 +46,10 @@ public class CheckoutMethods extends TestCode {
             clickXpath("//*[@id=\"delivery_option_2\"]");
             clickXpath("//*[@id=\"js-delivery\"]/button");
         }
-
-       // if(shippingMethod.equals("PrestShop")) clickXpath("//*[@id=\"js-delivery\"]/button");
     }
 
     public void choosePaymentOption(String option){
-        //check, should be made dynamic
+        //choice of payment option
 
         if(option.equals("Check")){
             clickXpath("//*[@id=\"payment-option-1\"]");
@@ -61,8 +58,6 @@ public class CheckoutMethods extends TestCode {
         if (option.equals("Wire")){
                 clickXpath("//*[@id=\"payment-option-2\"]");
         }
-
-        //clickXpath("//*[@id=\"payment-option-1\"]");
     }
 
     public void acceptTermsOfService(){
@@ -81,26 +76,7 @@ public class CheckoutMethods extends TestCode {
         clickXpath("//*[@id=\"_desktop_user_info\"]/div/a[1]");
     }
 
-
     //help functions
-
-    //remove non numerical values from string and cast to double
-
-    public double cleanPrice(String totalPrice){
-        if(totalPrice.equals("Free")){
-            totalPriceInt = 0.0;
-        }else {
-            totalPrice = totalPrice.replaceAll("[^0-9.]", "");
-            totalPriceInt = Double.parseDouble(totalPrice.trim());
-        }
-        return totalPriceInt;
-    }
-
-    //method for trimming decimals
-    public double trimDec(Double d){
-        return Math.floor(d * 100) / 100;
-    }
-
     public void clickXpath(String xpath){
         driver.findElement(By.xpath(xpath)).click();
     }
