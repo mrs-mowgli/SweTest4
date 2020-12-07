@@ -37,7 +37,7 @@ public class TestCheckoutNotLoggedin extends TestCheckoutNotLoggedinCode {
     String inCart_payment_orderWithAnObligationToPay = "//*[@id=\"payment-confirmation\"]/div[1]/button";
 
 
-
+/*
     //Högst tillfällig!
     @Given("^start$")
     public void start() {
@@ -47,6 +47,9 @@ public class TestCheckoutNotLoggedin extends TestCheckoutNotLoggedinCode {
         driver.get("http://40.76.27.113:8085/en/");
         driver.manage().window().maximize();
     }
+
+ */
+
 
     @And("^Proceed to checkout$")
     public void go_to_checkout() throws InterruptedException {
@@ -82,20 +85,20 @@ public class TestCheckoutNotLoggedin extends TestCheckoutNotLoggedinCode {
         //Calls method from TestCheckoutNotLoggedinCode class.
         //Select shipping method
         //inCart_shippingMethod();
-        waiting();
-        System.out.println("shipping method to be selected ");
+        //waiting();
+        //System.out.println("shipping method to be selected ");
 
         if(shipping_method.equals("PrestShop")){
             Thread.sleep(1000);
             findElementsByxPath(inCart_shipping_prestshop, click, empty);
             Thread.sleep(1000);
             findElementsByxPath(incart_shipping_continue, click, empty);
-            System.out.println("Prestshop");
+            //System.out.println("Prestshop");
         }
         if(shipping_method.equals("My Carrier")){
             findElementsByxPath(inCart_shipping_Mycarrier, click, empty);
             Thread.sleep(1000);
-            System.out.println("my carrier");
+            //System.out.println("my carrier");
 
         }
         findElementsByxPath(incart_shipping_continue, click, empty);
@@ -106,11 +109,10 @@ public class TestCheckoutNotLoggedin extends TestCheckoutNotLoggedinCode {
     @And("^I choose payment \"(.*)\"$")
     public void payment_method(String payment) {
         //Calls method from TestCheckoutNotLoggedinCode class.
-        //Select how i would like to pay.
         //inCart_payment();
-
         // Select payment
-        waiting();
+
+        //waiting();
         System.out.println("Selecting Payment ");
         if(payment.equals("check")){
 
@@ -126,15 +128,6 @@ public class TestCheckoutNotLoggedin extends TestCheckoutNotLoggedinCode {
         }
         System.out.println("Payment selected");
 
-        /*
-        findElementsByxPath(inCart_payment_bankwire, click, empty);
-        // Accept trams and condition
-        findElementsByxPath(inCart_payment_termsAndCondition, click, empty);
-        // Send order
-        findElementsByxPath(inCart_payment_orderWithAnObligationToPay, click, empty);
-        System.out.println("Payment selected");
-
-         */
 
     }
     @And("I see Order confirmation")
@@ -143,15 +136,7 @@ public class TestCheckoutNotLoggedin extends TestCheckoutNotLoggedinCode {
         //Order is confirmed.
         order_is_confirmed();
     }
-/*
-    @Then("close Browser")
-    public void close_browser(){
-        // Call method from Baseclass.
-        // Close browser.
-        teardown();
-    }
 
- */
 
     //Scenario 2, negative test, personal information
 
@@ -218,21 +203,21 @@ public class TestCheckoutNotLoggedin extends TestCheckoutNotLoggedinCode {
     public void negativetest_address(String address) throws InterruptedException {
         findElementsByxPath(inCart_address,sendKeys, address);
         Thread.sleep(1000);
-        System.out.println("negative address");
+        //System.out.println("negative address");
     }
 
     @And("I fill in invalid postalcode \"(.*)\"$")
     public void negativetest_postalcode(String postalcode) throws InterruptedException {
         findElementsByxPath(inCart_postalCode,sendKeys, postalcode);
         Thread.sleep(1000);
-        System.out.println("negatvie postalcode");
+        //System.out.println("negatvie postalcode");
     }
 
     @And("I fill in invalid city \"(.*)\"$")
     public void negativetest_city(String city) throws InterruptedException {
         findElementsByxPath(inCart_city,sendKeys, city);
         Thread.sleep(1000);
-        System.out.println("negative city");
+        //System.out.println("negative city");
     }
 
     @Then("Invalid fields in addresses")
@@ -243,16 +228,8 @@ public class TestCheckoutNotLoggedin extends TestCheckoutNotLoggedinCode {
         } else {
             System.out.println("Postalcode are writen in correct format");
         }
-        System.out.println("alert");
-/*
-        // Alert Warning for lastname invalid format
-        if (driver.findElement(By.xpath(invalid_lastname)).isDisplayed()) {
-            System.out.println("Invalid characters in lastname");
-        } else {
-            System.out.println("Lastname are writen in correct format");
-        }
+        //System.out.println("alert");
 
- */
 
     }
 

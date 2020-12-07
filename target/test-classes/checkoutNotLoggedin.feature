@@ -4,8 +4,8 @@
 Feature: Test
 
   Scenario Outline: Add item to cart and checkout. Happytest.
-    #Given I am on start page using "<browser>"
-    Given start
+    Given I am on start page using "<browser>"
+    #Given start
     Given Have Products In Cart
     And Proceed to checkout
     When I am in cart
@@ -15,20 +15,20 @@ Feature: Test
     And I choose payment "<payment>"
     #Then I see Order confirmation
 
-    #Lägg till så att de körs flera gånger o tester olika shipping och payment.
-    #Varför funkar inte firefox..?
+
 
     Examples:
-   |shipping_method|payment|
+   |browser |shipping_method|payment|
    #NOK
    #|PrestShop      |check  |
    #OK
-   |My Carrier     |wire   |
+   |chrome  |My Carrier     |wire   |
     #|firefox|
+    #firefox..?
 
     Scenario Outline: Add item to cart and checkout. Negative test, personal information.
-      #Given I am on start page using "<browser>"
-      Given start
+      Given I am on start page using "<browser>"
+      #Given start
       Given Have Products In Cart
       And Proceed to checkout
       When I am in cart
@@ -45,8 +45,8 @@ Feature: Test
       |chrome   |sfghjhd!  |sgmjifg?|test@iths.se|
 
   Scenario Outline: Add item to cart and checkout. Negative test, addresses.
-      #Given I am on start page using "<browser>"
-      Given start
+      Given I am on start page using "<browser>"
+      #Given start
       Given Have Products In Cart
       And Proceed to checkout
       When I am in cart
