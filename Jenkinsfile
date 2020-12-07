@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'SweTest && SweTestMac' }
     tools {
         maven 'M3'
     }
