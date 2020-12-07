@@ -1,8 +1,6 @@
 pipeline {
     agent { label 'SweTest || SweTestMac' }
-    tools {
-        maven 'M3'
-    }
+   
     tools {
         maven 'Apache Maven 3.3.9'
 //        jdk 'jdk8'
