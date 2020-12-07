@@ -12,7 +12,7 @@ import io.cucumber.java.en.When;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class createAccountSteps extends createAccountMethods {
+public class CreateAccountSteps extends CreateAccountMethods {
 
         @Given("I am on the create an account page")
         public void i_am_on_the_create_an_account_page() {
