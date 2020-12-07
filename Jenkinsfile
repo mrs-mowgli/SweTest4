@@ -1,18 +1,17 @@
 pipeline {
-    agent { label 'SweTest || SweTestMac' }
+    agent { label "SweTest || SweTestMac" }
    
     tools {
-        maven 'Apache Maven 3.3.9'
-//        jdk 'jdk8'
+        maven "Apache Maven 3.3.9"
     }
     stages {
-        stage ('Build') {
+        stage ("Build") {
             steps {
-                sh 'mvn clean install'
+                sh "mvn clean install"
             }
             post {
                 success {
-                    junit 'target/surefire-reports/**/*.xml'
+                    junit "target/surefire-reports/**/*.xml"
                 }
             }
         }
