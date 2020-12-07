@@ -6,9 +6,21 @@ pipeline {
     }
     stages {
         stage ("Build") {
+         //   steps {
+         //       sh "mvn clean install"
+         //   }
             steps {
-                sh "mvn clean install"
+                echo 'building the application'
+                sh "mvn -B integration-test"
             }
+        }
+
+        stage("test") {
+            steps {
+                echo 'testing the application...'
+            }
+        }
+
             post {
                 success {
                     junit "target/surefire-reports/**/*.xml"
