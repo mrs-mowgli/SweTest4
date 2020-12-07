@@ -6,12 +6,14 @@
 
 package com.it;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class contactUsMethods extends TestCode {
+public class ContactUsMethods extends TestCode {
 
     String contactUsButton = "#contact-link > a";
     String messageSent = "#content > section > form > div";

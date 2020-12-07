@@ -12,7 +12,7 @@ import io.cucumber.java.en.When;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class contactUsSteps extends contactUsMethods {
+public class ContactUsSteps extends ContactUsMethods {
 
     @Given("I am on the contact us page")
     public void i_am_on_the_contact_us_page() {

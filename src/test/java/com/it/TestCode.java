@@ -82,7 +82,7 @@ public class TestCode extends BaseClass {
      *      String c = "Text" som ska matas in i textfält
      *
      * Skapad av Linus Finsbäck 2020-11-20
-     * Ändrad av ....
+     * Ändrad av Linus Finsbäck 2020-12-06 Added case "clear"
     */
     public void findElementsByCss(String a, String b, String c) {
 
@@ -96,6 +96,8 @@ public class TestCode extends BaseClass {
             case "":
                 driver.findElement(By.cssSelector(a));
                 break;
+            case "clear":
+                driver.findElement(By.cssSelector(a)).clear();
         }
     }
 
