@@ -1,10 +1,10 @@
 /*
-    Step definitions för att kontakta kundservice via Contact us-sidan.
-    Skapad av Mio Lundqvist 2020-11-25
-    Senast ändrad av Mio Lundqvist 2020-27
- */
+Step definitions för att kontakta kundservice via Contact us-sidan.
+        Skapad av Mio Lundqvist 2020-11-25
+        Senast ändrad av Mio Lundqvist 2020-27
+        */
 
-package com.it;
+        package com.it;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

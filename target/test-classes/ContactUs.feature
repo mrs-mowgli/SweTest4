@@ -22,7 +22,7 @@ Feature: Contact customer service
 
   Scenario Outline: No email is provided
     Given I am on start page using "<browser>"
-    When choose a subject
+    When I choose a subject
     And I fill in a message
     And I click on send
     Then a message is not sent
