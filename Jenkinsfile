@@ -1,5 +1,6 @@
 pipeline {
     
+    
     agent {label 'test'}
 
  
@@ -10,7 +11,9 @@ pipeline {
     }
     options { timestamps () }
 
- 
+ environment {
+    PATH = "C:\\WINDOWS\\SYSTEM32"
+}
 
     //triggers{ cron('H/5 * * * *') }
 
