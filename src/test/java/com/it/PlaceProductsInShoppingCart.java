@@ -1,3 +1,8 @@
+/*
+    Skapad av Linus Finsbäck 2020-12-08
+    Ändrad av..
+ */
+
 package com.it;
 
 import org.openqa.selenium.By;
