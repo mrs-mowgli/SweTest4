@@ -36,5 +36,16 @@ pipeline {
         }
 
  
+
+        stage("deploy") {
+            steps {
+                echo 'deploying the application...'
+                bat "mvn -Dmaven.test.failure.ignore=true install"
+            }
+        }
+    }
+}
+
+    
   
 
