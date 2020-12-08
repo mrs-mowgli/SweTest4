@@ -149,6 +149,8 @@ public class TestCheckoutNotLoggedinCode extends TestCode{
 
     }
 
+
+
      */
 
 
@@ -159,5 +161,7 @@ public class TestCheckoutNotLoggedinCode extends TestCode{
         // Compare the variable text, with expected text when order is placed.
         assertEquals(text, "YOUR ORDER IS CONFIRMED" );
     }
+
+
 
 }
