@@ -30,9 +30,10 @@ public class CreateAccountMethods extends TestCode {
     String signInButton = "#_desktop_user_info > div > a > span";
     String createAccountButton = "#content > div > a";
 
-    public void createUserPage() {
+    public void createAccountPage() {
         // Goes to the create user page via the Sign in button
         setUp();
+        delay(2000);
         findElementsByCss(signInButton, click, empty);
         findElementsByCss(createAccountButton, click, empty);
     }

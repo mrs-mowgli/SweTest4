@@ -16,7 +16,7 @@ public class CreateAccountSteps extends CreateAccountMethods {
 
         @Given("I am on the create an account page")
         public void i_am_on_the_create_an_account_page() {
-            createUserPage();
+            createAccountPage();
         }
 
         @When("I choose a Social title")

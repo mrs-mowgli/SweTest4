@@ -7,6 +7,7 @@
 package com.it;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -24,9 +25,8 @@ public class ContactUsMethods extends TestCode {
     String contactUsSendButton = "#content > section > form > footer > input.btn.btn-primary";
     String invalidEmail = "#content > section > form > div";
 
-    public void contactUsPage() {
+    public void clickOnContactUs() {
         // Goes to the contact us page
-        setUp();
         findElementsByCss(contactUsButton, click, empty);
         assertEquals("http://40.76.27.113:8085/en/contact-us", driver.getCurrentUrl());
     }

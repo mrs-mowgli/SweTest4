@@ -14,10 +14,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ContactUsSteps extends ContactUsMethods {
 
-    @Given("I am on the contact us page")
+   /* @Given("I am on the contact us page")
     public void i_am_on_the_contact_us_page() {
         contactUsPage();
+    }*/
+
+    @When("I click on Contact us")
+    public void i_click_on_contact_us() {
+        clickOnContactUs();
     }
+
 
     @When("I choose a Customer service")
     public void i_choose_a_customer_service() {
