@@ -14,8 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CreateAccountSteps extends CreateAccountMethods {
 
-        @Given("I am on the create an account page")
-        public void i_am_on_the_create_an_account_page() {
+        @When("I go to the create an account page")
+        public void i_go_to_the_create_an_account_page() {
             createAccountPage();
         }
 
@@ -62,7 +62,7 @@ public class CreateAccountSteps extends CreateAccountMethods {
         @Then("an account is created with the provided information")
         public void an_account_is_created() {
             accountIsCreated();
-                    }
+        }
 
         @When("I fill in an already existing email")
         public void i_fill_in_an_already_existing_email() {
@@ -79,8 +79,8 @@ public class CreateAccountSteps extends CreateAccountMethods {
             accountNotCreated();
         }
 
-        @When("I fill in a password in a wrong format")
-        public void i_fill_in_a_password_in_a_wrong_format() {
+        @When("I fill in password in a wrong format")
+        public void i_fill_in_password_in_a_wrong_format() {
             fillInPasswordWrongFormat();
         }
 

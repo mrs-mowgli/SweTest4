@@ -7,23 +7,22 @@ Feature: Contact customer service
   I want to be able to contact customer service
 
   Scenario Outline: Contact customer service
-    Given I am on start page using "<browser>"
+    Given I am on start page using "chrome"
     When I click on Contact us
-    And I choose a <subject>
+    And I choose a "<subject>"
     And I fill in Email address
     And I fill in a message
     And I click on send
     Then a message is sent to the customer service
     Examples:
-      |subject           | browser
-      | Customer service | chrome
-      | Webmaster        | chrome
-      | Customer service | firefox
-      | Webmaster        | firefox
+      |subject           |
+      | Customer service |
+      | Webmaster        |
+
 
   Scenario Outline: No email is provided
     Given I am on start page using "<browser>"
-    When choose a subject
+    When I choose a subject
     And I fill in a message
     And I click on send
     Then a message is not sent

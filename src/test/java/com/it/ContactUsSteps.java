@@ -55,8 +55,8 @@ public class ContactUsSteps extends ContactUsMethods {
         subjectWebmaster();
     }
 
-    @When("choose a subject")
-    public void choose_a_subject() {
+    @When("I choose a {string}")
+    public void i_choose_a(String string) {
         chooseASubject();
     }
 

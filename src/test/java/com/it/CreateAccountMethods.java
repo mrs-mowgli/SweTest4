@@ -8,6 +8,7 @@ package com.it;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -16,9 +17,10 @@ public class CreateAccountMethods extends TestCode {
     String socialTitle = "#customer-form > section > div:nth-child(1) > div.col-md-6.form-control-valign > label:nth-child(1) > span";
     String firstname = "#customer-form > section > div:nth-child(2) > div.col-md-6 > input";
     String lastname = "#customer-form > section > div:nth-child(3) > div.col-md-6 > input";
+    String birthdate = "#customer-form > section > div:nth-child(7) > div.col-md-6 > input";
+    String fillInBirthDate = "#customer-form > section > div:nth-child(6) > div.col-md-6 > input";
     String createAccountEmail = "#customer-form > section > div:nth-child(4) > div.col-md-6 > input";
     String password = "#customer-form > section > div:nth-child(5) > div.col-md-6 > div > input";
-    String birthdate = "#customer-form > section > div:nth-child(6) > div.col-md-6 > input";
     String birthdatexpath = "//*[@id=\"customer-form\"]/section/div[6]/div[1]/input";
     String terms = "#customer-form > section > div:nth-child(9) > div.col-md-6 > span > label > input[type=checkbox]";
     String savebutton = "#customer-form > footer > button";
@@ -32,7 +34,6 @@ public class CreateAccountMethods extends TestCode {
 
     public void createAccountPage() {
         // Goes to the create user page via the Sign in button
-        setUp();
         delay(2000);
         findElementsByCss(signInButton, click, empty);
         findElementsByCss(createAccountButton, click, empty);
@@ -53,9 +54,18 @@ public class CreateAccountMethods extends TestCode {
         findElementsByCss(lastname, sendKeys, "Tölvansson");
     }
 
+    // Generates a random email adress to be used in fillInEmail
+    public String randomString()
+    {
+        String genString = RandomStringUtils.randomAlphabetic(8);
+        return(genString);
+    }
+
+
     public void fillInEmail() {
-        // Clicks and fills in email in email field. Since we cant reset the database, the email will have to be changed before the test is executed.
-        findElementsByCss(createAccountEmail, sendKeys, "tolvantolvansson12@gmail.com");
+        // Clicks and fills in email in email field.
+        String email = randomString()+"@gmail.com";
+        findElementsByCss(createAccountEmail, sendKeys, email);
     }
 
     public void fillInPassword() {
@@ -65,7 +75,7 @@ public class CreateAccountMethods extends TestCode {
 
     public void fillInBirthDate() {
         // Clicks and fills in birth date in birth date field
-        findElementsByCss(birthdate, sendKeys, "12/12/1912");
+        findElementsByCss(fillInBirthDate, sendKeys, "12/12/1912");
     }
 
     public void agreeToTerms() {
@@ -91,9 +101,7 @@ public class CreateAccountMethods extends TestCode {
         // Asserts that lastname is Tölvansson
         assertEquals("Tölvansson", lastName);
 
-        String eMail = getAttributeByCssValue(createAccountEmail);
-        // Asserts that email is tolvan.tolvansson_191212@domän.com
-        assertEquals("tolvan.tolvansson_191212@domän.com", eMail);
+        delay(2000);
 
         String birthDate = getAttributeByCssValue(birthdate);
         // Asserts that birth date is 12/12/1912
