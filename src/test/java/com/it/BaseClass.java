@@ -31,9 +31,9 @@ public static void setUpChromeBrowser()
 }
 public static void setUpFirefoxBrowser()
     {
-        System.setProperty("webdriver.gecko.driver", "/Users/lobe/drivers/geckodriver");
+        
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-  //      firefoxOptions.setHeadless(true); // not working properly
+  
         firefoxOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
           driver = new FirefoxDriver(firefoxOptions);
         driver.manage().window().maximize();
