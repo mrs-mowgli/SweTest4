@@ -47,6 +47,16 @@ pipeline {
             }
         }
     }
+     post {
+        always {
+            echo 'This will always run'
+            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+            junit '**/target/surefire-reports/TEST-*.xml'
+        }
+    
+     }
+    
+    
 }
 
     
