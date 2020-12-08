@@ -30,29 +30,9 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     String expectedPrice;
 
 
-    @Given("^I have selected category clothes men$")
-    public void clickCategoryMen() {
-        //Hover at category clothes and then Men
-        mouseHoverElementById("category-3", "category-4");
-
-        //Click at category Men
-        findElementsById("category-4", click, empty);
-    }
-
     @And("I have selected category {string}")
     public void selectedCategory(String category) {
-        if (category.equals("men")) {
-            //Hover at category clothes and then Men
-            mouseHoverElementById("category-3", "category-4");
-            //Click at category Men
-            findElementsById("category-4", click, empty);
-        }
-        else if (category.equals("women")) {
-            //Hover at category clothes and then Women
-            mouseHoverElementById("category-3", "category-5");
-            //Click at category women
-            findElementsById("category-5", click, empty);
-        }
+        selectCategory(category);
     }
 
     @And("I have selected product {string}")
