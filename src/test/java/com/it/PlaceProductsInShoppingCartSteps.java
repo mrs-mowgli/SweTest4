@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PlaceProductsInShoppingCartSteps extends TestCode{
+public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCart {
 
     String currentUrl;
     String firstProductStartPage = "/html/body/main/section/div/div/section/section/section/div/article[1]/div/a/img";
@@ -57,45 +57,31 @@ public class PlaceProductsInShoppingCartSteps extends TestCode{
 
     @And("I have selected product {string}")
     public void selectedProduct(String product) {
-        String productName;
-        productName = getAttributeByxPathInnerHTML("/html/body/main/section/div/div[2]/section/section/div[3]/div/div[1]/article/div/div[1]/h2/a");
-        if (productName.equals(product)) {
-            selectedProduct = productName;
-            findElementsByxPath("/html/body/main/section/div/div[2]/section/section/div[3]/div/div[1]/article/div/div[1]/h2/a", click, empty);
-        }
-
-        priceSelectedProduct = getAttributeByxPathInnerHTML("/html/body/main/section/div/div/section/div[1]/div[2]/div[1]/div[2]/div/span[1]");
+        findProduct(product);
+        selectedProduct = product;
+        priceSelectedProduct = getPrice();
     }
 
     @And("I have selected quantity {string}")
     public void selectedQuantity(String quantity) {
-        findElementsByCss("#quantity_wanted", "clear", empty);
-        findElementsByCss("#quantity_wanted", sendKeys, quantity);
+        setQuantity(quantity);
         quantityInCart = quantity;
     }
 
     @And("I have selected size {string}")
     public void selectedSize(String size) {
-
-        Select sizes = new Select(driver.findElement(By.id("group_1")));
-        sizes.selectByVisibleText(size);
-
-        //String currentSize = getAttributeByCssTitle("#group_1 > option:nth-child(1)");
+        setSize(size);
         sizeSelectedProduct = " " + size;
     }
 
     @And("I have selected color {string}")
     public void selectedColor(String color) {
-        if (color.equals("Black")) {
-            findElementsByxPath("/html/body/main/section/div/div/section/div[1]/div[2]/div[2]/div[2]/form/div[1]/div[2]/ul/li[2]/label/input", click, empty);
-            colorSelectedProduct = " " + color;
-        }
-        else if (color.equals("White")){
-            findElementsByxPath("/html/body/main/section/div/div/section/div[1]/div[2]/div[2]/div[2]/form/div[1]/div[2]/ul/li[1]/label/input", click, empty);
-            colorSelectedProduct = " " + color;
+        if (color.equals("N.A")) {
+            colorSelectedProduct = "1";
         }
         else {
-            colorSelectedProduct = "1";
+            setColor(color);
+            colorSelectedProduct = " " + color;
         }
 
     }

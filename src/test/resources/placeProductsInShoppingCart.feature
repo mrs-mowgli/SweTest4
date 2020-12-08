@@ -4,7 +4,7 @@
 Feature: Place products in shopping cart
 
   @Testing
-  Scenario Outline: Place product from category clothes in shopping cart
+  Scenario Outline: Place product from category clothes in shopping cart and verify popup
     Given I am on start page using "<browser>"
     #Given I am on start page
     And I have selected category "<category>"
