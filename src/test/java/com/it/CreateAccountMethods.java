@@ -27,11 +27,14 @@ public class CreateAccountMethods extends TestCode {
     String usedEmailErrorMessage = "#customer-form > section > div.form-group.row.has-error > div.col-md-6 > div > ul > li";
     String wrongBirthdayFormat = "#customer-form > section > div.form-group.row.has-error > div.col-md-6 > div > ul > li";
     String termsAndConditionsCheckbox = "#customer-form > section > div:nth-child(9) > div.col-md-6 > span > label > input[type=checkbox]";
-    String termsAndConditionsErrorMessage = "";
+    String signInButton = "#_desktop_user_info > div > a > span";
+    String createAccountButton = "#content > div > a";
 
     public void createUserPage() {
         // Goes to the create user page
-        driver.get("http://40.76.27.113:8085/en/login?create_account=1");
+        setUp();
+        findElementsByCss(signInButton, click, empty);
+        findElementsByCss(createAccountButton, click, empty);
     }
 
     public void chooseSocialTitle() {
