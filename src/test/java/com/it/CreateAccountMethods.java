@@ -31,7 +31,7 @@ public class CreateAccountMethods extends TestCode {
     String createAccountButton = "#content > div > a";
 
     public void createUserPage() {
-        // Goes to the create user page
+        // Goes to the create user page via the Sign in button
         setUp();
         findElementsByCss(signInButton, click, empty);
         findElementsByCss(createAccountButton, click, empty);
