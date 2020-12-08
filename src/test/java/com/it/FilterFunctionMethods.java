@@ -8,7 +8,7 @@ package com.it;
 
 import org.openqa.selenium.By;
 
-public class TestFilterFunctionCode extends TestCode{
+public class FilterFunctionMethods extends TestCode{
 
     //Xpath till kategorier i top menyn
     String accessories = "//*[@id=\"category-6\"]/a";
@@ -49,6 +49,25 @@ public class TestFilterFunctionCode extends TestCode{
     //Första utkast för att få jämföra ett resultat... Kollar just nu på hur många stationaries som finns, och borde därför skrivas om.
     public String GetResult() {
         return driver.findElement(By.xpath("//*[@id=\"js-product-list-top\"]/div[1]/p")).getText();
+    }
+
+    //Method för att välja filter
+    public void selectFilter(String filter) {
+        switch (filter) {
+            case "S":
+                findElementsByxPath("//*[@id=\"facet_23015\"]/li[1]/label/span/span", click, empty);
+                break;
+            case "M":
+                findElementsByxPath("//*[@id=\"facet_79310\"]/li[2]/label/span/span/", click, empty);
+                break;
+            case "L":
+                findElementsByxPath("//*[@id=\"facet_79310\"]/li[3]/label/span/span", click, empty);
+                break;
+            case "XL":
+                findElementsByxPath("//*[@id=\"facet_79310\"]/li[4]/label/span/span", click, empty);
+                break;
+        }
+
     }
 
 }
