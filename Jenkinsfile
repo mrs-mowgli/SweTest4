@@ -28,16 +28,6 @@ pipeline {
                 bat "mvn -Dmaven.test.failure.ignore=true clean compile"
             }
         }
-
- 
-
-        stage("test") {
-            steps {
-                echo 'testing the application...'
-                bat "mvn -Dmaven.test.failure.ignore=true test"
-            }
-        }
-
  
 
         stage("deploy") {
