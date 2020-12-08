@@ -98,6 +98,7 @@ public class TestCode extends BaseClass {
                 break;
             case "clear":
                 driver.findElement(By.cssSelector(a)).clear();
+                break;
         }
     }
 

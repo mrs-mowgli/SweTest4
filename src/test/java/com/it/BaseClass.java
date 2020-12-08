@@ -22,6 +22,7 @@ public class BaseClass {
 
 public static void setUpChromeBrowser()
 {
+    System.setProperty("webdriver.chrome.driver", "C:\\Tools\\WebDriver\\bin\\chromedriver.exe");
     options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
     driver = new ChromeDriver(options);
     driver.manage().window().maximize();
@@ -31,9 +32,9 @@ public static void setUpChromeBrowser()
 }
 public static void setUpFirefoxBrowser()
     {
-        System.setProperty("webdriver.gecko.driver", "/Users/lobe/drivers/geckodriver");
+        System.setProperty("webdriver.gecko.driver", "C:\\Tools\\WebDriver\\bin\\geckodriver.exe");
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-  //      firefoxOptions.setHeadless(true); // not working properly
+  
         firefoxOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
           driver = new FirefoxDriver(firefoxOptions);
         driver.manage().window().maximize();
@@ -42,14 +43,11 @@ public static void setUpFirefoxBrowser()
 
  @DisplayName("Setup")
     public static void setUp() {
-     //   System.setProperty("webdriver.chrome.driver", "C:\\Tools\\WebDriver\\bin\\chromedriver.exe");
-     //   driver = new ChromeDriver();
-
-   //     options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
+   
+        System.setProperty("webdriver.chrome.driver", "C:\\Tools\\WebDriver\\bin\\chromedriver.exe");
+     
         driver = new ChromeDriver();
 
-        //driver = new FirefoxDriver();
-        //driver.get("http://40.76.27.113:8085/en/");
         js = (JavascriptExecutor) driver;
         driver.manage().window().maximize();
     }
