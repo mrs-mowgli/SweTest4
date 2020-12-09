@@ -5,6 +5,7 @@
 
 package com.it;
 
+import io.cucumber.datatable.internal.difflib.Delta;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
@@ -23,11 +24,11 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     String secondProductStartPage = "";
     String firstProductMenCategory = "/html/body/main/section/div/div[2]/section/section/div[3]/div/div[1]/article/div/a/img";
     String selectedProduct;
-    String priceSelectedProduct;
+    double priceSelectedProduct;
     String sizeSelectedProduct;
     String colorSelectedProduct;
     String quantityInCart;
-    String expectedPrice;
+    double expectedPrice = 0;
 
 
     @And("I have selected category {string}")
@@ -46,6 +47,12 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     public void selectedQuantity(String quantity) {
         setQuantity(quantity);
         quantityInCart = quantity;
+        int quantityInt;
+        quantityInt = Integer.parseInt(quantity);
+
+        for (int i = 0; i < quantityInt; i ++) {
+            expectedPrice = expectedPrice + priceSelectedProduct;
+        }
     }
 
     @And("I have selected size {string}")
@@ -103,7 +110,9 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         assertEquals(selectedProduct, actualSelectedProductvalue);
         //Verify price
         actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[1]/div/div[2]/p");
-        assertEquals(priceSelectedProduct, actualSelectedProductvalue);
+        double testPrice;
+        testPrice = cleanPrice(actualSelectedProductvalue);
+        assertEquals(priceSelectedProduct, testPrice);
         //Verify Size
         actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[1]/div/div[2]/span[1]/strong");
         assertEquals(sizeSelectedProduct, actualSelectedProductvalue);
@@ -112,9 +121,14 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         assertEquals(colorSelectedProduct, actualSelectedProductvalue);
 
         //Verify total price
-        //String totalPrice;
-        //totalPrice = getAttributeByxPathInnerHTML("//*[@id=\"blockcart-modal\"]/div/div/section/div/div[2]/div[1]/div[1]/div[2]/div/span[2]");
-        //assertEquals(priceSelectedProduct, totalPrice);
+        String totalPriceString;
+        totalPriceString = getAttributeByxPathInnerHTML("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[2]/div/p[4]/span[2]");
+
+        double totalPrice;
+        totalPrice = cleanPrice(totalPriceString);
+        double delta0;
+        assertEquals(totalPrice, expectedPrice, 0.01);
+
     }
 
     @Then("^I will stay at product page")

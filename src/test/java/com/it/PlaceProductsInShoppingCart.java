@@ -23,17 +23,11 @@ public class PlaceProductsInShoppingCart extends TestCode {
 
         for (int i = 1; i < 10; i ++) {
             productName = getAttributeByxPathInnerHTML(xPath1 + i + xPath2);
-            System.out.println(productName);
             if (productName.equals(product)) {
                 //selectedProduct = productName;
                 findElementsByxPath(xPath1 + i + xPath2, click, empty);
                 break;
             }
-           /* else if (i == 9) {
-                productName = getAttributeByxPathInnerHTML("/html/body/main/section/div/div[2]/section/section/div[3]/div/div[1]/article/div/div[1]/h2/a");
-                selectedProduct = productName;
-                findElementsByxPath("/html/body/main/section/div/div[2]/section/section/div[3]/div/div[1]/article/div/div[1]/h2/a", click, empty);
-            }*/
         }
     }
     /**
@@ -50,7 +44,7 @@ public class PlaceProductsInShoppingCart extends TestCode {
         }
         tempPrice = cleanPrice(priceString);
         double price;
-        price = tempPrice;
+        price = trimDec(tempPrice);
         return price;
     }
     /**
