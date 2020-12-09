@@ -108,7 +108,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         //Verify name of product
         actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[1]/div/div[2]/h6");
         assertEquals(selectedProduct, actualSelectedProductvalue);
-        //Verify price
+        //Verify product price
         actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[1]/div/div[2]/p");
         double testPrice;
         testPrice = cleanPrice(actualSelectedProductvalue);
@@ -123,12 +123,9 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         //Verify total price
         String totalPriceString;
         totalPriceString = getAttributeByxPathInnerHTML("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[2]/div/p[4]/span[2]");
-
         double totalPrice;
         totalPrice = cleanPrice(totalPriceString);
-        double delta0;
         assertEquals(totalPrice, expectedPrice, 0.01);
-
     }
 
     @Then("^I will stay at product page")
