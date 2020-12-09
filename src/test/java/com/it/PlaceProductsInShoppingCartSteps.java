@@ -20,15 +20,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCart {
 
     String currentUrl;
-    String firstProductStartPage = "/html/body/main/section/div/div/section/section/section/div/article[1]/div/a/img";
-    String secondProductStartPage = "";
-    String firstProductMenCategory = "/html/body/main/section/div/div[2]/section/section/div[3]/div/div[1]/article/div/a/img";
     String selectedProduct;
     double priceSelectedProduct;
     String sizeSelectedProduct;
     String colorSelectedProduct;
     String quantityInCart;
-    double expectedPrice = 0;
+    double expectedPrice;
 
 
     @And("I have selected category {string}")
@@ -49,10 +46,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         quantityInCart = quantity;
         int quantityInt;
         quantityInt = Integer.parseInt(quantity);
-
-        for (int i = 0; i < quantityInt; i ++) {
-            expectedPrice = expectedPrice + priceSelectedProduct;
-        }
+        expectedPrice = priceSelectedProduct * quantityInt;
     }
 
     @And("I have selected size {string}")
@@ -70,9 +64,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
             setColor(color);
             colorSelectedProduct = " " + color;
         }
-
     }
-
 
     @When("^I place product in shopping cart$")
     public void placeProductInCart() {

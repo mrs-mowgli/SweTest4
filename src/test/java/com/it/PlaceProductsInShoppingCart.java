@@ -24,7 +24,6 @@ public class PlaceProductsInShoppingCart extends TestCode {
         for (int i = 1; i < 10; i ++) {
             productName = getAttributeByxPathInnerHTML(xPath1 + i + xPath2);
             if (productName.equals(product)) {
-                //selectedProduct = productName;
                 findElementsByxPath(xPath1 + i + xPath2, click, empty);
                 break;
             }
@@ -37,14 +36,12 @@ public class PlaceProductsInShoppingCart extends TestCode {
      */
     public double getPrice() {
         String priceString;
-        double tempPrice;
+        double price;
         priceString = getAttributeByxPathInnerHTML("/html/body/main/section/div/div/section/div[1]/div[2]/div[1]/div[2]/div/span[1]");
         if (priceString.equals("NoSuchElement")) {
             priceString = getAttributeByxPathInnerHTML("/html/body/main/section/div/div/section/div[1]/div[2]/div[1]/div[1]/div/span");
         }
-        tempPrice = cleanPrice(priceString);
-        double price;
-        price = trimDec(tempPrice);
+        price = cleanPrice(priceString);
         return price;
     }
     /**
