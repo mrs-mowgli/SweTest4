@@ -284,6 +284,7 @@ public class TestCode extends BaseClass {
 
     /**
      * Method to select product category
+     * Include argument for wanted category when calling method
      * Created By Linus Finsbäck 2020-12-08
      * Changed By ....
      */
