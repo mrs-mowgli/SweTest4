@@ -11,8 +11,8 @@ pipeline {
     }
     options { timestamps () }
 
- environment {
-    PATH = "C:\\WINDOWS\\SYSTEM32"
+// environment {
+//    PATH = "C:\\WINDOWS\\SYSTEM32"
 }
 
     //triggers{ cron('H/5 * * * *') }
@@ -25,7 +25,7 @@ pipeline {
 
  
 
-                bat "mvn -Dmaven.test.failure.ignore=true clean compile"
+                sh "mvn -Dmaven.test.failure.ignore=true clean compile"
             }
         }
  
@@ -33,7 +33,7 @@ pipeline {
         stage("deploy") {
             steps {
                 echo 'deploying the application...'
-                bat "mvn -Dmaven.test.failure.ignore=true install"
+                sh "mvn -Dmaven.test.failure.ignore=true install"
             }
         }
     }
