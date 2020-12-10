@@ -5,15 +5,10 @@
 
 package com.it;
 
-import io.cucumber.datatable.internal.difflib.Delta;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,6 +21,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     String colorSelectedProduct;
     String quantityInCart;
     double expectedPrice;
+    String paperTypeSelectedProduct;
 
 
     @And("I have selected category {string}")
@@ -55,15 +51,16 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         sizeSelectedProduct = " " + size;
     }
 
+    @And("I have selected paperType {string}")
+    public void selectedPaperType(String paperType) {
+        setPaperType(paperType);
+        paperTypeSelectedProduct = " " + paperType;
+    }
+
     @And("I have selected color {string}")
     public void selectedColor(String color) {
-        if (color.equals("N.A")) {
-            colorSelectedProduct = "1";
-        }
-        else {
             setColor(color);
             colorSelectedProduct = " " + color;
-        }
     }
 
     @When("^I place product in shopping cart$")
@@ -88,36 +85,61 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         findElementsByxPath("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[2]/div/div/button", click, empty);
     }
 
-    @Then("^I will see a pop up with confirmation that product was added to shopping cart")
-    public void verifyModal() {
+    @Then("I will see a pop up with confirmation that product of {string} was added to shopping cart")
+    public void verifyModal(String category) {
         //Wait for modal to load
         delay(2000);
+
         //Verify that product is added
         String message = getAttributeByIdInnerHTML("myModalLabel");
         assertEquals("<i class=\"material-icons rtl-no-flip\">\uE876</i>Product successfully added to your shopping cart", message);
+
         // Variable to save actual value of product in chart
         String actualSelectedProductvalue;
+
         //Verify name of product
-        actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[1]/div/div[2]/h6");
+        actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//h6");
         assertEquals(selectedProduct, actualSelectedProductvalue);
+
         //Verify product price
-        actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[1]/div/div[2]/p");
+        actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//p[@class='product-price']");
         double testPrice;
         testPrice = cleanPrice(actualSelectedProductvalue);
         assertEquals(priceSelectedProduct, testPrice);
-        //Verify Size
-        actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[1]/div/div[2]/span[1]/strong");
-        assertEquals(sizeSelectedProduct, actualSelectedProductvalue);
-        //Verify color
-        actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[1]/div/div[2]/span[2]/strong");
-        assertEquals(colorSelectedProduct, actualSelectedProductvalue);
 
-        //Verify total price
-        String totalPriceString;
-        totalPriceString = getAttributeByxPathInnerHTML("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[2]/div/p[4]/span[2]");
-        double totalPrice;
-        totalPrice = cleanPrice(totalPriceString);
-        assertEquals(totalPrice, expectedPrice, 0.01);
+        switch (category){
+            case "men":
+                //Verify Size
+                actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Size:')]//strong");
+                assertEquals(sizeSelectedProduct, actualSelectedProductvalue);
+                //Verify color
+                actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Color:')]//strong");
+                assertEquals(colorSelectedProduct, actualSelectedProductvalue);
+                break;
+
+            case "women":
+                //Verify Size
+                actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Size:')]//strong");
+                assertEquals(sizeSelectedProduct, actualSelectedProductvalue);
+                break;
+
+            case "stationary":
+                //Verify paperType
+                actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Paper Type:')]//strong");
+                assertEquals(paperTypeSelectedProduct, actualSelectedProductvalue);
+                break;
+        }
+
+        //verify quantity
+        actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Quantity:')]//strong");
+        assertEquals(quantityInCart, actualSelectedProductvalue);
+
+        //Verify subtotal price
+        String subTotalPriceString;
+        subTotalPriceString = getAttributeByxPathInnerHTML("//*[@id=\"blockcart-modal\"]//p[contains(.,'Subtotal:')]//span[@class='value']");
+        double subTotalPrice;
+        subTotalPrice = cleanPrice(subTotalPriceString);
+        assertEquals(subTotalPrice, expectedPrice, 0.01);
     }
 
     @Then("^I will stay at product page")
@@ -126,7 +148,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         testurl = getCurrentUrl();
         assertEquals(currentUrl, testurl);
     }
-
+/*
     @Then("^I will see content of my shopping cart")
     public void verifyContentOfCart() {
         // Variable to save actual value of product in chart
@@ -148,7 +170,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         String totalPrice;
         totalPrice = getAttributeByxPathInnerHTML("/html/body/main/section/div/div/section/div/div[2]/div[1]/div[1]/div[2]/div/span[2]");
         assertEquals(priceSelectedProduct, totalPrice);
-    }
+    }*/
 
 
 }

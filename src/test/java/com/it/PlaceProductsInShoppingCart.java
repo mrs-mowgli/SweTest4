@@ -63,6 +63,16 @@ public class PlaceProductsInShoppingCart extends TestCode {
         sizes.selectByVisibleText(size);
     }
     /**
+     * Method to set paperType of item to put into shopping cart
+     * Created By Linus Finsbäck 2020-12-10
+     * Changed By ....
+     */
+    public void setPaperType(String paperType) {
+        Select paperTypes = new Select(driver.findElement(By.id("group_4")));
+        paperTypes.selectByVisibleText(paperType);
+    }
+
+    /**
      * Method to select color of product to put into shopping cart
      * Created By Linus Finsbäck 2020-12-08
      * Changed By ....
@@ -78,5 +88,6 @@ public class PlaceProductsInShoppingCart extends TestCode {
                 break;
         }
     }
+
 
 }
