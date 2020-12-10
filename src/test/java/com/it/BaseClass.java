@@ -22,8 +22,7 @@ public class BaseClass {
 
 public static void setUpChromeBrowser()
 {
-    System.setProperty("webdriver.chrome.driver", "C:\\Tools\\WebDriver\\bin\\chromedriver.exe");
-    options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
+     options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
     driver = new ChromeDriver(options);
     driver.manage().window().maximize();
     js = (JavascriptExecutor) driver;
@@ -32,22 +31,17 @@ public static void setUpChromeBrowser()
 }
 public static void setUpFirefoxBrowser()
     {
-        System.setProperty("webdriver.gecko.driver", "C:\\Tools\\WebDriver\\bin\\geckodriver.exe");
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-  
         firefoxOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
-          driver = new FirefoxDriver(firefoxOptions);
+        driver = new FirefoxDriver(firefoxOptions);
         driver.manage().window().maximize();
         js = (JavascriptExecutor) driver;
     }
 
  @DisplayName("Setup")
     public static void setUp() {
-   
-        System.setProperty("webdriver.chrome.driver", "C:\\Tools\\WebDriver\\bin\\chromedriver.exe");
-     
+        options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
         driver = new ChromeDriver();
-
         js = (JavascriptExecutor) driver;
         driver.manage().window().maximize();
     }
