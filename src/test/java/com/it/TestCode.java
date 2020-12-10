@@ -252,11 +252,11 @@ public class TestCode extends BaseClass {
         }
     }
 
-    /*
-    Metod för dels omvandla string till double, då de numeriska värdena är strings (på priser mm). Dels för att
-    rensa bord boksäver, "kr" står med när man hämtar summor från sidan. Detta för att kunna få siffror som går
-    att summera och jämföra i test, priser etc.
-    Skapad av Sese Castlind 2020-12-03
+    /**
+     * Metod för dels omvandla string till double, då de numeriska värdena är strings (på priser mm). Dels för att
+     *     rensa bord boksäver, "kr" står med när man hämtar summor från sidan. Detta för att kunna få siffror som går
+     *     att summera och jämföra i test, priser etc.
+     *     Skapad av Sese Castlind 2020-12-03
      */
 
     public double cleanPrice(String stringSum){
@@ -270,13 +270,13 @@ public class TestCode extends BaseClass {
         return doubleSum;
     }
 
-    /*
-    Metod för att begränsa doubles till 2 decimaler. Vilket de är på sidan, men
-    vid uträkningar i BE verkar räkna med double el bigdecimal vilket ger uträkningar
-    med flera decimaler. Bör ses över lite nogrannare om tid finns. Fungerar korrekt i
-    de fall jag testat. Behöver vara två decimaler för att kunna göra jämförelse (asserts) med
-    produktpriser i systemet som skrivs ut med två decimaler:
-    Skapad av Sese Castlind 2020-12-03
+    /**
+     * Metod för att begränsa doubles till 2 decimaler. Vilket de är på sidan, men
+     *     vid uträkningar i BE verkar räkna med double el bigdecimal vilket ger uträkningar
+     *     med flera decimaler. Bör ses över lite nogrannare om tid finns. Fungerar korrekt i
+     *     de fall jag testat. Behöver vara två decimaler för att kunna göra jämförelse (asserts) med
+     *     produktpriser i systemet som skrivs ut med två decimaler:
+     *     Skapad av Sese Castlind 2020-12-03
      */
     public double trimDec(Double d){
         return Math.floor(d * 100) / 100;
