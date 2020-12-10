@@ -17,13 +17,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ContactUsMethods extends TestCode {
 
     String contactUsButton = "#contact-link > a";
+    String subjectButton = "#content > section > form > section > div:nth-child(2) > div > select";
     String messageSent = "col-xs-12 alert alert-success";
     String subjectCustomerService = "#content > section > form > section > div:nth-child(2) > div > select > option:nth-child(1)";
     String subjectWebmaster = "#content > section > form > section > div:nth-child(2) > div > select > option:nth-child(2)";
     String contactUsEmailField = "#content > section > form > section > div:nth-child(3) > div > input";
     String contactUsMessageField = "#content > section > form > section > div:nth-child(5) > div > textarea";
     String contactUsSendButton = "#content > section > form > footer > input.btn.btn-primary";
-    String invalidEmail = "#content > section > form > div";
     String contactUsHeader = "#content > section > form > section > div:nth-child(1) > div > h3";
 
     public void clickOnContactUs() {
@@ -58,22 +58,14 @@ public class ContactUsMethods extends TestCode {
     }
 
     public void contactUsMessageSent() {
-        // Confirms that the "Message sent" message is displayed and throws exception if it's not.
+        // Confirms that the "Message sent" message is present.
         delay(2000);
-        try {
-            if (driver.findElement(By.className("col-xs-12 alert alert-success")).isDisplayed()) {
-                System.out.println("Message is sent");
-            } else {
-                System.out.println("Message is not sent");
-            }
-        }catch (NoSuchElementException e) {
-            System.out.println("Exception in finding the element:" + e.getMessage());
-        }
-
+        Boolean isPresent = driver.findElements(By.className(messageSent)).size() > 0;
     }
 
     public void chooseASubject() {
         // Also picks "customer service" as subject but is not a part of a data driven scenario step
+        findElementsByCss(subjectButton, click, empty);
         findElementsByCss(subjectCustomerService, click, empty);
     }
 
