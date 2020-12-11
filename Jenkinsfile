@@ -1,7 +1,7 @@
 pipeline {
     
     
-    agent {label 'test'}
+    agent {label 'MacTest'}
 
  
 
@@ -10,14 +10,6 @@ pipeline {
       
     }
     options { timestamps () }
-
-// environment {
-//    PATH = "C:\\WINDOWS\\SYSTEM32"
-}
-
-    //triggers{ cron('H/5 * * * *') }
-
- 
 
     stages {
         stage("build") {
