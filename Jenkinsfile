@@ -12,20 +12,20 @@ pipeline {
     options { timestamps () }
 
     stages {
-        stage("build") {
+        stage('build') {
             steps {
 
  
 
-                sh "mvn -Dmaven.test.failure.ignore=true clean compile"
+                sh 'mvn -Dmaven.test.failure.ignore=true clean compile'
             }
         }
  
 
-        stage("deploy") {
+        stage('deploy') {
             steps {
                 echo 'deploying the application...'
-                sh "mvn -Dmaven.test.failure.ignore=true install"
+                sh 'mvn -Dmaven.test.failure.ignore=true install'
             }
         }
     }
