@@ -37,10 +37,7 @@ public class PlaceProductsInShoppingCart extends TestCode {
     public double getPrice() {
         String priceString;
         double price;
-        priceString = getAttributeByxPathInnerHTML("/html/body/main/section/div/div/section/div[1]/div[2]/div[1]/div[2]/div/span[1]");
-        if (priceString.equals("NoSuchElement")) {
-            priceString = getAttributeByxPathInnerHTML("/html/body/main/section/div/div/section/div[1]/div[2]/div[1]/div[1]/div/span");
-        }
+        priceString = getAttributeByxPathInnerHTML("//div[@class='current-price']//span");
         price = cleanPrice(priceString);
         return price;
     }
