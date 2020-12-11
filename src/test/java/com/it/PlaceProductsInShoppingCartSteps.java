@@ -1,6 +1,6 @@
 /*
     Skapad av Linus Finsbäck 2020-11-23
-    Ändrad av..
+    Ändrad av Linus Finsbäck 2020-12-11
  */
 
 package com.it;
@@ -66,7 +66,8 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     @When("^I place product in shopping cart$")
     public void placeProductInCart() {
         //click at add to cart
-        findElementsByxPath("/html/body/main/section/div/div/section/div[1]/div[2]/div[2]/div[2]/form/div[2]/div/div[2]/button", click, empty);
+        //findElementsByxPath("/html/body/main/section/div/div/section/div[1]/div[2]/div[2]/div[2]/form/div[2]/div/div[2]/button", click, empty);
+        findElementsByxPath("//*[@class='btn btn-primary add-to-cart']", click, empty);
     }
 
     @When("^I continue to shopping cart from pop up")
@@ -74,7 +75,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         //Wait for modal to load
         delay(2000);
         //Click at continue shopping
-        findElementsByxPath("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[2]/div/div/a", click, empty);
+        findElementsByxPath("//*[@id=\"blockcart-modal\"]//a[@class='btn btn-primary']", click, empty);
     }
 
     @When("^I continue to shop from pop up")
@@ -82,11 +83,11 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         //Wait for modal to load
         delay(2000);
         //Click at continue shopping
-        findElementsByxPath("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[2]/div/div/button", click, empty);
+        findElementsByxPath("//*[@id=\"blockcart-modal\"]//button[@class='btn btn-secondary']", click, empty);
     }
 
     @Then("I will see a pop up with confirmation that product of {string} was added to shopping cart")
-    public void verifyModal(String category) {
+    public void verifyModal(String productType) {
         //Wait for modal to load
         delay(2000);
 
@@ -98,7 +99,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         String actualSelectedProductvalue;
 
         //Verify name of product
-        actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//h6");
+        actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//h6[@class='h6 product-name']");
         assertEquals(selectedProduct, actualSelectedProductvalue);
 
         //Verify product price
@@ -107,8 +108,8 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         testPrice = cleanPrice(actualSelectedProductvalue);
         assertEquals(priceSelectedProduct, testPrice);
 
-        switch (category){
-            case "men":
+        switch (productType){
+            case "sweaterMen":
                 //Verify Size
                 actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Size:')]//strong");
                 assertEquals(sizeSelectedProduct, actualSelectedProductvalue);
@@ -117,13 +118,13 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
                 assertEquals(colorSelectedProduct, actualSelectedProductvalue);
                 break;
 
-            case "women":
+            case "sweaterWomen":
                 //Verify Size
                 actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Size:')]//strong");
                 assertEquals(sizeSelectedProduct, actualSelectedProductvalue);
                 break;
 
-            case "stationary":
+            case "notebook":
                 //Verify paperType
                 actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Paper Type:')]//strong");
                 assertEquals(paperTypeSelectedProduct, actualSelectedProductvalue);

@@ -50,7 +50,9 @@ public class PlaceProductsInShoppingCart extends TestCode {
      * Changed By ....
      */
     public void setQuantity(String quantity) {
+        delay(2000);
         findElementsByCss("#quantity_wanted", "clear", empty);
+        delay(2000);
         findElementsByCss("#quantity_wanted", sendKeys, quantity);
     }
     /**
