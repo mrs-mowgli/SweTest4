@@ -69,9 +69,8 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     @When("^I place product in shopping cart$")
     public void placeProductInCart() {
         //click at add to cart
-        findElementsByxPath("/html/body/main/section/div/div/section/div[1]/div[2]/div[2]/div[2]/form/div[2]/div/div[2]/button", click, empty);
+       findElementsByxPath("/html/body/main/section/div/div/section/div[1]/div[2]/div[2]/div[2]/form/div[2]/div/div[2]/button", click, empty);
     }
-
     @When("^I continue to shopping cart from pop up")
     public void continueToCart() {
         //Wait for modal to load

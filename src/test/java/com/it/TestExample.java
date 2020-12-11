@@ -13,12 +13,12 @@ import io.cucumber.java.en.Then;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestExample extends TestCode{
-
+/* kommenterar ut denna tillfälligt
     @Given("^Test User is at webshop start page$")
     public void openBrowserTest() {
         setUp(); //Kallar på funktionen "setUp" i klassen "BaseClass"
     }
-
+*/
     @When("^Test User click at contact$")
     public void clickTest() {
         //klicka på länk
