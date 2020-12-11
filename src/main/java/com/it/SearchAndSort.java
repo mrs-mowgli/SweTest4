@@ -57,9 +57,9 @@ public class SearchAndSort {
             delay(1000);
 
             assertAll("All translations in categories",
-                    () -> assertEquals("KLÄDER", firstMenubarItem),
+                    () -> assertEquals("CLOTHES", firstMenubarItem),
                     () -> assertEquals("TILLBEHÖR", secondMenubarItem),
-                    () -> assertEquals("KONST", thirdMenubarItem));
+                    () -> assertEquals("ART", thirdMenubarItem));
         }
 
 
