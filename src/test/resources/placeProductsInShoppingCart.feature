@@ -35,7 +35,7 @@ Feature: Place products in shopping cart
 
     Examples:
       | browser | category   | product               | quantity | paperType |
-      | chrome  | stationary | Mountain fox notebook | 3        | Plain     |
+      | chrome  | stationary | Mountain fox notebook | 3        | Ruled     |
       | chrome  | stationary | Brown bear notebook   | 1        | Plain     |
       | chrome  | stationary | Brown bear notebook   | 1        | Squarred  |
       | chrome  | stationary | Hummingbird notebook  | 2        | Doted     |
