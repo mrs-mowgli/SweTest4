@@ -1,7 +1,10 @@
 
 package com.it;
 
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+
+import junit.framework.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,6 +18,7 @@ import org.openqa.selenium.interactions.Actions;
 public class SearchAndSort {
 
      public static WebDriver driver;
+
 
 
     public SearchAndSort()
@@ -46,15 +50,21 @@ public class SearchAndSort {
                 String secondMenubarItem = driver.findElement(By.id("category-6")).getText();
                 String thirdMenubarItem = driver.findElement(By.id("category-9")).getText();
 
-            System.out.println("Expected item: Kläder, Actual item: " +firstMenubarItem);
-            System.out.println("Expected item: Tillbehör, Actual item: " +secondMenubarItem);
-            System.out.println("Expected item: Konst, Actual item: " +thirdMenubarItem);
+            System.out.println("Expected item: KLÄDER, Actual item: " +firstMenubarItem);
+            System.out.println("Expected item: TILLBEHÖR, Actual item: " +secondMenubarItem);
+            System.out.println("Expected item: KONST, Actual item: " +thirdMenubarItem);
 
             delay(1000);
-            Assert.assertEquals("Kläder", firstMenubarItem);
-            Assert.assertEquals("Tillbehör", secondMenubarItem);
-            Assert.assertEquals("Konst", thirdMenubarItem);
+
+            assertAll("All translations in categories",
+                    () -> assertEquals("KLÄDER", firstMenubarItem),
+                    () -> assertEquals("TILLBEHÖR", secondMenubarItem),
+                    () -> assertEquals("KONST", thirdMenubarItem));
         }
+
+
+
+
 
 
             /**
