@@ -129,6 +129,11 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
                 actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Paper Type:')]//strong");
                 assertEquals(paperTypeSelectedProduct, actualSelectedProductvalue);
                 break;
+            case "pillow":
+                //Verify color
+                actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Color:')]//strong");
+                assertEquals(colorSelectedProduct, actualSelectedProductvalue);
+                break;
         }
 
         //verify quantity
@@ -140,7 +145,10 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         subTotalPriceString = getAttributeByxPathInnerHTML("//*[@id=\"blockcart-modal\"]//p[contains(.,'Subtotal:')]//span[@class='value']");
         double subTotalPrice;
         subTotalPrice = cleanPrice(subTotalPriceString);
-        assertEquals(subTotalPrice, expectedPrice, 0.01);
+        assertEquals(subTotalPrice, expectedPrice, 0.1);
+
+        //Verify total price
+
     }
 
     @Then("^I will stay at product page")
