@@ -2,7 +2,6 @@ package com.it;
 
 import org.openqa.selenium.By;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class CheckoutMethods extends TestCode {
 
     String emailCheckoutTest = "test@test.net";
@@ -22,18 +21,44 @@ public class CheckoutMethods extends TestCode {
     }
 
     public void addProductsToCart(){
-        //go to accessories and add mug
+        //clickXpath("//*[@id=\"category-7\"]/a"); //go to category STATIONERY
+        //clickXpath("//*[@id=\"js-product-list\"]/div[1]/article[2]/div/a/img"); //click BROWN BEAR NOTEBOOK
+        driver.get("http://40.76.27.113:8085/en/stationery/17-32-brown-bear-notebook.html#/22-paper_type-ruled");
+        clickXpath("//*[@id=\"add-to-cart-or-refresh\"]/div[2]/div/div[2]/button"); //add to cart
+
+
+        /*go to accessories and add mug
         clickXpath("//*[@id=\"category-6\"]/a");
         clickXpath("//*[@id=\"js-product-list\"]/div[1]/article[1]/div/a/img");
         price = driver.findElement(By.xpath("//*[@id=\"main\"]/div[1]/div[2]/div[1]/div[1]/div/span")).getText();
         clickXpath("//*[@id=\"add-to-cart-or-refresh\"]/div[2]/div/div[2]/button");
+        */
+
+        //getProducts.c("");
+
     }
 
     public void procedToCheckout(){
-        clickXpath("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[2]/div/div/a");
-        assertEquals("Mug The adventure begins", driver.findElement(By.xpath("//*[@id=\"main\"]/div/div[1]/div/div[2]/ul/li/div/div[2]/div[1]/a")).getText());
-        clickXpath("//*[@id=\"main\"]/div/div[2]/div[1]/div[2]/div/a");
+        //delay(200000);
+        waiting();
+       // clickXpath("");//modal checkout button
+       // clickXpath(""); // next chekout button
+        driver.get("http://40.76.27.113:8085/en/order");
         clickXpath("//*[@id=\"checkout-addresses-step\"]/div/div/form/div[2]/button");
+        //delay(10000);
+
+
+        /*
+       // clickXpath("//*[@id=\"add-to-cart-or-refresh\"]/div[2]/div/div[2]/button"); //add to cart
+        clickXpath("//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[2]/div/div/a");
+        //assertEquals("Mug The adventure begins", driver.findElement(By.xpath("//*[@id=\"main\"]/div/div[1]/div/div[2]/ul/li/div/div[2]/div[1]/a")).getText());
+        //clickXpath("//*[@id=\"blockcart-modal\"]/div/div/div[1]/button/span/i"); //close modal
+        clickXpath("//*[@id=\"_desktop_cart\"]/div/div/a/span[1]"); //click checkout button
+        //annars driver.get("http://40.76.27.113:8085/en/order");
+        clickXpath("//*[@id=\"main\"]/div/div[2]/div[1]/div[2]/div/a"); //click next checkout button
+        clickXpath("//*[@id=\"checkout-addresses-step\"]/div/div/form/div[2]/button");
+
+         */
     }
 
     public void chooseShippingMethod(String shippingMethod){
@@ -79,6 +104,10 @@ public class CheckoutMethods extends TestCode {
     //help functions
     public void clickXpath(String xpath){
         driver.findElement(By.xpath(xpath)).click();
+    }
+
+    public void clickCss(String css){
+        driver.findElement(By.cssSelector(css)).click();
     }
 
     public void sendKeysXpath(String xpath, String keys){

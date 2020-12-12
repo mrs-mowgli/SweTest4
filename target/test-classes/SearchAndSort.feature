@@ -1,4 +1,4 @@
-Feature: As a User I want to search and specific article
+Feature: As a User I want to search and specific article and subscribe for newsletter
 
 
   @testing

@@ -9,10 +9,30 @@ Feature: Filter items
 
   @testing
   Scenario: Filter accessories by categories
-    Given I am on start page
+    Given I am on start page using "chrome"
     When I click on accessories page
     When I click on the stationery filter
     Then only items of the category stationery should be displayed
+  
+  @testing
+  Scenario Outline: Filter categories
+  Given I am on start page using "<browser>"
+    #Given I am on start page
+  And I have selected category "<category>"
+  When I select filter "<filter>"
+  Then only items matching the filter should be displayed
+
+  Examples:
+  | browser | category         | filter |
+  | chrome  | men              |  S     |
+ # | chrome  | men              | M      |
+ # | chrome  | men              | L      |
+ # | chrome  | men              | XL     |
+ # | chrome  | men              |        |
+ # | chrome  | women            |        |
+ # | chrome  | stationary       |        |
+ # | chrome  | home accessories |        |
+ # | chrome  | art              |        |
 
 
   #@testing
