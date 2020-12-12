@@ -132,9 +132,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         assertEquals(expectedPrice, getPriceFromCart("//*[@id='blockcart-modal']//p[contains(.,'Subtotal:')]//span[@class='value']"), 0.1);
 
         //Verify total price
-        double shippingCost = checkShippingCost();
-        double expectedTotalPrice = shippingCost + expectedPrice;
-        assertEquals(expectedTotalPrice, getPriceFromCart("//*[@id='blockcart-modal']//p[@class='product-total']//span[@class='value']"), 0.1);
+        assertEquals(checkShippingCost() + expectedPrice, getPriceFromCart("//*[@id='blockcart-modal']//p[@class='product-total']//span[@class='value']"), 0.1);
     }
 
     @Then("^I will stay at product page")
