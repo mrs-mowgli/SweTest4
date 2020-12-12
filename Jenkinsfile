@@ -1,7 +1,8 @@
 pipeline {
     
     
-    agent {label 'MacTest'}
+
+    agent {label 'SweTestMac'}
 
  
 
@@ -10,26 +11,16 @@ pipeline {
       
     }
     options { timestamps () }
+ 
 
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
 
- 
-
-                sh 'mvn -Dmaven.test.failure.ignore=true clean compile'
+    sh "mvn -Dmaven.test.failure.ignore=true clean install"
             }
         }
- 
-
-        stage('deploy') {
-            steps {
-                echo 'deploying the application...'
-                sh 'mvn -Dmaven.test.failure.ignore=true install'
-            }
-        }
-    }
-     post {
+      post {
         always {
             echo 'This will always run'
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
@@ -37,10 +28,16 @@ pipeline {
         }
     
      }
-    
-    
 }
 
-    
-  
+ stage ('Run JMeter test'){
+	steps{
+	sh '/usr/local/Cellar/jmeter/5.3/bin/jmeter 
+-Jjmeter.save.saveservices.output_format=xml -n -t /usr/local/Cellar/jmeter/5.3/bin/PrestaShop.jmx -l jmeterPrestashop_report.jtl'
+		perfReport jmeterPrestashop_report.jtl'
+    }
+	}
+    }
+}
+
 

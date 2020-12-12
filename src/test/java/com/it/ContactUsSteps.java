@@ -6,13 +6,12 @@ Step definitions för att kontakta kundservice via Contact us-sidan.
 
         package com.it;
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ContactUsSteps extends ContactUsMethods {
+public class ContactUsSteps extends ContactUs {
 
 
     @When("I click on Contact us")

@@ -4,7 +4,11 @@
 Feature: Place products in shopping cart
 
   @Testing
+<<<<<<< HEAD
   Scenario Outline: Place product from category clothes in shopping cart and verify popup
+=======
+  Scenario Outline: Place product of type clothes in shopping cart and verify popup
+>>>>>>> c35b779ec1a86c64f5874bf26d87195dc9d8f43b
     Given I am on start page using "<browser>"
     #Given I am on start page
     And I have selected category "<category>"
@@ -13,7 +17,11 @@ Feature: Place products in shopping cart
     And I have selected size "<size>"
     And I have selected color "<color>"
     When I place product in shopping cart
+<<<<<<< HEAD
     Then I will see a pop up with confirmation that product was added to shopping cart
+=======
+    Then I will see a pop up with confirmation that product of "<category>" was added to shopping cart
+>>>>>>> c35b779ec1a86c64f5874bf26d87195dc9d8f43b
 
     Examples:
     | browser | category | product                     | quantity | size | color |
@@ -22,6 +30,27 @@ Feature: Place products in shopping cart
     | chrome  | women    | Hummingbird printed sweater | 1        | L    | N.A   |
     | chrome  | women    | Hummingbird printed sweater | 1        | S    | N.A   |
 
+<<<<<<< HEAD
+=======
+  @Testing
+  Scenario Outline: Place product of type notebook in shopping cart and verify popup
+    Given I am on start page using "<browser>"
+    #Given I am on start page
+    And I have selected category "<category>"
+    And I have selected product "<product>"
+    And I have selected paperType "<paperType>"
+    And I have selected quantity "<quantity>"
+    When I place product in shopping cart
+    Then I will see a pop up with confirmation that product of "<category>" was added to shopping cart
+
+    Examples:
+      | browser | category   | product               | quantity | paperType |
+      | chrome  | stationary | Mountain fox notebook | 3        | Ruled     |
+      | chrome  | stationary | Brown bear notebook   | 1        | Plain     |
+      | chrome  | stationary | Brown bear notebook   | 1        | Squarred  |
+      | chrome  | stationary | Hummingbird notebook  | 2        | Doted     |
+
+>>>>>>> c35b779ec1a86c64f5874bf26d87195dc9d8f43b
 #  @Testing
 #  Scenario: Place product in shopping cart and continue shopping
 #    Given I am on start page

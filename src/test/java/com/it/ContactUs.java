@@ -14,7 +14,7 @@ import org.openqa.selenium.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ContactUsMethods extends TestCode {
+public class ContactUs extends TestCode {
 
     String contactUsButton = "#contact-link > a";
     String subjectButton = "#content > section > form > section > div:nth-child(2) > div > select";

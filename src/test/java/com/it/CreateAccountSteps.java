@@ -6,13 +6,12 @@
 
         package com.it;
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CreateAccountSteps extends CreateAccountMethods {
+public class CreateAccountSteps extends CreateAccount {
 
     @When("I go to the create an account page")
     public void i_go_to_the_create_an_account_page() {

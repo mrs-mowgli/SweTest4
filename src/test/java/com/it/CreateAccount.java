@@ -12,7 +12,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CreateAccountMethods extends TestCode {
+public class CreateAccount extends TestCode {
 
     String socialTitle = "#customer-form > section > div:nth-child(1) > div.col-md-6.form-control-valign > label:nth-child(1) > span";
     String firstname = "#customer-form > section > div:nth-child(2) > div.col-md-6 > input";
