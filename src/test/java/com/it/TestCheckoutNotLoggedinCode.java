@@ -10,8 +10,12 @@ public class TestCheckoutNotLoggedinCode extends TestCode{
         we want to place an order with an customer that is not a member.
 
         Created by Jenny Lernbring 2020-11-28
-        Created by Jenny Lernbring 2020-11-29
+        Created by Jenny Lernbring 2020-12-12
      */
+
+    //URL variables
+    String hummingbird_sweater = "//*[@id=\"content\"]/section/div/article[2]";
+    String add_sweater_to_cart = "//*[@id=\"add-to-cart-or-refresh\"]/div[2]/div/div[2]/button";
 
     //Proceed_to_checkout()
     String Proceed_to_checkout_modal = "//*[@id=\"blockcart-modal\"]/div/div/div[2]/div/div[2]/div/div/a";
@@ -27,7 +31,6 @@ public class TestCheckoutNotLoggedinCode extends TestCode{
     String inCart_email = "//*[@id=\"customer-form\"]/section/div[4]/div[1]/input";
     String inCart_termsAndCondition = "//*[@id=\"customer-form\"]/section/div[9]/div[1]/span/label/input";
     String inCart_personalInformation_continue = "//*[@id=\"customer-form\"]/footer/button";
-    //String firstname = "" ;
 
     //addresses()
     String inCart_address = "//*[@id=\"delivery-address\"]/div/section/div[5]/div[1]/input";
@@ -37,25 +40,25 @@ public class TestCheckoutNotLoggedinCode extends TestCode{
     String inCart_phone = "//*[@id=\"delivery-address\"]/div/section/div[10]/div[1]/input";
     String inCart_address_continue = "//*[@id=\"delivery-address\"]/div/footer/button";
 
-    //shipping_method()
-    String inCart_shipping_prestshop = "//*[@id=\"delivery_option_1\"]";
-    String inCart_shipping_Mycarrier = "//*[@id=\"delivery_option_2\"]";
-    String incart_shipping_continue = "//*[@id=\"js-delivery\"]/button";
-
-    //payment_method()
-    String inCart_payment_bankwire = "//*[@id=\"payment-option-2\"]";
-    String inCart_payment_check = "//*[@id=\"payment-option-1\"]";
-    String inCart_payment_termsAndCondition = "//*[@id=\"conditions_to_approve[terms-and-conditions]\"]";
-    String inCart_payment_orderWithAnObligationToPay = "//*[@id=\"payment-confirmation\"]/div[1]/button";
 
     //order_confirmation()
     String confirmation = "//*[@id=\"content-hook_order_confirmation\"]/div/div/div/h3";
 
 
+    public void put_an_item_in_cart() {
+        //Click on Hummingbird sweater
+        findElementsByxPath(hummingbird_sweater, click, empty);
+        //Add Hummingbird sweater in cart
+        findElementsByxPath(add_sweater_to_cart, click, empty);
+        //Verify that sweater is in cart
+        System.out.println("Sweater is in cart");
+    }
+
 
     public void proceed_to_checkout() throws InterruptedException {
         // Need to sleep for modal to load properly
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
+        waiting();
         // Click on Proceed to checkout from modal
         findElementsByxPath(Proceed_to_checkout_modal, click, empty);
         // Click on Proceed to checkout from cart
@@ -80,7 +83,7 @@ public class TestCheckoutNotLoggedinCode extends TestCode{
         findElementsByxPath(inCart_termsAndCondition, click, empty);
         // Click on continue
         findElementsByxPath(inCart_personalInformation_continue, click, empty);
-        System.out.println("Personal info writen");
+        System.out.println("Personal info writen correctly");
 
     }
 
@@ -95,65 +98,9 @@ public class TestCheckoutNotLoggedinCode extends TestCode{
         findElementsByxPath(inCart_phone, sendKeys, "031-790 42 55");
         // Click on continue
         findElementsByxPath(inCart_address_continue, click, empty);
-        System.out.println("address writen");
+        System.out.println("Address writen correctly");
 
     }
-    /*
-    public void inCart_shipping_method(String shipping_method){
-        // Select shipping method
-        if(shipping_method.equals("PrestShop")){
-            //clickXpath("//*[@id=\"js-delivery\"]/button");
-            findElementsByxPath(inCart_shipping_prestshop, click, empty);
-        }
-        if(shipping_method.equals("My Carrier")){
-            findElementsByxPath(inCart_shipping_Mycarrier, click, empty);
-            //clickXpath("//*[@id=\"delivery_option_2\"]");
-            //clickXpath("//*[@id=\"js-delivery\"]/button");
-        }
-        findElementsByxPath(incart_shipping_continue, click, empty);
-        System.out.println("shipping method selected ");
-
-        /*
-        findElementsByxPath(inCart_shipping_Mycarrier, click, empty);
-        // Click on continue
-        findElementsByxPath(incart_shipping_continue, click, empty);
-        System.out.println("shipping method selected ");
-
-
-    }
-
-    public void inCart_payment(String payment) {
-        // Select payment
-        if(payment.equals("check")){
-           // clickXpath("//*[@id=\"js-delivery\"]/button");
-            findElementsByxPath(inCart_payment_check, click, empty);
-            findElementsByxPath(inCart_payment_termsAndCondition, click, empty);
-
-        }
-        if(payment.equals("wire")){
-            findElementsByxPath(inCart_payment_bankwire, click, empty);
-            findElementsByxPath(inCart_payment_termsAndCondition, click, empty);
-            findElementsByxPath(inCart_payment_orderWithAnObligationToPay, click, empty);
-            //clickXpath("//*[@id=\"delivery_option_2\"]");
-            //clickXpath("//*[@id=\"js-delivery\"]/button");
-        }
-        System.out.println("Payment selected");
-        /*
-        findElementsByxPath(inCart_payment_bankwire, click, empty);
-        // Accept trams and condition
-        findElementsByxPath(inCart_payment_termsAndCondition, click, empty);
-        // Send order
-        findElementsByxPath(inCart_payment_orderWithAnObligationToPay, click, empty);
-        System.out.println("Payment selected");
-
-
-    }
-
-
-
-     */
-
-
 
     public void order_is_confirmed() {
         // Saves the header in a variable calls text.
@@ -162,6 +109,15 @@ public class TestCheckoutNotLoggedinCode extends TestCode{
         assertEquals(text, "YOUR ORDER IS CONFIRMED" );
     }
 
+
+    public void terms_and_conditions() {
+        // @And("I click on agree to terms and conditions")
+        // in Scenario 2, Negativ testing for personal information
+        //Clicks om accept terms and condition in
+        findElementsByxPath(inCart_termsAndCondition, click, empty);
+        //Clicks on continue
+        findElementsByxPath(inCart_personalInformation_continue, click, empty);
+    }
 
 
 }
