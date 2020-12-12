@@ -17,11 +17,10 @@ pipeline {
         stage('Build') {
             steps {
 
-                sh "mvn -Dmaven.test.failure.ignore=true clean install"
+    sh "mvn -Dmaven.test.failure.ignore=true clean install"
             }
         }
- 
-     post {
+      post {
         always {
             echo 'This will always run'
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
@@ -29,10 +28,16 @@ pipeline {
         }
     
      }
-    
-    
 }
 
-    
-  
+ stage ('Run JMeter test'){
+	steps{
+	sh '/usr/local/Cellar/jmeter/5.3/bin/jmeter 
+-Jjmeter.save.saveservices.output_format=xml -n -t /usr/local/Cellar/jmeter/5.3/bin/PrestaShop.jmx -l jmeterPrestashop_report.jtl'
+		perfReport jmeterPrestashop_report.jtl'
+    }
+	}
+    }
+}
+
 
