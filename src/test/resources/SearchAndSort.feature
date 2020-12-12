@@ -6,21 +6,20 @@ Feature: As a User I want to search and specific article and subscribe for newsl
     Given I am on start page using "<browser>"
     When I search "<Item>"
     And I sort "<Sort order>"
-    Then I can find article "<Sorted by>"
+    Then I can find article "<Item>"
 
 
     Examples:
-      | Item          | Sort order                  | Sorted by            | browser |
-      | Mug           |  Price, low to high         | Price, low to high   | chrome  |
-      | Cushion       |  Price, high to low         | Price, high to low   | chrome  |
-      | Hummingbird   |  A to Z                     | A to Z               | chrome  |
-      | Sweater       |  Relevance                  | Relevance            | chrome  |
-      | Accessories   |  Z to A                     | Relevance            | chrome |
-      | Mug           |  Price, low to high         | Price, low to high   | firefox  |
-      | Cushion       |  Price, high to low         | Price, high to low   | firefox  |
-      | Hummingbird   |  A to Z                     | A to Z               | firefox  |
-      | Sweater       |  Relevance                  | Relevance            | firefox  |
-      | Accessories   |  Z to A                     | Relevance            | firefox |
+      | Item          | Sort order                  | browser |
+      | Mug           |  Price, low to high         | chrome  |
+      | Cushion       |  Price, high to low         | chrome  |
+      | Hummingbird   |  A to Z                     | chrome  |
+      | Sweater       |  Relevance                  | chrome  |
+      | Mug           |  Price, low to high         | firefox  |
+      | Cushion       |  Price, high to low         | firefox  |
+      | Hummingbird   |  A to Z                     | firefox  |
+      | Sweater       |  Relevance                  | firefox  |
+
 
 
 

@@ -4,9 +4,10 @@
 Feature: Test
 
   Scenario Outline: Add item to cart and checkout. Happytest.
-    Given I am on start page using "<browser>"
-    #Given start
-    Given Have Products In Cart
+    #Given I am on start page using "<browser>"
+    Given start
+    #Given Have Products In Cart
+    When put something in cart
     And Proceed to checkout
     When I am in cart
     And I fill in personal information
@@ -20,16 +21,17 @@ Feature: Test
     Examples:
    |browser |shipping_method|payment|
    #NOK
-   #|PrestShop      |check  |
+   |chrome  |PrestShop      |check  |
    #OK
    |chrome  |My Carrier     |wire   |
     #|firefox|
     #firefox..?
 
     Scenario Outline: Add item to cart and checkout. Negative test, personal information.
-      Given I am on start page using "<browser>"
-      #Given start
-      Given Have Products In Cart
+      #Given I am on start page using "<browser>"
+      Given start
+      #Given Have Products In Cart
+      When put something in cart
       And Proceed to checkout
       When I am in cart
       And I fill in wrong firstname "<firstname>"
@@ -45,9 +47,10 @@ Feature: Test
       |chrome   |sfghjhd!  |sgmjifg?|test@iths.se|
 
   Scenario Outline: Add item to cart and checkout. Negative test, addresses.
-      Given I am on start page using "<browser>"
-      #Given start
-      Given Have Products In Cart
+      #Given I am on start page using "<browser>"
+      Given start
+      #Given Have Products In Cart
+      When put something in cart
       And Proceed to checkout
       When I am in cart
       And I fill in personal information

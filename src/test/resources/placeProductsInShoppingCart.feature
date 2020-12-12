@@ -16,11 +16,11 @@ Feature: Place products in shopping cart
     Then I will see a pop up with confirmation that product of "<type>" was added to shopping cart
 
     Examples:
-    | browser | category | product                     | quantity | size | color | type         |
-    | chrome  | men      | Hummingbird printed t-shirt | 3        | M    | Black | sweaterMen   |
-    | chrome  | men      | Hummingbird printed t-shirt | 2        | XL   | White | sweaterMen   |
-    | chrome  | women    | Hummingbird printed sweater | 1        | L    | N.A   | sweaterWomen |
-    | chrome  | women    | Hummingbird printed sweater | 1        | S    | N.A   | sweaterWomen |
+      | browser | category | product                     | quantity | size | color | type         |
+      | chrome  | men      | Hummingbird printed t-shirt | 3        | M    | Black | sweaterMen   |
+      | chrome  | men      | Hummingbird printed t-shirt | 2        | XL   | White | sweaterMen   |
+      | chrome  | women    | Hummingbird printed sweater | 1        | L    | N.A   | sweaterWomen |
+      | chrome  | women    | Hummingbird printed sweater | 1        | S    | N.A   | sweaterWomen |
 
   @Testing
   Scenario Outline: Place product of type notebook in shopping cart and verify popup
@@ -39,6 +39,39 @@ Feature: Place products in shopping cart
       | chrome  | stationary | Brown bear notebook   | 1        | Plain     | notebook |
       | chrome  | stationary | Brown bear notebook   | 1        | Squarred  | notebook |
       | chrome  | stationary | Hummingbird notebook  | 2        | Doted     | notebook |
+
+  @Testing
+  Scenario Outline: Place product of type mug in shopping cart and verify popup
+    Given I am on start page using "<browser>"
+    #Given I am on start page
+    And I have selected category "<category>"
+    And I have selected product "<product>"
+    And I have selected quantity "<quantity>"
+    When I place product in shopping cart
+    Then I will see a pop up with confirmation that product of "<type>" was added to shopping cart
+
+    Examples:
+      | browser  | category         | product                     | quantity | type |
+      | chrome   | home accessories | Mug The best is yet to come | 3        | mug  |
+      | firefox  | home accessories | Mug The adventure begins    | 1        | mug  |
+
+  @Testing
+  Scenario Outline: Place product of type pillow in shopping cart and verify popup
+    Given I am on start page using "<browser>"
+    #Given I am on start page
+    And I have selected category "<category>"
+    And I have selected product "<product>"
+    And I have selected color "<color>"
+    And I have selected quantity "<quantity>"
+    When I place product in shopping cart
+    Then I will see a pop up with confirmation that product of "<type>" was added to shopping cart
+
+    Examples:
+      | browser  | category         | product               | color | quantity | type    |
+      | chrome   | home accessories | Mountain fox cushion  | Black | 3        | pillow  |
+      | firefox  | home accessories | Brown bear cushion    | White | 1        | pillow  |
+      | chrome   | home accessories | Hummingbird cushion   | Black | 2        | pillow  |
+
 
 #  @Testing
 #  Scenario: Place product in shopping cart and continue shopping

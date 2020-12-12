@@ -1,11 +1,12 @@
 package com.it;
 
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 
-public class TestLogin extends Login {
+public class TestLogin extends LoginMethods {
 
     @Given("^I am at the login page$")
     public void i_am_at_the_login_page() {
@@ -21,7 +22,21 @@ public class TestLogin extends Login {
         //Send keys to email field
         EmailFieldSendKeys(username);
     }
-
+    @When ("^I click forgotten password$")
+    public void i_click_forgotten_password()
+    {
+        ForgottenPasswordClick();
+    }
+    @When ("I fill in {string} on forgotten password page")
+    public void i_fill_in_email_on_forgotten_password_page(String email)
+    {
+        FillInEmailAddressInForgottenPasswordField(email);
+    }
+    @When("I click reset link")
+    public void i_click_reset_link()
+    {
+        ClickResetPasswordButton();
+    }
     @When("^I fill in (.*) in password field")
     public void i_fill_in_password_at_login_page(String password) {
         //Clicks email field
@@ -35,6 +50,11 @@ public class TestLogin extends Login {
         //Clicks login button
         SignInButtonClick();
     }
+    @When ("^I click sign in button from start page")
+    public void i_click_sign_in_button_from_start_page()
+    {
+        SignInButtonFromStartPage_Click();
+    }
     @When("^I click (.*) button$")
     public void i_click_show_password_button(String showButton) {
         //If value is hidden the show password button is clicked twice.
@@ -45,7 +65,6 @@ public class TestLogin extends Login {
             ShowButtonClick();
         }
         ShowButtonClick();
-
 
     }
     @When("^I click sign out$")
@@ -62,6 +81,27 @@ public class TestLogin extends Login {
     public void i_close_browser()
     {
         driver.quit();
+    }
+
+    @Then("reset password link is sent to {string}")
+    public void reset_password_link_is_sent_to_email(String email)
+    {
+        String expectedString = "If this email address has been registered in our shop, you will " +
+                "receive a link to reset your password at " + email + ".";
+        String actualString = GetSuccessMessage_ResettingPassword();
+
+        Assertions.assertEquals(expectedString,actualString);
+    }
+    @Then("reset password link is not sent to {string}")
+    public void reset_password_link_is_not_sent_to_email(String email)
+    {
+        String expectedString = "An error occurred while sending the email.";
+        String actualString = GetFailureMessage_ResettingPassword();
+        Boolean foundExpectedString = false;
+        if(actualString.contains(expectedString)) {
+            foundExpectedString = true;
+        }
+        Assertions.assertTrue(foundExpectedString);
     }
     @Then("^I am signed in$")
     public void i_am_signed_in() {
