@@ -5,11 +5,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
+
+import java.util.List;
 
 /**
  * StepDefinitions for search and sort items
@@ -54,26 +54,19 @@ public class SearchAndSortSteps extends TestCode {
         }
     }
 
-
     @Then("I can find article {string}")
     public void iCanFindArticle(String arg0) {
-        delay(2000);
-        WebElement sortOrder = driver.findElement(By.xpath("//button[@class='btn-unstyle select-title']"));
-        String currentSortOrder = sortOrder.getText();
-        if (currentSortOrder.contains(arg0)) {
-            System.out.println("Correct sort order displayed");
-            Assertions.assertTrue(Boolean.parseBoolean(String.valueOf(currentSortOrder.contains(arg0))));
+        delay(1000);
+        List<WebElement> sortedItems = driver.findElements(By.xpath("//a[contains(@class, 'quick-view')]"));
+        System.out.println("number of sorted items: " + sortedItems.size()); //Correct count of search items
+        for (WebElement sortedItem : sortedItems){
+            sortedItem = driver.findElement(By.xpath("//*[contains(@class, 'h3 product-title')]"));
+            Assert.assertTrue(arg0, sortedItem.getText().contains(arg0));
         }
-        else if (!currentSortOrder.contains(arg0))
-        {
-            Assertions.assertFalse(Boolean.parseBoolean(String.valueOf(currentSortOrder.contains(arg0))));
-            System.out.println("Wrong sort order displayed");
-        }
-        System.out.println("Sort order choosen: " + currentSortOrder);
     }
 
     @When("I write {string}")
-    public void iWrite(String arg0) {
+    public void iWrite (String arg0) {
     delay(1000);
     WebElement subscribeField = driver.findElement(By.xpath("//input[contains(@placeholder, 'Your email address')]"));
         js.executeScript("arguments[0].scrollIntoView();", subscribeField);

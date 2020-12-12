@@ -5,6 +5,7 @@
 
 package com.it;
 
+import io.cucumber.datatable.internal.difflib.Delta;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
@@ -75,7 +76,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         //Wait for modal to load
         delay(2000);
         //Click at continue shopping
-        findElementsByxPath("//*[@id=\"blockcart-modal\"]//a[@class='btn btn-primary']", click, empty);
+        findElementsByxPath("//*[@id='blockcart-modal']//a[@class='btn btn-primary']", click, empty);
     }
 
     @When("^I continue to shop from pop up")
@@ -83,13 +84,13 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         //Wait for modal to load
         delay(2000);
         //Click at continue shopping
-        findElementsByxPath("//*[@id=\"blockcart-modal\"]//button[@class='btn btn-secondary']", click, empty);
+        findElementsByxPath("//*[@id='blockcart-modal']//button[@class='btn btn-secondary']", click, empty);
     }
 
     @Then("I will see a pop up with confirmation that product of {string} was added to shopping cart")
     public void verifyModal(String productType) {
         //Wait for modal to load
-        delay(2000);
+        delay(4000);
 
         //Verify that product is added
         String message = getAttributeByIdInnerHTML("myModalLabel");
@@ -129,6 +130,11 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
                 actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Paper Type:')]//strong");
                 assertEquals(paperTypeSelectedProduct, actualSelectedProductvalue);
                 break;
+            case "pillow":
+                //Verify color
+                actualSelectedProductvalue = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Color:')]//strong");
+                assertEquals(colorSelectedProduct, actualSelectedProductvalue);
+                break;
         }
 
         //verify quantity
@@ -137,10 +143,21 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
 
         //Verify subtotal price
         String subTotalPriceString;
-        subTotalPriceString = getAttributeByxPathInnerHTML("//*[@id=\"blockcart-modal\"]//p[contains(.,'Subtotal:')]//span[@class='value']");
+        subTotalPriceString = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//p[contains(.,'Subtotal:')]//span[@class='value']");
         double subTotalPrice;
         subTotalPrice = cleanPrice(subTotalPriceString);
-        assertEquals(subTotalPrice, expectedPrice, 0.01);
+        assertEquals(subTotalPrice, expectedPrice, 0.1);
+
+        //Verify total price
+        double shippingCost;
+        shippingCost = checkShippingCost();
+        double expectedTotalPrice;
+        expectedTotalPrice = shippingCost + subTotalPrice;
+        String totalPriceString;
+        totalPriceString = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//p[@class='product-total']//span[@class='value']");
+        double totalPrice;
+        totalPrice = cleanPrice(totalPriceString);
+        assertEquals(expectedTotalPrice, totalPrice, 0.1);
     }
 
     @Then("^I will stay at product page")

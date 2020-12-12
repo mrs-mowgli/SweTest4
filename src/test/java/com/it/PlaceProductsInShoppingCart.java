@@ -16,8 +16,9 @@ public class PlaceProductsInShoppingCart extends TestCode {
      * Changed By ....
      */
     public void findProduct(String product) {
+        findElementsByxPath("//article[@class='product-miniature js-product-miniature']//a[contains(.,'" + product + "')]", click, empty);
 
-        String productName;
+        /*String productName;
         String xPath1 = "/html/body/main/section/div/div[2]/section/section/div[3]/div/div[1]/article[";
         String xPath2 = "]/div/div[1]/h2/a";
 
@@ -27,7 +28,7 @@ public class PlaceProductsInShoppingCart extends TestCode {
                 findElementsByxPath(xPath1 + i + xPath2, click, empty);
                 break;
             }
-        }
+        }*/
     }
     /**
      * Method to get price from product
@@ -80,12 +81,31 @@ public class PlaceProductsInShoppingCart extends TestCode {
 
         switch (color) {
             case "Black":
-                findElementsByxPath("/html/body/main/section/div/div/section/div[1]/div[2]/div[2]/div[2]/form/div[1]/div[2]/ul/li[2]/label/input", click, empty);
+                //findElementsByxPath("/html/body/main/section/div/div/section/div[1]/div[2]/div[2]/div[2]/form/div[1]/div[2]/ul/li[2]/label/input", click, empty);
+                findElementsByxPath("//input[@class='input-color' and @value='11']", click, empty);
                 break;
             case "White":
-                findElementsByxPath("/html/body/main/section/div/div/section/div[1]/div[2]/div[2]/div[2]/form/div[1]/div[2]/ul/li[1]/label/input", click, empty);
+                //findElementsByxPath("/html/body/main/section/div/div/section/div[1]/div[2]/div[2]/div[2]/form/div[1]/div[2]/ul/li[1]/label/input", click, empty);
+                findElementsByxPath("//input[@class='input-color' and @value='8']", click, empty);
                 break;
         }
+    }
+    /**
+     * Method to check price for shipping
+     * Created By Linus Finsbäck 2020-12-12
+     * Changed By ....
+     */
+    public double checkShippingCost() {
+        String shippingPriceString;
+        shippingPriceString = getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//p[contains(.,'Shipping:')]//span[@class='value']");
+        double shippingPrice;
+        if (shippingPriceString.equals("Free ")) {
+            shippingPrice = 0;
+        }
+        else {
+            shippingPrice = cleanPrice(shippingPriceString);
+        }
+        return shippingPrice;
     }
 
 
