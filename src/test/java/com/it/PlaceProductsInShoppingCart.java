@@ -12,23 +12,12 @@ public class PlaceProductsInShoppingCart extends TestCode {
 
     /**
      * Method to find product at page
+     * Include argument of productName when calling method
      * Created By Linus Finsbäck 2020-12-08
-     * Changed By ....
+     * Changed By 2020-12-12
      */
     public void findProduct(String product) {
         findElementsByxPath("//article[@class='product-miniature js-product-miniature']//a[contains(.,'" + product + "')]", click, empty);
-
-        /*String productName;
-        String xPath1 = "/html/body/main/section/div/div[2]/section/section/div[3]/div/div[1]/article[";
-        String xPath2 = "]/div/div[1]/h2/a";
-
-        for (int i = 1; i < 10; i ++) {
-            productName = getAttributeByxPathInnerHTML(xPath1 + i + xPath2);
-            if (productName.equals(product)) {
-                findElementsByxPath(xPath1 + i + xPath2, click, empty);
-                break;
-            }
-        }*/
     }
     /**
      * Method to get price from product
@@ -44,6 +33,7 @@ public class PlaceProductsInShoppingCart extends TestCode {
     }
     /**
      * Method to set quantity of items to put into shopping cart
+     * Include argument of quantity when calling method
      * Created By Linus Finsbäck 2020-12-08
      * Changed By ....
      */
@@ -55,6 +45,7 @@ public class PlaceProductsInShoppingCart extends TestCode {
     }
     /**
      * Method to set Size of item to put into shopping cart
+     * Include argument of size when calling method
      * Created By Linus Finsbäck 2020-12-08
      * Changed By ....
      */
@@ -64,6 +55,7 @@ public class PlaceProductsInShoppingCart extends TestCode {
     }
     /**
      * Method to set paperType of item to put into shopping cart
+     * Include argument of paperType when calling method
      * Created By Linus Finsbäck 2020-12-10
      * Changed By ....
      */
@@ -74,6 +66,7 @@ public class PlaceProductsInShoppingCart extends TestCode {
 
     /**
      * Method to select color of product to put into shopping cart
+     * Include argument of color when calling method
      * Created By Linus Finsbäck 2020-12-08
      * Changed By ....
      */
@@ -107,6 +100,15 @@ public class PlaceProductsInShoppingCart extends TestCode {
         }
         return shippingPrice;
     }
-
+    /**
+     * Method to get price from shopping cart
+     * Include xPath as argument when calling method
+     * Created By Linus Finsbäck 2020-12-12
+     * Changed By ....
+     */
+    public double getPriceFromCart(String xPath) {
+        String priceString = getAttributeByxPathInnerHTML(xPath);
+        return cleanPrice(priceString);
+    }
 
 }

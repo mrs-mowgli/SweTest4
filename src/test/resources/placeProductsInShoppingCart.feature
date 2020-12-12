@@ -16,11 +16,11 @@ Feature: Place products in shopping cart
     Then I will see a pop up with confirmation that product of "<type>" was added to shopping cart
 
     Examples:
-    | browser | category | product                     | quantity | size | color | type         |
-    | chrome  | men      | Hummingbird printed t-shirt | 3        | M    | Black | sweaterMen   |
-    | chrome  | men      | Hummingbird printed t-shirt | 2        | XL   | White | sweaterMen   |
-    | chrome  | women    | Hummingbird printed sweater | 1        | L    | N.A   | sweaterWomen |
-    | chrome  | women    | Hummingbird printed sweater | 1        | S    | N.A   | sweaterWomen |
+      | browser | category | product                     | quantity | size | color | type         |
+      | chrome  | men      | Hummingbird printed t-shirt | 3        | M    | Black | sweaterMen   |
+      | chrome  | men      | Hummingbird printed t-shirt | 2        | XL   | White | sweaterMen   |
+      | chrome  | women    | Hummingbird printed sweater | 1        | L    | N.A   | sweaterWomen |
+      | chrome  | women    | Hummingbird printed sweater | 1        | S    | N.A   | sweaterWomen |
 
   @Testing
   Scenario Outline: Place product of type notebook in shopping cart and verify popup
