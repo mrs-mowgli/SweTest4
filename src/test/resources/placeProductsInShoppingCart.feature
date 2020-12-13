@@ -123,14 +123,19 @@ Feature: Place products in shopping cart
       | firefox | art      | Brown bear - Vector graphics   | 1        | vector  |
 
 
-#  @Testing
-#  Scenario: Place product in shopping cart and continue shopping
-#    Given I am on start page
-#    And I have selected a product
-#    When I place product in shopping cart
-#    And I continue to shop from pop up
-#    Then I will stay at product page
-#
+  @Testing
+  Scenario Outline: Place product in shopping cart and continue shopping
+    Given I am on start page using "<browser>"
+    And I have selected a product from start page
+    When I place product in shopping cart
+    And I continue to shop from pop up
+    Then I will stay at product page
+    And Shopping cart will contain one item
+  Examples:
+    | browser |
+    | chrome  |
+    | firefox |
+
 #  @Testing
 #  Scenario: Place product in shopping cart and check content
 #    Given I am on start page

@@ -38,7 +38,6 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     public void selectedProduct(String product) {
         findProduct(product);
         selectedProduct = getProductName(product);
-        currentUrl = getCurrentUrl();
     }
 
     @And("I have selected quantity {string}")
@@ -80,6 +79,12 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     public void selectedDimension(String dimension) {
         setDimension(dimension);
         dimensionSelecetedProduct = " " + dimension;
+    }
+
+    @And("I have selected a product from start page")
+    public void selectedProductStartPage() {
+        selectProductFromStartPage(1);
+        currentUrl = getCurrentUrl();
     }
 
     @When("^I place product in shopping cart$")
@@ -161,9 +166,12 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
 
     @Then("^I will stay at product page")
     public void verifyPage() {
-        String testurl;
-        testurl = getCurrentUrl();
-        assertEquals(currentUrl, testurl);
+        assertEquals(currentUrl, getCurrentUrl());
+    }
+
+    @And("^Shopping cart will contain one item")
+    public void verifyCartCounter() {
+        assertEquals("(1)", getAttributeByxPathInnerHTML("//span[@class='cart-products-count']"));
     }
 /*
     @Then("^I will see content of my shopping cart")

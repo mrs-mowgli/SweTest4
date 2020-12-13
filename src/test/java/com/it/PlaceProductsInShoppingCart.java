@@ -74,11 +74,9 @@ public class PlaceProductsInShoppingCart extends TestCode {
 
         switch (color) {
             case "Black":
-                //findElementsByxPath("/html/body/main/section/div/div/section/div[1]/div[2]/div[2]/div[2]/form/div[1]/div[2]/ul/li[2]/label/input", click, empty);
                 findElementsByxPath("//input[@class='input-color' and @value='11']", click, empty);
                 break;
             case "White":
-                //findElementsByxPath("/html/body/main/section/div/div/section/div[1]/div[2]/div[2]/div[2]/form/div[1]/div[2]/ul/li[1]/label/input", click, empty);
                 findElementsByxPath("//input[@class='input-color' and @value='8']", click, empty);
                 break;
         }
@@ -163,6 +161,15 @@ public class PlaceProductsInShoppingCart extends TestCode {
         else {
             return "error";
         }
+    }
+    /**
+     * Method to select a product from start page
+     * Include argument of type int (index 1-8) when calling for method
+     * Created By Linus Finsbäck 2020-12-08
+     * Changed By ....
+     */
+    public void selectProductFromStartPage(Integer index) {
+        findElementsByxPath("//article[@class='product-miniature js-product-miniature' and @data-id-product='" + index + "']//h3//a", click, empty);
     }
 
 }
