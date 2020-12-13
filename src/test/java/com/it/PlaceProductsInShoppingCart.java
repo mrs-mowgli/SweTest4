@@ -110,5 +110,26 @@ public class PlaceProductsInShoppingCart extends TestCode {
         String priceString = getAttributeByxPathInnerHTML(xPath);
         return cleanPrice(priceString);
     }
+    /**
+     * Method to check availability of product
+     * Include xPath as argument when calling method
+     * Created By Linus Finsbäck 2020-12-12
+     * Changed By ....
+     */
+    public String verifyAvailability() {
+        return getAttributeByxPathInnerHTML("//span[@id='product-availability']");
+    }
+    /**
+     * Method to add product to cart
+     * Include xPath as argument when calling method
+     * Created By Linus Finsbäck 2020-12-12
+     * Changed By ....
+     */
+    public void clickAddToCart(String availability) {
+        if (!availability.contains("stock")) {
+            //click at add to cart
+            findElementsByxPath("//*[@class='btn btn-primary add-to-cart']", click, empty);
+        }
+    }
 
 }
