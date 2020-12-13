@@ -1,7 +1,7 @@
 Feature: Checkingout Products When Logged In
 
   Scenario: Checkout And Pay With Check
-    Given I am on start page using "chrome"
+    Given I am on start page using "firefox"
     And   I am Logged In
     And   Have Products In Cart
     #And I have selected category "stationary"
