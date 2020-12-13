@@ -29,6 +29,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     String availability;
     String customText;
     String dimensionSelecetedProduct;
+    String productAvailability;
 
 
     @And("I have selected category {string}")
@@ -94,6 +95,12 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         increaseQuantity();
     }
 
+    @And("I have selected {string} including a product out of stock")
+    public void selectPackageOutOfStock(String product) {
+        findProduct(product);
+        productAvailability = verifyAvailabilityOfPackProducts();
+    }
+
     @When("^I place product in shopping cart$")
     public void placeProductInCart() {
         availability = verifyAvailability();
@@ -115,15 +122,17 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         //Click at continue shopping
         findElementsByxPath("//*[@id='blockcart-modal']//button[@class='btn btn-secondary']", click, empty);
     }
+
     @When("^I try to place product in shopping cart$")
     public void tryToPlaceProductInCart() {
 
     }
 
+
     @Then("I will see a pop up with confirmation that product of {string} was added to shopping cart")
     public void verifyModal(String productType) {
         //Handle fault if product is out of stock
-        if (!availability.contains("stock")) {
+        if (!availability.contains("tock")) {
             //Wait for modal to load
             delay(4000);
 
@@ -188,7 +197,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     @Then("^I will see content of my shopping cart")
     public void verifyContentOfCart() {
         //Handle fault if product is out of stock
-        if (!availability.contains("stock")) {
+        if (!availability.contains("tock")) {
             //Verify that shopping cart is opened
             assertEquals("Shopping Cart", getAttributeByxPathInnerHTML("//div[@class='cart-grid-body col-xs-12 col-lg-8']//h1"));
             //Verify productName
@@ -201,10 +210,20 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
             assertEquals(colorSelectedProduct, " " + getAttributeByxPathInnerHTML("//div[@class='cart-grid-body col-xs-12 col-lg-8']//div[@class='product-line-info' and contains(.,'Color:')]//Span[@class='value']"));
         }
     }
-    @Then("^The add to cart button will not be interactable$")
+
+    @Then("^The add to cart button will not be uninteractable$")
     public void addToCartNotActive() {
         assertFalse(checkButtonStatus("//*[@class='btn btn-primary add-to-cart']"));
     }
 
+    @Then("^I expect the add to cart button to be uninteractable$")
+    public void verifyAddToCartButton() {
+        if (productAvailability.equals("")) {
+            assertTrue(checkButtonStatus("//*[@class='btn btn-primary add-to-cart']"));
+        }
+        else {
+            assertFalse(checkButtonStatus("//*[@class='btn btn-primary add-to-cart']"));
+        }
+    }
 
 }

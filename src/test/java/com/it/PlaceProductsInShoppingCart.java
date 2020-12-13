@@ -124,7 +124,7 @@ public class PlaceProductsInShoppingCart extends TestCode {
      * Changed By ....
      */
     public void clickAddToCart(String availability) {
-        if (!availability.contains("stock")) {
+        if (!availability.contains("tock")) {
             //click at add to cart
             findElementsByxPath("//*[@class='btn btn-primary add-to-cart']", click, empty);
         }
@@ -194,6 +194,33 @@ public class PlaceProductsInShoppingCart extends TestCode {
             if (verifyAvailability().contains("There are not enough products in stock")) {
                 break;
             }
+        }
+    }
+
+    /**
+     * Method to verify availability of product included in package
+     * Created By Linus Finsbäck 2020-12-13
+     * Changed By ....
+     */
+    public String verifyAvailabilityOfPackProducts() {
+        String currentUrl = getCurrentUrl();
+        findElementsByxPath("//section[@class='product-pack']//article[1]//div[@class='pack-product-name']//a", click, empty);
+        setQuantity("5");
+        String availabilityProduct1 = verifyAvailability();
+        driver.get(currentUrl);
+        findElementsByxPath("//section[@class='product-pack']//article[2]//div[@class='pack-product-name']//a", click, empty);
+        setQuantity("5");
+        String availabilityProduct2 = verifyAvailability();
+        driver.get(currentUrl);
+
+        if (availabilityProduct1.contains("tock")) {
+            return "product 1 out of stock";
+        }
+        else if (availabilityProduct2.contains("tock")) {
+            return "product 2 out of stock";
+        }
+        else {
+            return "";
         }
     }
 }

@@ -171,7 +171,7 @@ Feature: Place products in shopping cart
     And I have selected category "<category>"
     And I have selected product "<product>"
     When I try to place product in shopping cart
-    Then The add to cart button will not be interactable
+    Then The add to cart button will not be uninteractable
 
     Examples:
       | browser  | category         | product           |
@@ -185,7 +185,7 @@ Feature: Place products in shopping cart
     And I have selected product "<product>"
     And I have selected quantity "<quantity>"
     When I try to place product in shopping cart
-    Then The add to cart button will not be interactable
+    Then The add to cart button will not be uninteractable
 
     Examples:
       | browser  | category         | product                     | quantity |
@@ -200,11 +200,23 @@ Feature: Place products in shopping cart
     And I have selected color "<color>"
     And I have selected too many products
     When I try to place product in shopping cart
-    Then The add to cart button will not be interactable
+    Then The add to cart button will not be uninteractable
 
   Examples:
     | browser | category         | product            | color |
     | chrome  | home accessories | Brown bear cushion | black |
     | firefox | home accessories | Brown bear cushion | black |
 
-  # Possible to buy mug which is out off stock if buying it in package
+
+  @Testing
+  Scenario Outline: Place package in shopping cart which include a product which is out of stock
+    Given I am on start page using "<browser>"
+    And I have selected category "<category>"
+    And I have selected "<package>" including a product out of stock
+    When I try to place product in shopping cart
+    Then I expect the add to cart button to be uninteractable
+
+    Examples:
+      | browser | category         | package                  |
+      | chrome  | home accessories | Pack Mug + Framed poster |
+      | firefox | home accessories | Pack Mug + Framed poster |
