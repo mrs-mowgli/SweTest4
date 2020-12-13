@@ -112,7 +112,6 @@ public class PlaceProductsInShoppingCart extends TestCode {
     }
     /**
      * Method to check availability of product
-     * Include xPath as argument when calling method
      * Created By Linus Finsbäck 2020-12-12
      * Changed By ....
      */
@@ -121,7 +120,7 @@ public class PlaceProductsInShoppingCart extends TestCode {
     }
     /**
      * Method to add product to cart
-     * Include xPath as argument when calling method
+     * Include String availability as argument when calling method
      * Created By Linus Finsbäck 2020-12-12
      * Changed By ....
      */
@@ -130,6 +129,34 @@ public class PlaceProductsInShoppingCart extends TestCode {
             //click at add to cart
             findElementsByxPath("//*[@class='btn btn-primary add-to-cart']", click, empty);
         }
+    }
+    /**
+     * Method to add product to cart
+     * Include String customText as argument when calling method
+     * Created By Linus Finsbäck 2020-12-12
+     * Changed By ....
+     */
+    public void enterCustomText(String text) {
+        findElementsByxPath("//section[@class='product-customization']//textarea[@class='product-message']", sendKeys, text);
+        findElementsByxPath("//section[@class='product-customization']//button[@class='btn btn-primary float-xs-right']", click, empty);
+    }
+    /**
+     * Method to set dimension of item to put into shopping cart
+     * Include argument of size when calling method
+     * Created By Linus Finsbäck 2020-12-08
+     * Changed By ....
+     */
+    public void setDimension(String dimension) {
+        Select dimensions = new Select(driver.findElement(By.id("group_3")));
+        dimensions.selectByVisibleText(dimension);
+    }
+    /**
+     * Method to get full name of item to put into shopping cart
+     * Created By Linus Finsbäck 2020-12-08
+     * Changed By ....
+     */
+    public String getProductName() {
+        return getAttributeByxPathInnerHTML("//div[@class='row product-container']//h1[@class='h1']");
     }
 
 }

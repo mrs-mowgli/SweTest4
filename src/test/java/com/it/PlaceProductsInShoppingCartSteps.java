@@ -25,6 +25,8 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     double expectedPrice;
     String paperTypeSelectedProduct;
     String availability;
+    String customText;
+    String dimensionSelecetedProduct;
 
 
     @And("I have selected category {string}")
@@ -35,7 +37,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     @And("I have selected product {string}")
     public void selectedProduct(String product) {
         findProduct(product);
-        selectedProduct = product;
+        selectedProduct = getProductName();
         priceSelectedProduct = getPrice();
         currentUrl = getCurrentUrl();
     }
@@ -67,10 +69,21 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         colorSelectedProduct = " " + color;
     }
 
+    @And("I have added my custom {string}")
+    public void addCustomText(String text) {
+        enterCustomText(text);
+        customText = text;
+    }
+
+    @And("I have selected dimension {string}")
+    public void selectedDimension(String dimension) {
+        setDimension(dimension);
+        dimensionSelecetedProduct = " " + dimension;
+    }
+
     @When("^I place product in shopping cart$")
     public void placeProductInCart() {
         availability = verifyAvailability();
-        System.out.println("Test " + availability);
         clickAddToCart(availability);
     }
 
@@ -126,6 +139,10 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
                 case "pillow":
                     //Verify color
                     assertEquals(colorSelectedProduct, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Color:')]//strong"));
+                    break;
+                case "poster":
+                    //Verify dimension
+                    assertEquals(dimensionSelecetedProduct, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Dimension:')]//strong"));
                     break;
             }
 

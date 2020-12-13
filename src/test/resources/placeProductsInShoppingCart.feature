@@ -72,6 +72,38 @@ Feature: Place products in shopping cart
       | firefox  | home accessories | Brown bear cushion    | White | 1        | pillow  |
       | chrome   | home accessories | Hummingbird cushion   | Black | 2        | pillow  |
 
+  @Testing
+  Scenario Outline: Place product of type customizable mug in shopping cart and verify popup
+    Given I am on start page using "<browser>"
+    #Given I am on start page
+    And I have selected category "<category>"
+    And I have selected product "<product>"
+    And I have added my custom "<text>"
+    And I have selected quantity "<quantity>"
+    When I place product in shopping cart
+    Then I will see a pop up with confirmation that product of "<type>" was added to shopping cart
+
+    Examples:
+      | browser  | category         | product           | text     | quantity | type    |
+      | chrome   | home accessories | Customizable mug  | testText | 3        | mug     |
+
+  @Testing
+  Scenario Outline: Place product of type framed poster in shopping cart and verify popup
+    Given I am on start page using "<browser>"
+    #Given I am on start page
+    And I have selected category "<category>"
+    And I have selected product "<product>"
+    And I have selected dimension "<dimension>"
+    And I have selected quantity "<quantity>"
+    When I place product in shopping cart
+    Then I will see a pop up with confirmation that product of "<type>" was added to shopping cart
+
+    Examples:
+      | browser  | category | product                 | dimension | quantity | type    |
+      | chrome   | art      | The best is yet to come | 40x60cm   | 3        | poster  |
+      | chrome   | art      | The adventure begins    | 60x90cm   | 1        | poster  |
+      | chrome   | art      | Today is a good day     | 80x120cm  | 4        | poster  |
+
 
 #  @Testing
 #  Scenario: Place product in shopping cart and continue shopping
@@ -89,3 +121,8 @@ Feature: Place products in shopping cart
 #    When I place product in shopping cart
 #    And I continue to shopping cart from pop up
 #    Then I will see content of my shopping cart
+
+  # Negative tests
+  # Add customized mug to cart without customization
+  # add product out of stock to cart
+  # add to many products to cart
