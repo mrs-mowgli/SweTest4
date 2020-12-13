@@ -32,8 +32,8 @@ pipeline {
 
  stage ('Run JMeter test'){
 	steps{
-	sh '/usr/local/Cellar/jmeter/5.3/bin/jmeter'
--Jjmeter.save.saveservices.output_format=xml -n -t /usr/local/Cellar/jmeter/5.3/bin/PrestaShop.jmx -l jmeterPrestashop_report.jtl'
+	sh '/usr/local/Cellar/jmeter/5.4/bin/jmeter'
+-Jjmeter.save.saveservices.output_format=xml -n -t /usr/local/Cellar/jmeter/5.4/bin/PrestaShop.jmx -l jmeterPrestashop_report.jtl'
 		}
 	}
     }
