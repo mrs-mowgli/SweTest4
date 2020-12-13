@@ -7,10 +7,13 @@ Skapad av Sebastian Wimmer 2020-11-22
 
 package com.it;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FilterFunctionSteps extends FilterFunctionMethods {
 
@@ -38,10 +41,28 @@ public class FilterFunctionSteps extends FilterFunctionMethods {
 
     @When("I select filter {string}")
     public void iSelectFilter(String filter) {
-        // selectFilter(filter);
+         selectFilter(filter);
     }
 
-    @Then("only items matching the filter should be displayed")
-    public void onlyItemsMatchingTheFilterShouldBeDisplayed() {
+    @And("I have selected main category {string}")
+    public void iHaveSelectedMainCategory(String category) {
+        selectCategory(category);
+    }
+
+    @Then("only items matching the {string} should be displayed")
+    public void onlyItemsMatchingTheShouldBeDisplayed(String filter) {
+        //funkar bara för stationery testfall än så länge
+        String expectedResult = "There are 3 products.";
+        Assert.assertEquals(expectedResult, GetResult());
+        teardown();
+    }
+
+    @Then("the selected {string} should be active")
+    public void theSelectedShouldBeActive(String filter) {
+        String expectedURL = expectedURL(filter);
+        delay(2000);
+        String actualURL = GetCurrentURL();
+        assertEquals(expectedURL, actualURL);
+
     }
 }

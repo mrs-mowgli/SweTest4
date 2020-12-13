@@ -1,6 +1,6 @@
 #Feature för att beskriva alla scenarios kring Filter funktionen
 #Skapad av Sebastian Wimmer 2020-11-22
-#Uppdaterad av
+#Uppdaterad av Sebastian Wimmer 2020-12-12
 
 Feature: Filter items
   As a user
@@ -16,23 +16,42 @@ Feature: Filter items
   
   @testing
   Scenario Outline: Filter categories
-  Given I am on start page using "<browser>"
+    Given I am on start page using "<browser>"
     #Given I am on start page
-  And I have selected category "<category>"
-  When I select filter "<filter>"
-  Then only items matching the filter should be displayed
+    And I have selected main category "<category>"
+    When I select filter "<filter>"
+    Then the selected "<filter>" should be active
+  #Then only items matching the "<filter>" should be displayed
 
   Examples:
-  | browser | category         | filter |
-  | chrome  | men              |  S     |
- # | chrome  | men              | M      |
- # | chrome  | men              | L      |
- # | chrome  | men              | XL     |
- # | chrome  | men              |        |
- # | chrome  | women            |        |
- # | chrome  | stationary       |        |
- # | chrome  | home accessories |        |
- # | chrome  | art              |        |
+  | browser  | category         | filter             |
+  | chrome   | accessories      | Stationery         |
+  | firefox  | clothes          | White              |
+  | chrome   | clothes          | Black              |
+  | firefox  | clothes          | Small              |
+  | chrome   | clothes          | Medium             |
+  | firefox  | clothes          | Large              |
+  | chrome   | clothes          | XL                 |
+  | firefox  | clothes          | Long Sleeves       |
+  | chrome   | clothes          | Short Sleeves      |
+  | firefox  | accessories      | White Accessories  |
+  | chrome   | accessories      | Black Accessories  |
+  | firefox  | accessories      | Ceramic            |
+  | chrome   | accessories      | Polyester          |
+  | firefox  | accessories      | Recycled Cardboard |
+  | chrome   | accessories      | 120 pages          |
+  | firefox  | accessories      | Removable Cover    |
+  | chrome   | accessories      | Graphic Corner     |
+  | firefox  | accessories      | Studio Design      |
+  | chrome   | accessories      | Ruled              |
+  | firefox  | accessories      | Plain              |
+  | chrome   | accessories      | Squarred           |
+  | firefox  | accessories      | Doted              |
+  | chrome   | art              | Matt Paper         |
+  | firefox  | art              | Graphic Corner Art |
+  | chrome   | art              | 40x60              |
+  | firefox  | art              | 60x90              |
+  | chrome   | art              | 80x120             |
 
 
   #@testing

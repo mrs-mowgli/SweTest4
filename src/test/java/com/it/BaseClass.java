@@ -20,36 +20,31 @@ public class BaseClass {
     public static JavascriptExecutor js ;
     public static ChromeOptions options = new ChromeOptions();
 
-public static void setUpChromeBrowser()
-{
-
-  
-    options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
-    driver = new ChromeDriver(options);
-    driver.manage().window().maximize();
-    js = (JavascriptExecutor) driver;
-
-
-}
-public static void setUpFirefoxBrowser()
+    public static void setUpChromeBrowser()
     {
+        options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
+        driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+        js = (JavascriptExecutor) driver;
 
-        
+
+    }
+    public static void setUpFirefoxBrowser()
+    {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
+
         firefoxOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
         driver = new FirefoxDriver(firefoxOptions);
         driver.manage().window().maximize();
         js = (JavascriptExecutor) driver;
     }
 
- @DisplayName("Setup")
+    @DisplayName("Setup")
     public static void setUp() {
 
-   
-       
-     
+
         driver = new ChromeDriver();
-        options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
+
         js = (JavascriptExecutor) driver;
         driver.manage().window().maximize();
     }

@@ -1,17 +1,17 @@
 pipeline {
     
-    
 
     agent {label 'SweTestMac'}
 
- 
+
 
     tools {
       maven 'M3'
-      
+
     }
     options { timestamps () }
- 
+
+
 
     stages {
         stage('Build') {
@@ -26,18 +26,15 @@ pipeline {
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             junit '**/target/surefire-reports/TEST-*.xml'
         }
-    
+
      }
 }
 
  stage ('Run JMeter test'){
 	steps{
-	sh '/usr/local/Cellar/jmeter/5.3/bin/jmeter 
+	sh '/usr/local/Cellar/jmeter/5.3/bin/jmeter'
 -Jjmeter.save.saveservices.output_format=xml -n -t /usr/local/Cellar/jmeter/5.3/bin/PrestaShop.jmx -l jmeterPrestashop_report.jtl'
-		perfReport jmeterPrestashop_report.jtl'
-    }
+		}
 	}
     }
 }
-
-
