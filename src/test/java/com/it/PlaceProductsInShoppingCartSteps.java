@@ -37,7 +37,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     @And("I have selected product {string}")
     public void selectedProduct(String product) {
         findProduct(product);
-        selectedProduct = getProductName();
+        selectedProduct = getProductName(product);
         priceSelectedProduct = getPrice();
         currentUrl = getCurrentUrl();
     }

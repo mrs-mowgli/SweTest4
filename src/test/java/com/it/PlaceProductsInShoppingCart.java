@@ -155,8 +155,14 @@ public class PlaceProductsInShoppingCart extends TestCode {
      * Created By Linus Finsbäck 2020-12-08
      * Changed By ....
      */
-    public String getProductName() {
-        return getAttributeByxPathInnerHTML("//div[@class='row product-container']//h1[@class='h1']");
+    public String getProductName(String product) {
+        String productName = getAttributeByxPathInnerHTML("//div[@class='row product-container']//h1[@class='h1']");
+        if (productName.contains(product)) {
+            return productName;
+        }
+        else {
+            return "error";
+        }
     }
 
 }
