@@ -52,9 +52,19 @@ public class TestCheckoutNotLoggedin extends TestCheckoutNotLoggedinCode {
     @Given("start")
     public void start(){
         // Setup chrome browser from BaseClass.
-        setUpChromeBrowser();
+        //setUpChromeBrowser();
+
+        //setUpChromeBrowser() pasted in here because call on method stoped working..?!
+        System.setProperty("webdriver.chrome.driver", "C:\\Tools\\WebDriver\\bin\\chromedriver.exe");
+        options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
+        driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+        js = (JavascriptExecutor) driver;
+
+
         //Go to RealStartURL http://40.76.27.113:8085/en/
         driver.get(RealStartURL);
+        //driver.get("http://40.76.27.113:8085/en/");
         //Save current URL in variable startURL
         String startURL = driver.getCurrentUrl();
         //Compare given URl and current URL.

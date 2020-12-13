@@ -110,5 +110,59 @@ public class PlaceProductsInShoppingCart extends TestCode {
         String priceString = getAttributeByxPathInnerHTML(xPath);
         return cleanPrice(priceString);
     }
+    /**
+     * Method to check availability of product
+     * Created By Linus Finsbäck 2020-12-12
+     * Changed By ....
+     */
+    public String verifyAvailability() {
+        return getAttributeByxPathInnerHTML("//span[@id='product-availability']");
+    }
+    /**
+     * Method to add product to cart
+     * Include String availability as argument when calling method
+     * Created By Linus Finsbäck 2020-12-12
+     * Changed By ....
+     */
+    public void clickAddToCart(String availability) {
+        if (!availability.contains("stock")) {
+            //click at add to cart
+            findElementsByxPath("//*[@class='btn btn-primary add-to-cart']", click, empty);
+        }
+    }
+    /**
+     * Method to add product to cart
+     * Include String customText as argument when calling method
+     * Created By Linus Finsbäck 2020-12-12
+     * Changed By ....
+     */
+    public void enterCustomText(String text) {
+        findElementsByxPath("//section[@class='product-customization']//textarea[@class='product-message']", sendKeys, text);
+        findElementsByxPath("//section[@class='product-customization']//button[@class='btn btn-primary float-xs-right']", click, empty);
+    }
+    /**
+     * Method to set dimension of item to put into shopping cart
+     * Include argument of size when calling method
+     * Created By Linus Finsbäck 2020-12-08
+     * Changed By ....
+     */
+    public void setDimension(String dimension) {
+        Select dimensions = new Select(driver.findElement(By.id("group_3")));
+        dimensions.selectByVisibleText(dimension);
+    }
+    /**
+     * Method to get full name of item to put into shopping cart
+     * Created By Linus Finsbäck 2020-12-08
+     * Changed By ....
+     */
+    public String getProductName(String product) {
+        String productName = getAttributeByxPathInnerHTML("//div[@class='row product-container']//h1[@class='h1']");
+        if (productName.contains(product)) {
+            return productName;
+        }
+        else {
+            return "error";
+        }
+    }
 
 }
