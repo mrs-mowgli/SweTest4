@@ -63,10 +63,6 @@ public class SearchAndSort {
         }
 
 
-
-
-
-
             /**
              * Keyboard commands
              * created by Berg 2020-11-22
