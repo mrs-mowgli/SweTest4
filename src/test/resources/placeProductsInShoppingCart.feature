@@ -207,6 +207,4 @@ Feature: Place products in shopping cart
     | chrome  | home accessories | Brown bear cushion | black |
     | firefox | home accessories | Brown bear cushion | black |
 
-
-  # add to many products to cart
   # Possible to buy mug which is out off stock if buying it in package
