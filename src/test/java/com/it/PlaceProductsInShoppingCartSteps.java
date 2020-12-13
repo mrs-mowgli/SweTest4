@@ -173,29 +173,22 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     public void verifyCartCounter() {
         assertEquals("(1)", getAttributeByxPathInnerHTML("//span[@class='cart-products-count']"));
     }
-/*
     @Then("^I will see content of my shopping cart")
     public void verifyContentOfCart() {
-        // Variable to save actual value of product in chart
-        String actualSelectedProductvalue;
-        //Verify name of product
-        actualSelectedProductvalue = getAttributeByxPathInnerHTML("/html/body/main/section/div/div/section/div/div[1]/div/div[2]/ul/li/div/div[2]/div[1]/a");
-        assertEquals(selectedProduct, actualSelectedProductvalue);
-        //Verify price
-        actualSelectedProductvalue = getAttributeByxPathInnerHTML("/html/body/main/section/div/div/section/div/div[1]/div/div[2]/ul/li/div/div[2]/div[2]/div[2]/span");
-        assertEquals(priceSelectedProduct, actualSelectedProductvalue);
-        //Verify Size
-        actualSelectedProductvalue = getAttributeByxPathInnerHTML("/html/body/main/section/div/div/section/div/div[1]/div/div[2]/ul/li/div/div[2]/div[3]/span[2]");
-        assertEquals(sizeSelectedProduct, actualSelectedProductvalue);
-        //Verify color
-        actualSelectedProductvalue = getAttributeByxPathInnerHTML("/html/body/main/section/div/div/section/div/div[1]/div/div[2]/ul/li/div/div[2]/div[4]/span[2]");
-        assertEquals(colorSelectedProduct, actualSelectedProductvalue);
-
-        //Verify total price
-        String totalPrice;
-        totalPrice = getAttributeByxPathInnerHTML("/html/body/main/section/div/div/section/div/div[2]/div[1]/div[1]/div[2]/div/span[2]");
-        assertEquals(priceSelectedProduct, totalPrice);
-    }*/
+        //Handle fault if product is out of stock
+        if (!availability.contains("stock")) {
+            //Verify that shopping cart is opened
+            assertEquals("Shopping Cart", getAttributeByxPathInnerHTML("//div[@class='cart-grid-body col-xs-12 col-lg-8']//h1"));
+            //Verify productName
+            assertEquals(selectedProduct, getAttributeByxPathInnerHTML("//div[@class='cart-grid-body col-xs-12 col-lg-8']//a[@class='label']"));
+            //Verify product price
+            assertEquals(priceSelectedProduct, getPriceFromCart("//div[@class='cart-grid-body col-xs-12 col-lg-8']//div[@class='current-price']//span[@class='price']"), 0.1);
+            //Verify size
+            assertEquals(sizeSelectedProduct, " " + getAttributeByxPathInnerHTML("//div[@class='cart-grid-body col-xs-12 col-lg-8']//div[@class='product-line-info' and contains(.,'Size:')]//Span[@class='value']"));
+            //Verify color
+            assertEquals(colorSelectedProduct, " " + getAttributeByxPathInnerHTML("//div[@class='cart-grid-body col-xs-12 col-lg-8']//div[@class='product-line-info' and contains(.,'Color:')]//Span[@class='value']"));
+        }
+    }
 
 
 }

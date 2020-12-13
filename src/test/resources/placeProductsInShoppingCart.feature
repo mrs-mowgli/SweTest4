@@ -21,6 +21,9 @@ Feature: Place products in shopping cart
       | chrome  | men      | Hummingbird printed t-shirt | 2        | XL   | White | sweaterMen   |
       | chrome  | women    | Hummingbird printed sweater | 1        | L    | N.A   | sweaterWomen |
       | chrome  | women    | Hummingbird printed sweater | 1        | S    | N.A   | sweaterWomen |
+      | firefox | men      | Hummingbird printed t-shirt | 3        | M    | Black | sweaterMen   |
+      | firefox | men      | Hummingbird printed t-shirt | 2        | S    | White | sweaterMen   |
+      | firefox | women    | Hummingbird printed sweater | 1        | S    | N.A   | sweaterWomen |
 
   @Testing
   Scenario Outline: Place product of type notebook in shopping cart and verify popup
@@ -39,6 +42,10 @@ Feature: Place products in shopping cart
       | chrome  | stationary | Brown bear notebook   | 1        | Plain     | notebook |
       | chrome  | stationary | Brown bear notebook   | 1        | Squarred  | notebook |
       | chrome  | stationary | Hummingbird notebook  | 2        | Doted     | notebook |
+      | firefox | stationary | Mountain fox notebook | 3        | Ruled     | notebook |
+      | firefox | stationary | Brown bear notebook   | 1        | Plain     | notebook |
+      | firefox | stationary | Brown bear notebook   | 1        | Squarred  | notebook |
+      | firefox | stationary | Hummingbird notebook  | 2        | Doted     | notebook |
 
   @Testing
   Scenario Outline: Place product of type mug in shopping cart and verify popup
@@ -71,6 +78,7 @@ Feature: Place products in shopping cart
       | chrome   | home accessories | Mountain fox cushion  | Black | 3        | pillow  |
       | firefox  | home accessories | Brown bear cushion    | White | 1        | pillow  |
       | chrome   | home accessories | Hummingbird cushion   | Black | 2        | pillow  |
+      | firefox  | home accessories | Hummingbird cushion   | Black | 2        | pillow  |
 
   @Testing
   Scenario Outline: Place product of type customizable mug in shopping cart and verify popup
@@ -86,6 +94,7 @@ Feature: Place products in shopping cart
     Examples:
       | browser  | category         | product           | text     | quantity | type    |
       | chrome   | home accessories | Customizable mug  | testText | 3        | mug     |
+      | firefox  | home accessories | Customizable mug  | firefox  | 2        | mug     |
 
   @Testing
   Scenario Outline: Place product of type framed poster in shopping cart and verify popup
@@ -136,14 +145,22 @@ Feature: Place products in shopping cart
     | chrome  |
     | firefox |
 
-#  @Testing
-#  Scenario: Place product in shopping cart and check content
-#    Given I am on start page
-#    And I have selected category clothes men
-#    And I have selected a product
-#    When I place product in shopping cart
-#    And I continue to shopping cart from pop up
-#    Then I will see content of my shopping cart
+  @Testing
+  Scenario Outline: Place product in shopping cart and check content
+    #Given I am on start page
+    Given I am on start page using "<browser>"
+    And I have selected category "<category>"
+    And I have selected product "<product>"
+    And I have selected size "<size>"
+    And I have selected color "<color>"
+    And I have selected quantity "<quantity>"
+    When I place product in shopping cart
+    And I continue to shopping cart from pop up
+    Then I will see content of my shopping cart
+  Examples:
+    | browser | category | product                     | size | color | quantity |
+    | chrome  | men      | Hummingbird printed t-shirt | L    | Black | 2        |
+    | firefox | men      | Hummingbird printed t-shirt | M    | White | 3        |
 
   # Negative tests
   # Add customized mug to cart without customization
