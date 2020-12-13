@@ -24,6 +24,9 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     String quantityInCart;
     double expectedPrice;
     String paperTypeSelectedProduct;
+    String availability;
+    String customText;
+    String dimensionSelecetedProduct;
 
 
     @And("I have selected category {string}")
@@ -34,7 +37,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     @And("I have selected product {string}")
     public void selectedProduct(String product) {
         findProduct(product);
-        selectedProduct = product;
+        selectedProduct = getProductName(product);
         priceSelectedProduct = getPrice();
         currentUrl = getCurrentUrl();
     }
@@ -66,10 +69,22 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         colorSelectedProduct = " " + color;
     }
 
+    @And("I have added my custom {string}")
+    public void addCustomText(String text) {
+        enterCustomText(text);
+        customText = text;
+    }
+
+    @And("I have selected dimension {string}")
+    public void selectedDimension(String dimension) {
+        setDimension(dimension);
+        dimensionSelecetedProduct = " " + dimension;
+    }
+
     @When("^I place product in shopping cart$")
     public void placeProductInCart() {
-        //click at add to cart
-        findElementsByxPath("//*[@class='btn btn-primary add-to-cart']", click, empty);
+        availability = verifyAvailability();
+        clickAddToCart(availability);
     }
 
     @When("^I continue to shopping cart from pop up")
@@ -90,49 +105,57 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
 
     @Then("I will see a pop up with confirmation that product of {string} was added to shopping cart")
     public void verifyModal(String productType) {
-        //Wait for modal to load
-        delay(4000);
+        //Handle fault if product is out of stock
+        if (!availability.contains("stock")) {
+            //Wait for modal to load
+            delay(4000);
 
-        //Verify that product is added
-        assertEquals("<i class=\"material-icons rtl-no-flip\">\uE876</i>Product successfully added to your shopping cart", getAttributeByIdInnerHTML("myModalLabel"));
+            //Verify that product is added
+            assertEquals("<i class=\"material-icons rtl-no-flip\">\uE876</i>Product successfully added to your shopping cart", getAttributeByIdInnerHTML("myModalLabel"));
 
-        //Verify name of product
-        assertEquals(selectedProduct, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//h6[@class='h6 product-name']"));
+            //Verify name of product
+            assertEquals(selectedProduct, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//h6[@class='h6 product-name']"));
 
-        //Verify product price
-        assertEquals(priceSelectedProduct, getPriceFromCart("//*[@id='blockcart-modal']//p[@class='product-price']"));
+            //Verify product price
+            assertEquals(priceSelectedProduct, getPriceFromCart("//*[@id='blockcart-modal']//p[@class='product-price']"));
 
-        switch (productType){
-            case "sweaterMen":
-                //Verify Size
-                assertEquals(sizeSelectedProduct, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Size:')]//strong"));
-                //Verify color
-                assertEquals(colorSelectedProduct, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Color:')]//strong"));
-                break;
+            switch (productType){
+                case "sweaterMen":
+                    //Verify Size
+                    assertEquals(sizeSelectedProduct, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Size:')]//strong"));
+                    //Verify color
+                    assertEquals(colorSelectedProduct, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Color:')]//strong"));
+                    break;
 
-            case "sweaterWomen":
-                //Verify Size
-                assertEquals(sizeSelectedProduct, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Size:')]//strong"));
-                break;
+                case "sweaterWomen":
+                    //Verify Size
+                    assertEquals(sizeSelectedProduct, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Size:')]//strong"));
+                    break;
 
-            case "notebook":
-                //Verify paperType
-                assertEquals(paperTypeSelectedProduct, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Paper Type:')]//strong"));
-                break;
-            case "pillow":
-                //Verify color
-                assertEquals(colorSelectedProduct, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Color:')]//strong"));
-                break;
+                case "notebook":
+                    //Verify paperType
+                    assertEquals(paperTypeSelectedProduct, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Paper Type:')]//strong"));
+                    break;
+                case "pillow":
+                    //Verify color
+                    assertEquals(colorSelectedProduct, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Color:')]//strong"));
+                    break;
+                case "poster":
+                    //Verify dimension
+                    assertEquals(dimensionSelecetedProduct, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Dimension:')]//strong"));
+                    break;
+            }
+
+            //verify quantity
+            assertEquals(quantityInCart, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Quantity:')]//strong"));
+
+            //Verify subtotal price
+            assertEquals(expectedPrice, getPriceFromCart("//*[@id='blockcart-modal']//p[contains(.,'Subtotal:')]//span[@class='value']"), 0.1);
+
+            //Verify total price
+            assertEquals(checkShippingCost() + expectedPrice, getPriceFromCart("//*[@id='blockcart-modal']//p[@class='product-total']//span[@class='value']"), 0.1);
+
         }
-
-        //verify quantity
-        assertEquals(quantityInCart, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//span[contains(.,'Quantity:')]//strong"));
-
-        //Verify subtotal price
-        assertEquals(expectedPrice, getPriceFromCart("//*[@id='blockcart-modal']//p[contains(.,'Subtotal:')]//span[@class='value']"), 0.1);
-
-        //Verify total price
-        assertEquals(checkShippingCost() + expectedPrice, getPriceFromCart("//*[@id='blockcart-modal']//p[@class='product-total']//span[@class='value']"), 0.1);
     }
 
     @Then("^I will stay at product page")
