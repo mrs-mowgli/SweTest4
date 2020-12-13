@@ -166,7 +166,7 @@ public class PlaceProductsInShoppingCart extends TestCode {
     /**
      * Method to select a product from start page
      * Include argument of type int (index 1-8) when calling for method
-     * Created By Linus Finsbäck 2020-12-08
+     * Created By Linus Finsbäck 2020-12-13
      * Changed By ....
      */
     public void selectProductFromStartPage(Integer index) {
@@ -175,12 +175,25 @@ public class PlaceProductsInShoppingCart extends TestCode {
     /**
      * Method to check status of button
      * Include xPath to button as argument when calling method
-     * Created By Linus Finsbäck 2020-12-08
+     * Created By Linus Finsbäck 2020-12-13
      * Changed By ....
      */
     public boolean checkButtonStatus(String xPath) {
         WebElement button = driver.findElement(By.xpath(xPath));
         return button.isEnabled();
     }
-
+    /**
+     * Method to increase quantity until it reach limit of stock
+     * Created By Linus Finsbäck 2020-12-13
+     * Changed By ....
+     */
+    public void increaseQuantity() {
+        for (int i = 0; i < 1000; i++) {
+            findElementsByxPath("//button[@class='btn btn-touchspin js-touchspin bootstrap-touchspin-up']", click, empty);
+            delay(500);
+            if (verifyAvailability().contains("There are not enough products in stock")) {
+                break;
+            }
+        }
+    }
 }

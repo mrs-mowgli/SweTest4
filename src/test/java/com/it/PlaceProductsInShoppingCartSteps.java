@@ -91,7 +91,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
 
     @And("^I have selected too many products")
     public void addToManyProducts() {
-
+        increaseQuantity();
     }
 
     @When("^I place product in shopping cart$")

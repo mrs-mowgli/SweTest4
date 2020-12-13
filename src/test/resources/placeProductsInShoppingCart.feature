@@ -205,6 +205,7 @@ Feature: Place products in shopping cart
   Examples:
     | browser | category         | product            | color |
     | chrome  | home accessories | Brown bear cushion | black |
+    | firefox | home accessories | Brown bear cushion | black |
 
 
   # add to many products to cart
