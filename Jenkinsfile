@@ -1,54 +1,41 @@
 pipeline {
     
     
-    agent {label 'test'}
+    agent {label 'SweTestMac'}
 
- 
+
 
     tools {
       maven 'M3'
-      
+
     }
     options { timestamps () }
 
- environment {
-    PATH = "C:\\WINDOWS\\SYSTEM32"
-}
 
-    //triggers{ cron('H/5 * * * *') }
-
- 
 
     stages {
-        stage("build") {
+        stage('Build') {
             steps {
 
- 
-
-                bat "mvn -Dmaven.test.failure.ignore=true clean compile"
+    sh "mvn -Dmaven.test.failure.ignore=true clean install"
             }
         }
- 
-
-        stage("deploy") {
-            steps {
-                echo 'deploying the application...'
-                bat "mvn -Dmaven.test.failure.ignore=true install"
-            }
-        }
-    }
-     post {
+      post {
         always {
             echo 'This will always run'
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             junit '**/target/surefire-reports/TEST-*.xml'
         }
-    
+
      }
-    
-    
 }
 
-    
-  
+ stage ('Run JMeter test'){
+	steps{
+	sh '/usr/local/Cellar/jmeter/5.3/bin/jmeter'
+-Jjmeter.save.saveservices.output_format=xml -n -t /usr/local/Cellar/jmeter/5.3/bin/PrestaShop.jmx -l jmeterPrestashop_report.jtl'
+		}
+	}
+    }
+}
 
