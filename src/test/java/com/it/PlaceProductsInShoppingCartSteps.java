@@ -9,6 +9,8 @@ import io.cucumber.datatable.internal.difflib.Delta;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -87,6 +89,11 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         currentUrl = getCurrentUrl();
     }
 
+    @And("^I have selected too many products")
+    public void addToManyProducts() {
+
+    }
+
     @When("^I place product in shopping cart$")
     public void placeProductInCart() {
         availability = verifyAvailability();
@@ -107,6 +114,10 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         delay(2000);
         //Click at continue shopping
         findElementsByxPath("//*[@id='blockcart-modal']//button[@class='btn btn-secondary']", click, empty);
+    }
+    @When("^I try to place product in shopping cart$")
+    public void tryToPlaceProductInCart() {
+
     }
 
     @Then("I will see a pop up with confirmation that product of {string} was added to shopping cart")
@@ -173,6 +184,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     public void verifyCartCounter() {
         assertEquals("(1)", getAttributeByxPathInnerHTML("//span[@class='cart-products-count']"));
     }
+
     @Then("^I will see content of my shopping cart")
     public void verifyContentOfCart() {
         //Handle fault if product is out of stock
@@ -188,6 +200,10 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
             //Verify color
             assertEquals(colorSelectedProduct, " " + getAttributeByxPathInnerHTML("//div[@class='cart-grid-body col-xs-12 col-lg-8']//div[@class='product-line-info' and contains(.,'Color:')]//Span[@class='value']"));
         }
+    }
+    @Then("^The add to cart button will not be interactable$")
+    public void addToCartNotActive() {
+        assertFalse(checkButtonStatus("//*[@class='btn btn-primary add-to-cart']"));
     }
 
 

@@ -163,7 +163,49 @@ Feature: Place products in shopping cart
     | firefox | men      | Hummingbird printed t-shirt | M    | White | 3        |
 
   # Negative tests
-  # Add customized mug to cart without customization
-  # add product out of stock to cart
+
+  @Testing
+  Scenario Outline: Place product of type customizable mug in shopping cart without customization set
+    Given I am on start page using "<browser>"
+    #Given I am on start page
+    And I have selected category "<category>"
+    And I have selected product "<product>"
+    When I try to place product in shopping cart
+    Then The add to cart button will not be interactable
+
+    Examples:
+      | browser  | category         | product           |
+      | chrome   | home accessories | Customizable mug  |
+      | firefox  | home accessories | Customizable mug  |
+
+  @Testing
+  Scenario Outline: Place product of type mug which is out of stock to shopping cart
+    Given I am on start page using "<browser>"
+    And I have selected category "<category>"
+    And I have selected product "<product>"
+    And I have selected quantity "<quantity>"
+    When I try to place product in shopping cart
+    Then The add to cart button will not be interactable
+
+    Examples:
+      | browser  | category         | product                     | quantity |
+      | firefox  | home accessories | Mug The adventure begins    | 1        |
+      | chrome   | home accessories | Mug The adventure begins    | 1        |
+
+  @Testing
+  Scenario Outline: Place more products of type pillow then what is available in stock
+    Given I am on start page using "<browser>"
+    And I have selected category "<category>"
+    And I have selected product "<product>"
+    And I have selected color "<color>"
+    And I have selected too many products
+    When I try to place product in shopping cart
+    Then The add to cart button will not be interactable
+
+  Examples:
+    | browser | category         | product            | color |
+    | chrome  | home accessories | Brown bear cushion | black |
+
+
   # add to many products to cart
   # Possible to buy mug which is out off stock if buying it in package

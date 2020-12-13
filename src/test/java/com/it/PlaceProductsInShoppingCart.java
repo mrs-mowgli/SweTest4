@@ -6,6 +6,7 @@
 package com.it;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class PlaceProductsInShoppingCart extends TestCode {
@@ -170,6 +171,16 @@ public class PlaceProductsInShoppingCart extends TestCode {
      */
     public void selectProductFromStartPage(Integer index) {
         findElementsByxPath("//article[@class='product-miniature js-product-miniature' and @data-id-product='" + index + "']//h3//a", click, empty);
+    }
+    /**
+     * Method to check status of button
+     * Include xPath to button as argument when calling method
+     * Created By Linus Finsbäck 2020-12-08
+     * Changed By ....
+     */
+    public boolean checkButtonStatus(String xPath) {
+        WebElement button = driver.findElement(By.xpath(xPath));
+        return button.isEnabled();
     }
 
 }
