@@ -38,12 +38,13 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
     public void selectedProduct(String product) {
         findProduct(product);
         selectedProduct = getProductName(product);
-        priceSelectedProduct = getPrice();
         currentUrl = getCurrentUrl();
     }
 
     @And("I have selected quantity {string}")
     public void selectedQuantity(String quantity) {
+        delay(500);
+        priceSelectedProduct = getPrice();
         setQuantity(quantity);
         quantityInCart = quantity;
         int quantityInt;

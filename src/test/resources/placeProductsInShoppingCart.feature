@@ -9,9 +9,9 @@ Feature: Place products in shopping cart
     #Given I am on start page
     And I have selected category "<category>"
     And I have selected product "<product>"
-    And I have selected quantity "<quantity>"
     And I have selected size "<size>"
     And I have selected color "<color>"
+    And I have selected quantity "<quantity>"
     When I place product in shopping cart
     Then I will see a pop up with confirmation that product of "<type>" was added to shopping cart
 
@@ -99,10 +99,28 @@ Feature: Place products in shopping cart
     Then I will see a pop up with confirmation that product of "<type>" was added to shopping cart
 
     Examples:
-      | browser  | category | product                 | dimension | quantity | type    |
-      | chrome   | art      | The best is yet to come | 40x60cm   | 3        | poster  |
-      | chrome   | art      | The adventure begins    | 60x90cm   | 1        | poster  |
-      | chrome   | art      | Today is a good day     | 80x120cm  | 4        | poster  |
+      | browser | category | product                 | dimension | quantity | type    |
+      | chrome  | art      | The best is yet to come | 40x60cm   | 3        | poster  |
+      | firefox | art      | The best is yet to come | 60x90cm   | 1        | poster  |
+      | chrome  | art      | Today is a good day     | 80x120cm  | 4        | poster  |
+      | firefox | art      | Today is a good day     | 40x60cm   | 3        | poster  |
+      | chrome  | art      | The adventure begins    | 60x90cm   | 1        | poster  |
+      | firefox | art      | The adventure begins    | 80x120cm  | 4        | poster  |
+
+  @Testing
+  Scenario Outline: Place product of type Vector Graphics in shopping cart and verify popup
+    Given I am on start page using "<browser>"
+    #Given I am on start page
+    And I have selected category "<category>"
+    And I have selected product "<product>"
+    And I have selected quantity "<quantity>"
+    When I place product in shopping cart
+    Then I will see a pop up with confirmation that product of "<type>" was added to shopping cart
+
+    Examples:
+      | browser | category | product                        | quantity | type    |
+      | chrome  | art      | Mountain fox - Vector graphics | 3        | vector  |
+      | firefox | art      | Brown bear - Vector graphics   | 1        | vector  |
 
 
 #  @Testing
@@ -126,3 +144,4 @@ Feature: Place products in shopping cart
   # Add customized mug to cart without customization
   # add product out of stock to cart
   # add to many products to cart
+  # Possible to buy mug which is out off stock if buying it in package
