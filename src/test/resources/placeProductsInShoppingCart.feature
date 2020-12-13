@@ -6,7 +6,6 @@ Feature: Place products in shopping cart
   @Testing
   Scenario Outline: Place product of type sweater in shopping cart and verify popup
     Given I am on start page using "<browser>"
-    #Given I am on start page
     And I have selected category "<category>"
     And I have selected product "<product>"
     And I have selected size "<size>"
@@ -28,7 +27,6 @@ Feature: Place products in shopping cart
   @Testing
   Scenario Outline: Place product of type notebook in shopping cart and verify popup
     Given I am on start page using "<browser>"
-    #Given I am on start page
     And I have selected category "<category>"
     And I have selected product "<product>"
     And I have selected paperType "<paperType>"
@@ -50,7 +48,6 @@ Feature: Place products in shopping cart
   @Testing
   Scenario Outline: Place product of type mug in shopping cart and verify popup
     Given I am on start page using "<browser>"
-    #Given I am on start page
     And I have selected category "<category>"
     And I have selected product "<product>"
     And I have selected quantity "<quantity>"
@@ -65,7 +62,6 @@ Feature: Place products in shopping cart
   @Testing
   Scenario Outline: Place product of type pillow in shopping cart and verify popup
     Given I am on start page using "<browser>"
-    #Given I am on start page
     And I have selected category "<category>"
     And I have selected product "<product>"
     And I have selected color "<color>"
@@ -83,7 +79,6 @@ Feature: Place products in shopping cart
   @Testing
   Scenario Outline: Place product of type customizable mug in shopping cart and verify popup
     Given I am on start page using "<browser>"
-    #Given I am on start page
     And I have selected category "<category>"
     And I have selected product "<product>"
     And I have added my custom "<text>"
@@ -99,7 +94,6 @@ Feature: Place products in shopping cart
   @Testing
   Scenario Outline: Place product of type framed poster in shopping cart and verify popup
     Given I am on start page using "<browser>"
-    #Given I am on start page
     And I have selected category "<category>"
     And I have selected product "<product>"
     And I have selected dimension "<dimension>"
@@ -119,7 +113,6 @@ Feature: Place products in shopping cart
   @Testing
   Scenario Outline: Place product of type Vector Graphics in shopping cart and verify popup
     Given I am on start page using "<browser>"
-    #Given I am on start page
     And I have selected category "<category>"
     And I have selected product "<product>"
     And I have selected quantity "<quantity>"
@@ -147,7 +140,6 @@ Feature: Place products in shopping cart
 
   @Testing
   Scenario Outline: Place product in shopping cart and check content
-    #Given I am on start page
     Given I am on start page using "<browser>"
     And I have selected category "<category>"
     And I have selected product "<product>"
@@ -162,12 +154,10 @@ Feature: Place products in shopping cart
     | chrome  | men      | Hummingbird printed t-shirt | L    | Black | 2        |
     | firefox | men      | Hummingbird printed t-shirt | M    | White | 3        |
 
-  # Negative tests
 
   @Testing
   Scenario Outline: Place product of type customizable mug in shopping cart without customization set
     Given I am on start page using "<browser>"
-    #Given I am on start page
     And I have selected category "<category>"
     And I have selected product "<product>"
     When I try to place product in shopping cart
