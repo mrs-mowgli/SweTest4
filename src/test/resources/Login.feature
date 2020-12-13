@@ -70,17 +70,22 @@ Feature: Sign In user should be able to sign in to the webpage
       And I change <old password> to <new password>
       And I click sign out
       And I close browser
-      And I am at the login page
+      And I am on start page using "<browser>"
+      And I click sign in button from start page
       And I fill in test_password@hotmail.com in username field
       And I fill in <new password> in password field
       And I click sign in
-      And I am signed in
-      Then Restore <new password> with <old password>
+      Then I am signed in
+      #Then Restore <new password> with <old password>
     Examples:
       |old password|new password| browser |
       |test123     |test1234    | chrome  |
+      |test1234    |test123     | chrome   |
       |test123     |test1234    | firefox |
+      |test1234    |test123     | firefox  |
 
+
+      @testing
       Scenario Outline: User has forgotten password and want to restore password
         Given I am on start page using "<browser>"
         When I click sign in button from start page
@@ -89,10 +94,11 @@ Feature: Sign In user should be able to sign in to the webpage
         And I click reset link
         Then reset password link is sent to "<email>"
         Examples:
-        | email           | browser |
-        | asd@hotmail.se  | chrome  |
-        | asd@hotmail.com | firefox |
+        | email                   | browser |
+        | andreas.jensen@iths.se  | chrome  |
+        | andreas.jensen@iths.se  | firefox |
 
+    @testing
     Scenario Outline: User has forgotten password and want to restore password, but has not registered an account
       Given I am on start page using "<browser>"
       When I click sign in button from start page
@@ -101,6 +107,7 @@ Feature: Sign In user should be able to sign in to the webpage
       And I click reset link
       Then reset password link is not sent to "<email>"
     Examples:
-      | email                   | browser |
-      | andreas.jensen@iths.se  | chrome  |
-      | andreas.jensen@iths.se  | firefox |
+      | email                | browser |
+      | andas.jeen@iths.se   | chrome  |
+      | andas.jeen@iths.se   | firefox |
+
