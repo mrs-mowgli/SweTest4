@@ -247,6 +247,7 @@ public class TestCode extends BaseClass {
         WebElement element1 = driver.findElement(By.id(a));
         action.moveToElement(element1).perform();
         if(!b.equals("empty")) {
+            delay(500);
             WebElement element2 = driver.findElement(By.id(b));
             action.moveToElement(element2).perform();
         }
@@ -293,30 +294,35 @@ public class TestCode extends BaseClass {
             case "men":
                 //Hover at category clothes and then Men
                 mouseHoverElementById("category-3", "category-4");
+                delay(500);
                 //Click at category Men
                 findElementsById("category-4", click, empty);
                 break;
             case "women":
                 //Hover at category clothes and then Women
                 mouseHoverElementById("category-3", "category-5");
+                delay(500);
                 //Click at category women
                 findElementsById("category-5", click, empty);
                 break;
             case "stationary":
                 //Hover at category accessories and then stationary
                 mouseHoverElementById("category-6", "category-7");
+                delay(500);
                 //Click at category stationary
                 findElementsById("category-7", click, empty);
                 break;
             case "home accessories":
                 //Hover at category accessories and then home accessories
                 mouseHoverElementById("category-6", "category-8");
+                delay(500);
                 //Click at category home accessories
                 findElementsById("category-8", click, empty);
                 break;
             case "art":
                 //Hover at category art
                 mouseHoverElementById("category-9", "empty");
+                delay(500);
                 //Click at category art
                 findElementsById("category-9", click, empty);
                 break;
