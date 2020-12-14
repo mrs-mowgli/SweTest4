@@ -19,8 +19,7 @@ Feature: Place products in shopping cart
       | chrome  | men      | Hummingbird printed t-shirt | 3        | M    | Black | sweaterMen   |
       | chrome  | men      | Hummingbird printed t-shirt | 2        | XL   | White | sweaterMen   |
       | chrome  | women    | Hummingbird printed sweater | 1        | L    | N.A   | sweaterWomen |
-      | chrome  | women    | Hummingbird printed sweater | 1        | S    | N.A   | sweaterWomen |
-      | firefox | men      | Hummingbird printed t-shirt | 3        | M    | Black | sweaterMen   |
+      | firefox | men      | Hummingbird printed t-shirt | 3        | L    | Black | sweaterMen   |
       | firefox | men      | Hummingbird printed t-shirt | 2        | S    | White | sweaterMen   |
       | firefox | women    | Hummingbird printed sweater | 1        | S    | N.A   | sweaterWomen |
 
@@ -38,10 +37,6 @@ Feature: Place products in shopping cart
       | browser | category   | product               | quantity | paperType | type     |
       | chrome  | stationary | Mountain fox notebook | 3        | Ruled     | notebook |
       | chrome  | stationary | Brown bear notebook   | 1        | Plain     | notebook |
-      | chrome  | stationary | Brown bear notebook   | 1        | Squarred  | notebook |
-      | chrome  | stationary | Hummingbird notebook  | 2        | Doted     | notebook |
-      | firefox | stationary | Mountain fox notebook | 3        | Ruled     | notebook |
-      | firefox | stationary | Brown bear notebook   | 1        | Plain     | notebook |
       | firefox | stationary | Brown bear notebook   | 1        | Squarred  | notebook |
       | firefox | stationary | Hummingbird notebook  | 2        | Doted     | notebook |
 
@@ -73,7 +68,7 @@ Feature: Place products in shopping cart
       | browser  | category         | product               | color | quantity | type    |
       | chrome   | home accessories | Mountain fox cushion  | Black | 3        | pillow  |
       | firefox  | home accessories | Brown bear cushion    | White | 1        | pillow  |
-      | chrome   | home accessories | Hummingbird cushion   | Black | 2        | pillow  |
+      | chrome   | home accessories | Hummingbird cushion   | White | 2        | pillow  |
       | firefox  | home accessories | Hummingbird cushion   | Black | 2        | pillow  |
 
   @Testing
