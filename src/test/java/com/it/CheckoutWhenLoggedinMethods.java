@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CheckoutMethods extends TestCode {
+public class CheckoutWhenLoggedinMethods extends TestCode {
 
     String emailCheckoutTest = "test@test.net";
     String passwordCheckoutTest = "testtest";

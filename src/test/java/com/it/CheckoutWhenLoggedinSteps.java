@@ -1,16 +1,11 @@
 package com.it;
 
 import io.cucumber.java.en.*;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.AfterAll;
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CheckoutSteps extends CheckoutMethods {
+public class CheckoutWhenLoggedinSteps extends CheckoutWhenLoggedinMethods {
 
     @Given("I am Logged In")
     public void i_am_logged_in() {
@@ -20,14 +15,11 @@ public class CheckoutSteps extends CheckoutMethods {
 
     @Given("Have Products In Cart")
     public void have_products_in_cart() {
-        // Write code here that turns the phrase above into concrete actions
         addProductsToCart();
     }
 
     @When("I Checkout")
     public void i_checkout() {
-        // Write code here that turns the phrase above into concrete actions
-        //waiting();
         procedToCheckout();
     }
 
@@ -43,16 +35,13 @@ public class CheckoutSteps extends CheckoutMethods {
 
     @Then("I choose to agree to the terms Of Service")
     public void i_choose_to_agree_to_the_terms_of_service() {
-        // Write code here that turns the phrase above into concrete actions
         acceptTermsOfService();
     }
 
     @Then("Order Is Placed")
     public void order_is_placed() {
-        // Write code here that turns the phrase above into concrete actions
         makeOrder();
         //Assert shipment method and price in order.
-       // assertEquals("Free", driver.findElement(By.xpath("//*[@id=\"order-items\"]/div[2]/table/tbody/tr[2]/td[2]")).getText());
         assertEquals(finalPrice, trimDec(cleanPrice(driver.findElement(By.xpath("//*[@id=\"order-items\"]/div[2]/table/tbody/tr[3]/td[2]")).getText())));
     }
 
