@@ -156,7 +156,7 @@ Feature: Place products in shopping cart
     And I have selected category "<category>"
     And I have selected product "<product>"
     When I try to place product in shopping cart
-    Then The add to cart button will not be uninteractable
+    Then The add to cart button will not be interactable
 
     Examples:
       | browser  | category         | product           |
@@ -170,7 +170,7 @@ Feature: Place products in shopping cart
     And I have selected product "<product>"
     And I have selected quantity "<quantity>"
     When I try to place product in shopping cart
-    Then The add to cart button will not be uninteractable
+    Then The add to cart button will not be interactable
 
     Examples:
       | browser  | category         | product                     | quantity |
@@ -185,7 +185,7 @@ Feature: Place products in shopping cart
     And I have selected color "<color>"
     And I have selected too many products
     When I try to place product in shopping cart
-    Then The add to cart button will not be uninteractable
+    Then The add to cart button will not be interactable
 
   Examples:
     | browser | category         | product            | color |
@@ -205,3 +205,28 @@ Feature: Place products in shopping cart
       | browser | category         | package                  |
       | chrome  | home accessories | Pack Mug + Framed poster |
       | firefox | home accessories | Pack Mug + Framed poster |
+
+  @Testing
+  Scenario Outline: Place product in shopping cart from product quick view
+    Given I am on start page using "<browser>"
+    And I have opened quick view of an product at start page
+    When I place product in shopping cart
+    Then I will see a pop up with confirmation that product was added to shopping cart
+
+    Examples:
+      | browser |
+      | chrome  |
+      | firefox |
+
+  @Testing
+  Scenario Outline: Place all available items of an product in cart and see that product will change to out of stock
+    Given I am on start page using "<browser>"
+    And I have selected category "<category>"
+    And I have selected product "<product>"
+    And I have added all available items of product to cart
+    When I try to add one more item of same product
+    Then The add to cart button will not be interactable
+
+    Examples:
+    | browser | category         | product                     |
+    | chrome  | home accessories | Mug The best is yet to come |

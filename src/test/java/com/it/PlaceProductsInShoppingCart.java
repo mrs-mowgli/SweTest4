@@ -7,6 +7,7 @@ package com.it;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 public class PlaceProductsInShoppingCart extends TestCode {
@@ -222,5 +223,28 @@ public class PlaceProductsInShoppingCart extends TestCode {
         else {
             return "";
         }
+    }
+    /**
+     * Method to open quick View of an product
+     * Include argument of index at page when calling method
+     * Created By Linus Finsbäck 2020-12-13
+     * Changed By ....
+     */
+    public void openQuickView(Integer i) {
+        Actions action = new Actions(driver);
+        WebElement element1 = driver.findElement(By.xpath("//article[@class='product-miniature js-product-miniature' and @data-id-product='" + i + "']//div[@class='product-description']"));
+        action.moveToElement(element1).perform();
+        WebElement element2 = driver.findElement(By.xpath("//article[@class='product-miniature js-product-miniature' and @data-id-product='" + i + "']//div[@class='highlighted-informations no-variants hidden-sm-down']"));
+        action.moveToElement(element2).perform();
+        findElementsByxPath("//article[@class='product-miniature js-product-miniature' and @data-id-product='" + i + "']//div[@class='highlighted-informations no-variants hidden-sm-down']//a[@class='quick-view']", click, empty);
+    }
+    /**
+     * Method to go to Url
+     * Include argument of url at page when calling method
+     * Created By Linus Finsbäck 2020-12-13
+     * Changed By ....
+     */
+    public void goToUrl(String url) {
+        driver.get(url);
     }
 }

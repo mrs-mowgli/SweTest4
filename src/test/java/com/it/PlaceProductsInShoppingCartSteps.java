@@ -99,8 +99,28 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         productAvailability = verifyAvailabilityOfPackProducts();
     }
 
+    @And("^I have opened quick view of an product at start page$")
+    public void openQuickView() {
+        openQuickView(6);
+        delay(2000);
+        selectedProduct = getAttributeByxPathInnerHTML("//*[@id='quickview-modal-6-0']//h1[@class='h1']");
+        priceSelectedProduct = getPrice();
+        setQuantity("2");
+        expectedPrice = priceSelectedProduct * 2;
+    }
+
+    @And("^I have added all available items of product to cart$")
+    public void addAllAvailableItems() {
+        increaseQuantity();
+        findElementsByxPath("//button[@class='btn btn-touchspin js-touchspin bootstrap-touchspin-down']", click, empty);
+        currentUrl = getCurrentUrl();
+        //click at add to cart
+        findElementsByxPath("//*[@class='btn btn-primary add-to-cart']", click, empty);
+    }
+
     @When("^I place product in shopping cart$")
     public void placeProductInCart() {
+
         availability = verifyAvailability();
         clickAddToCart(availability);
     }
@@ -123,6 +143,11 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
 
     @When("^I try to place product in shopping cart$")
     public void tryToPlaceProductInCart() {
+
+    }
+    @When("^I try to add one more item of same product$")
+    public void addOneMoreItem() {
+        goToUrl(currentUrl);
 
     }
 
@@ -209,7 +234,7 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         }
     }
 
-    @Then("^The add to cart button will not be uninteractable$")
+    @Then("^The add to cart button will not be interactable$")
     public void addToCartNotActive() {
         assertFalse(checkButtonStatus("//*[@class='btn btn-primary add-to-cart']"));
     }
@@ -224,4 +249,28 @@ public class PlaceProductsInShoppingCartSteps extends PlaceProductsInShoppingCar
         }
     }
 
+    @Then("^I will see a pop up with confirmation that product was added to shopping cart$")
+    public void verifyModalAfterQuickView() {
+        //Handle fault if product is out of stock
+        if (!availability.contains("tock")) {
+            //Wait for modal to load
+            delay(4000);
+
+            //Verify that product is added
+            assertEquals("<i class=\"material-icons rtl-no-flip\">\uE876</i>Product successfully added to your shopping cart", getAttributeByIdInnerHTML("myModalLabel"));
+
+            //Verify name of product
+            assertEquals(selectedProduct, getAttributeByxPathInnerHTML("//*[@id='blockcart-modal']//h6[@class='h6 product-name']"));
+
+            //Verify product price
+            assertEquals(priceSelectedProduct, getPriceFromCart("//*[@id='blockcart-modal']//p[@class='product-price']"));
+
+            //Verify subtotal price
+            assertEquals(expectedPrice, getPriceFromCart("//*[@id='blockcart-modal']//p[contains(.,'Subtotal:')]//span[@class='value']"), 0.1);
+
+            //Verify total price
+            assertEquals(checkShippingCost() + expectedPrice, getPriceFromCart("//*[@id='blockcart-modal']//p[@class='product-total']//span[@class='value']"), 0.1);
+
+        }
+    }
 }
