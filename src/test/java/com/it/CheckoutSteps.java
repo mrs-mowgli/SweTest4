@@ -62,4 +62,9 @@ public class CheckoutSteps extends CheckoutMethods {
         logOut();
     }
 
+    @Then("It Should Not be Possible to Continue Checkout")
+    public void it_should_not_be_possible_to_continue_checkout() {
+        checkOrderbuttonInactive();
+    }
+
 }

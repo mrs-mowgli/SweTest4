@@ -35,8 +35,20 @@ Feature: Checkingout Products When Logged In
     |My carrier |Check  |chrome|
     |My carrier |Wire   |chrome|
 
+  Scenario: Checkout And Without Choosing Payment Option
+    Given I am on start page using "chrome"
+    And   I am Logged In
+    And   Have Products In Cart
+    When  I Checkout
+    And   Choose Shipping "PrestShop"
+    And   I choose to agree to the terms Of Service
+    Then  It Should Not be Possible to Continue Checkout
 
-
-#negative
- #  change all obligatory fields for personal info and address
-
+  Scenario: Checkout Without Agreeing To Terms Of Service
+    Given I am on start page using "chrome"
+    And   I am Logged In
+    And   Have Products In Cart
+    When  I Checkout
+    And   Choose Shipping "PrestShop"
+    And   Choose Payment "Wire"
+    Then  It Should Not be Possible to Continue Checkout
